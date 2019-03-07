@@ -1,2 +1,0 @@
-Just a place_holder file for bin folder.
-Delete if there is any other thing in this folder.
