@@ -6,7 +6,7 @@ package wineADT;
  * @author Alexander Samaha
  *
  */
-public class WineADT {
+public class Wine {
 	// declaring the characteristics of our set.
 	private String country;
 	private String description;
@@ -24,7 +24,7 @@ public class WineADT {
 	private String reviewer;
 	private String twitter;
 	
-	public WineADT(String[] items, String[] taste, String[] region, Integer rating, Integer id, Double price) {
+	public Wine(String[] items, String[] taste, String[] region, Integer rating, Integer id, Double price) {
 		country = items[0];
 		description = items[1];
 		designation = items[2];
@@ -111,6 +111,14 @@ public class WineADT {
 			note_string += taste_notes[i] + ", ";
 		}
 		return note_string;
+	}
+	
+	public String get_country() {
+		return country;
+	}
+	
+	public String get_province() {
+		return province;
 	}
 	
 	/**
