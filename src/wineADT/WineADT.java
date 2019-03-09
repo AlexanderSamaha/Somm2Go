@@ -1,9 +1,16 @@
 package wineADT;
 
-public class wineADT {
+/**
+ * Public class for all wine objects.
+ * 
+ * @author Alexander Samaha
+ *
+ */
+public class WineADT {
 	// declaring the characteristics of our set.
 	private String country;
 	private String description;
+	private String[] taste_notes;
 	private String designation;
 	private Integer rating;
 	private Double price;
@@ -11,10 +18,25 @@ public class wineADT {
 	private String[] region;
 	private String variety;
 	private String winery;
+	private Integer unique_id;
 	
 	// Some of these wine bottles have a review and reviewer.
 	private String reviewer;
 	private String twitter;
+	
+	public WineADT(String[] items, String[] taste, String[] region, Integer rating, Integer id, Double price) {
+		country = items[0];
+		description = items[1];
+		designation = items[2];
+		province = items[3];
+		winery = items[4];
+		variety = items[5];
+		taste_notes = taste;
+		this.region = region;
+		this.rating = rating;
+		this.price = price;
+		unique_id = id;
+	}
 	
 	/**
 	 * Method accesses the rating of a wine bottle.
@@ -42,7 +64,7 @@ public class wineADT {
 	public String get_geo() {
 		String location = new String();
 		for (int i = 0; i < region.length; i++) {
-			location += region[i];
+			location += region[i] + ", ";
 		}
 		return location + ", " + province + ", " + country;
 	}
@@ -83,6 +105,14 @@ public class wineADT {
 		return variety;
 	}
 	
+	public String get_taste_notes() {
+		String note_string = new String();
+		for (int i = 0; i < taste_notes.length; i++){
+			note_string += taste_notes[i] + ", ";
+		}
+		return note_string;
+	}
+	
 	/**
 	 * Method accesses the name of the expert who reviewed the wine bottle.
 	 * 
@@ -97,6 +127,5 @@ public class wineADT {
 		combined_name = reviewer + ", " + twitter;
 		return combined_name;
 	}
-	
 	
 }
