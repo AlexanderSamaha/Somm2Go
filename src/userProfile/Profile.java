@@ -10,10 +10,9 @@ import java.util.ArrayList;
 class Profile {
 	
 	//Declare variables
-	private String name;
 	private String profile;
 	private ArrayList<String> taste;
-	private ArrayList<String> wines;
+	private ArrayList<Integer> wines;
 	private int[] priceRange;
 	private boolean modified;
 	
@@ -22,22 +21,14 @@ class Profile {
 	 * @param name name of user
 	 * @param profile profile name
 	 */
-	protected Profile (String name, String profile) {
-		this.name = name;
+	protected Profile (String profile) {
 		this.profile = profile;
 		taste = new ArrayList<String>();
-		wines = new ArrayList<String>();
+		wines = new ArrayList<Integer>();
 		priceRange = new int[2];
 		modified = true;
 	}
-	
-	/**
-	 * Accessor method for name of user
-	 * @return name of user
-	 */
-	protected String getName () {
-		return name;
-	}
+
 	/**
 	 * Accessor method for profile name
 	 * @return profile name
@@ -94,7 +85,7 @@ class Profile {
 	 * Add the given wine to profile
 	 * @param element String representing the wine being added
 	 */
-	protected void addWine(String element) {
+	protected void addWine(Integer element) {
 		if (wines.indexOf(element) != -1)
 			return;
 		wines.add(element);
