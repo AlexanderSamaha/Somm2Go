@@ -6,6 +6,10 @@ public class CompareLibrary {
 		return i.get_price().compareTo(j.get_price());
 	}
 	
+	public static int compare_variety(Wine i, Wine j) {
+		return i.get_variety().compareTo(j.get_variety());
+	}
+	
 	public static int compare_rating(Wine i, Wine j) {
 		return i.get_rating().compareTo(j.get_rating());
 	}

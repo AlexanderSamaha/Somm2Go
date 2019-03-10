@@ -113,6 +113,10 @@ public class Wine {
 		return note_string;
 	}
 	
+	public String[] get_taste_noteslist() {
+		return taste_notes;
+	}
+	
 	public String get_country() {
 		return country;
 	}
