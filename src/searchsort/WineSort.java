@@ -1,10 +1,15 @@
 package searchsort;
 
 import wineADT;
-
+/**
+ * Contains methods used by Sorting to sort an array of wines. Called interally by sorting
+ * 
+ * @author David Carrie
+ *
+ */
 class WineSort {
 	
-	
+
 	protected static void sort(Wine [] array, int type) {
 		sort(array, 0, array.length - 1, type );		
 	}
