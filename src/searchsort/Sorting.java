@@ -24,7 +24,7 @@ public class Sorting {
 	 */
 	public static Wine [] sort(Wine [] array, String cat, String req) {
 		result = filter(array, cat, req);
-		result = Sorting.sort(result, cat);
+		Sorting.sort(result, cat);
 		return result;
 	}
 	/**
@@ -52,7 +52,7 @@ public class Sorting {
 	}
 	
 	//Function to send the array to be sorted based on catagory
-	private static sort (Wine [] array, String cat) {
+	private static void sort (Wine [] array, String cat) {
 		switch (cat) {
 		case "country":
 			return WineSort.sort(array, 0);
@@ -68,8 +68,8 @@ public class Sorting {
 			return WineSort.sort(array, 5);
 		case "geo":
 			return WineSort.sort(array, 6);
-		default: return array;
-			break;
+		default: 
+			return;
 		}
 				
 	}
