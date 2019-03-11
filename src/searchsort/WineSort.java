@@ -2,14 +2,10 @@ package searchsort;
 
 import wineADT;
 
-public class WineSort {
+class WineSort {
 	
-	/**
-	 * Rearranges the array in alphabetical order by country
-	 * @param array array of Wines to be sorted
-	 * @param type number representing the catagory to sort by
-	 */
-	public static void sort(Wine [] array, int type) {
+	
+	protected static void sort(Wine [] array, int type) {
 		sort(array, 0, array.length - 1, type );		
 	}
 	
