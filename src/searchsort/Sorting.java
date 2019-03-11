@@ -42,7 +42,7 @@ public class Sorting {
 	//Filters the array
 	private Wine [] filter (Wine [] array, String cat, String req) {
 		
-		list = new ArrayList();
+		list = new ArrayList<Wine>();
 		for (int i = 0; i < array.length(); i++) {
 			if (filterTest(array[i], cat, req)) {
 				list.add(array[i]);

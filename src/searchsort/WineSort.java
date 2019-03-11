@@ -1,15 +1,25 @@
 package searchsort;
 
 import wineADT;
+
 /**
- * Contains methods used by Sorting to sort an array of wines. Called interally by sorting
+ * Contains methods used by Sorting to sort an array of wines. Called interally by Sorting.java, no public access.
  * 
  * @author David Carrie
  *
  */
 class WineSort {
 	
-
+	//should not be instantiated
+	private WineSort() {}
+	
+	/**
+	 * Method used by Sorting.java to sort the wines by catagory, for internal use.
+	 * 
+	 * @param array array of wines to be sorted
+	 * @param type number representing the catagory to sort by.
+	 */
+	
 	protected static void sort(Wine [] array, int type) {
 		sort(array, 0, array.length - 1, type );		
 	}
