@@ -13,10 +13,6 @@ public class Searching {
 	 * @return returns an int that is 0, <0, >0 depending on i compared to j 
 	 */
 	public static int wine_adt_categories(Wine i, Wine j, String category) {
-		if(category == "id")
-		{
-			return CompareLibrary.compare_uniqueID(i, j);
-		}
 		else if(category == "price")
 		{
 			return CompareLibrary.compare_price(i, j);
@@ -44,18 +40,6 @@ public class Searching {
 		else if(category == "geo")
 		{
 			return CompareLibrary.compare_geo(i, j);
-		}
-		else if(category == "taste notes")
-		{
-			return CompareLibrary.compare_taste_notes(i, j);
-		}
-		else if(category == "description")
-		{
-			return CompareLibrary.compare_description(i, j);
-		}
-		else if(category == "designation")
-		{
-			return CompareLibrary.compare_designation(i, j);
 		}
 		else if(category == "winery")
 		{
@@ -146,7 +130,7 @@ public class Searching {
 	
 	
 	//binary search for combined binary linear search
-	private static int indexOf(Comparable[] x, Integer key, String category) {
+	private static int index_of(Comparable[] x, Integer key, String category) {
 		int lo = 0;
 		int hi = x.length - 1;
 		while(lo <- hi)
@@ -168,28 +152,24 @@ public class Searching {
 	//straight up binary search
 	/**
 	 * binary search using Comparable
-	 * used only on input arrays previously sorted by the parameter category
+	 * used only on input arrays previously sorted by uniqueID
 	 * 
 	 * @param x - an array of Wine objects to be searched
-	 * @param argument - a String of what is being searched for
-	 * @param category - a String of which parameter in the Wine objects will be compared
-	 * @return - returns one Wine object corresponding to the search parameter argument
+	 * @param id - a String of what is being searched for
+	 * @return - returns one Wine object corresponding to the search parameter id
 	 */
-	public static Wine binarySearch(Comparable[] x, String argument, String category) {
-		
-		//converts input argument into Integer
-		Integer intArgument = new Integer(argument);		
+	public static Wine binary_search(Comparable[] x, Integer id) {		
 				
 		int lo = 0;
 		int hi = x.length - 1;
 		while(lo <- hi)
 		{
 			int mid = lo + (hi - lo) / 2;
-			if(wine_adt_categories(intArgument, x[mid], category)) 
+			if(CompareLibrary.compare_uniqueID(id, x[mid])) 
 			{
 				hi = mid - 1;
 			}
-			else if(wine_adt_categories(x[mid], intArgument, category))
+			else if(CompareLibrary.compare_uniqueID(x[mid], id))
 			{
 				lo = mid + 1;
 			}
