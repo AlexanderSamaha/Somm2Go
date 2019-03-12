@@ -4,7 +4,7 @@ package searchsort;
  * @brief Contains methods used by Sorting to sort an array of wines. Called interally by Sorting.java, no public access.
  * 
  * @author David Carrie
- * @date Last modified 2019/03/11
+ * @version Last modified 2019/03/11
  */
 class WineSort {
 	
