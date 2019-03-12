@@ -1,10 +1,10 @@
 package searchsort;
 
 /**
- * Contains methods used by Sorting to sort an array of wines. Called interally by Sorting.java, no public access.
+ * @brief Contains methods used by Sorting to sort an array of wines. Called interally by Sorting.java, no public access.
  * 
  * @author David Carrie
- *
+ * @date Last modified 2019/03/11
  */
 class WineSort {
 	
@@ -12,7 +12,7 @@ class WineSort {
 	private WineSort() {}
 	
 	/**
-	 * Method used by Sorting.java to sort the wines by catagory, for internal use.
+	 * @brief Method used by Sorting.java to sort the wines by catagory, for internal use.
 	 * 
 	 * @param array array of wines to be sorted
 	 * @param type number representing the catagory to sort by.
