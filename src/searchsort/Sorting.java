@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @brief Provides methods for sorting an array of type Wine
  * 
  * @author David Carrie
- * @date Last modified 2019/03/11
+ * @version Last modified 2019/03/11
  */
 public class Sorting {
 	
