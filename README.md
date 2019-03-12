@@ -1,6 +1,6 @@
 # 2XB3-Final
 
-The three database is under the data folder inside the project (the json is not being used currently, but only as a backup in this branch).\
+The three database is under the data folder inside the project (the .json one is not being used currently, but only as a backup in this branch).\
 The master branch and WiP-master branch is setup such that you cannot commit and push to it. When working, create a new branch from WiP-master and work from there. When finishes working, create a pull request to merge into WiP-master, and admine will approve the pull request.\
 The master branch is used to store classes that are functioning properly and completely done only.\
 The WiP-master branch is used to store classes at the last "checkpoint".\
