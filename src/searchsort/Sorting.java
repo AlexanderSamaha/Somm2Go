@@ -3,10 +3,10 @@ package searchsort;
 import java.util.ArrayList;
 
 /**
- * Provides methods for sorting an array of type Wine
+ * @brief Provides methods for sorting an array of type Wine
  * 
  * @author David Carrie
- *
+ * @date Last modified 2019/03/11
  */
 public class Sorting {
 	
@@ -14,7 +14,7 @@ public class Sorting {
 	private static ArrayList<Wine> list;
 	
 	/**
-	 * Filters array returning sorted list based on given parameters
+	 * @brief Filters array returning sorted list based on given parameters
 	 * 
 	 * @param array Wines to be sorted
 	 * @param cat catagory on which to sort by and filter
@@ -27,7 +27,7 @@ public class Sorting {
 		return result;
 	}
 	/**
-	 * Sorts array of wines based on given catagory
+	 * @brief Sorts array of wines based on given catagory
 	 * 
 	 * @param array Wines to be sorted
 	 * @param cat category on which to sort by
