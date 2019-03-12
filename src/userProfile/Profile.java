@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Class representing the user's profile
  * @author Mengxi Lei
- * @version Created 2019/03/07, Last Modified 2019/03/11
+ * @version Created 2019/03/07, Last Modified 2019/03/12
  */
 public class Profile {
 	
@@ -13,7 +13,7 @@ public class Profile {
 	private String profile;
 	private ArrayList<String> taste;
 	private ArrayList<Integer> wines;
-	private int[] priceRange;
+	private double[] priceRange;
 	private boolean modified;
 	
 	/**
@@ -25,7 +25,7 @@ public class Profile {
 		this.profile = profile;
 		taste = new ArrayList<String>();
 		wines = new ArrayList<Integer>();
-		priceRange = new int[2];
+		priceRange = new double[2];
 		modified = false;
 	}
 
@@ -54,7 +54,7 @@ public class Profile {
 	 * Accessor method for the user's price range
 	 * @return user's price range
 	 */
-	public int[] getPriceRange() {
+	public double[] getPriceRange() {
 		return priceRange;
 	}
 	
@@ -126,7 +126,7 @@ public class Profile {
 	 * Manually set user's price range
 	 * @param array User's price range
 	 */
-	protected void setPriceRange(int[] array) {
+	protected void setPriceRange(double[] array) {
 		priceRange = array;
 	}
 	
@@ -139,12 +139,21 @@ public class Profile {
 	private void checkPriceChange() {
 		int size = wines.size();
 		if (size == 0)
-			priceRange = new int[2];
+			priceRange = new double[2];
 		else if (size == 1) {
-			
+			double winePrice = Searching.binary_search(wines.get(0)).get_price();
+			price[0] = winePrice * 0.85;
+			price[1] = winePrice * 1.15;
 		}
 		else {
-			
+			double min = 0;
+			double max = 0;
+			int size = wines.size();
+			for (int i = 0; i < size; i++) {
+				if 
+			}
+			price[0] = min * 0.95;
+			price[1] = max * 1.05;
 		}
 	}
 	
