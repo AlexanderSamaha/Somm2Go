@@ -1,7 +1,6 @@
 package searchsort;
 
 import java.util.ArrayList;
-import wineADT;
 
 /**
  * Provides methods for sorting an array of type Wine
