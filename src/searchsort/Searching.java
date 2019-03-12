@@ -97,7 +97,7 @@ public class Searching {
 		ArrayList<Comparable> searched = new ArrayList<Comparable>();
 		
 		//binary search to find one matching WineADT
-		int oneIndex = indexOf(x, intArgument, category);
+		int oneIndex = index_of(x, intArgument, category);
 		
 		//find lower boundary of matching WineADTs
 		while(oneIndex != 0) {
@@ -186,7 +186,7 @@ public class Searching {
 		//array to place search hits into
 		ArrayList<Comparable> searched = new ArrayList<Comparable>();
 				
-		//seach linearly through entire inputted array
+		//seach linearly through entire inputed array
 		for(int i = 0; i < n; i++) {
 			if(WineADT.get_name.contains(name))
 			{
