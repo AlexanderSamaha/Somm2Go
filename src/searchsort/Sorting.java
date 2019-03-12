@@ -14,19 +14,6 @@ public class Sorting {
 	private static ArrayList<Wine> list;
 	
 	/**
-	 * @brief Filters array returning sorted list based on given parameters
-	 * 
-	 * @param array Wines to be sorted
-	 * @param cat catagory on which to sort by and filter
-	 * @param req filter parameter
-	 * @return Sorted array of Wines
-	 */
-	public static Wine [] sort(Wine [] array, String cat, String req) {
-		result = filter(array, cat, req);
-		Sorting.sort(result, cat);
-		return result;
-	}
-	/**
 	 * @brief Sorts array of wines based on given catagory
 	 * 
 	 * @param array Wines to be sorted
@@ -38,17 +25,7 @@ public class Sorting {
 		return array;
 	}
 	
-	//Filters the array
-	private Wine [] filter (Wine [] array, String cat, String req) {
-		
-		list = new ArrayList<Wine>();
-		for (int i = 0; i < array.length(); i++) {
-			if (filterTest(array[i], cat, req)) {
-				list.add(array[i]);
-			}
-		}
-		result = (Wine)list.toArray();
-	}
+	
 	
 	//Function to send the array to be sorted based on catagory
 	private static void sort (Wine [] array, String cat) {
@@ -71,6 +48,36 @@ public class Sorting {
 			return;
 		}
 				
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////Everything below this is useless for now////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * @brief Filters array returning sorted list based on given parameters
+	 * 
+	 * @param array Wines to be sorted
+	 * @param cat catagory on which to sort by and filter
+	 * @param req filter parameter
+	 * @return Sorted array of Wines
+	 
+	public static Wine [] sort(Wine [] array, String cat, String req) {
+		result = filter(array, cat, req);
+		Sorting.sort(result, cat);
+		return result;
+	}
+	
+	//Filters the array
+	private Wine [] filter (Wine [] array, String cat, String req) {
+		
+		list = new ArrayList<Wine>();
+		for (int i = 0; i < array.length(); i++) {
+			if (filterTest(array[i], cat, req)) {
+				list.add(array[i]);
+			}
+		}
+		result = (Wine)list.toArray();
 	}
 	
 	//Return if the Wine passes the filter, for price its less than or equal to.
@@ -104,6 +111,7 @@ public class Sorting {
 		}
 		
 	}
+	*/
 	
 	
 }
