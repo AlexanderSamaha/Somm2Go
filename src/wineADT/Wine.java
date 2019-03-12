@@ -1,11 +1,11 @@
 package wineADT;
 
 /**
- * @brief Public class for all wine objects.
+ *  Public class for all wine objects.
  * 
  * @author Alexander Samaha
  * 
- * @date Last modified 11/03/2019.
+ * @version Last modified 11/03/2019.
  *
  */
 public class Wine {
@@ -27,7 +27,7 @@ public class Wine {
 	private String twitter;
 	
 	/**
-	 * @brief Constructor of a wine object.
+	 *  Constructor of a wine object.
 	 * 
 	 * @param items Contains String information of a wine bottle.
 	 * @param taste Contains all the taste notes of a wine bottle.
@@ -51,7 +51,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the rating of a wine bottle.
+	 *  Method accesses the rating of a wine bottle.
 	 * 
 	 * @return returns Integer relating to rating.
 	 */
@@ -60,7 +60,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the price of a wine bottle.
+	 *  Method accesses the price of a wine bottle.
 	 * 
 	 * @return returns Double relating to price.
 	 */
@@ -69,7 +69,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the geographical characteristic of a bottle.
+	 *  Method accesses the geographical characteristic of a bottle.
 	 * 
 	 * @return returns a String with the region(s), province and country of a wine bottle.
 	 */
@@ -82,7 +82,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the original winery where the bottle originates.
+	 *  Method accesses the original winery where the bottle originates.
 	 * 
 	 * @return returns String relating to winery.
 	 */
@@ -91,7 +91,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the description of a wine as given by an expert.
+	 *  Method accesses the description of a wine as given by an expert.
 	 * 
 	 * @return returns String relating to description.
 	 */
@@ -100,7 +100,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the designation of a wine bottle (name).
+	 *  Method accesses the designation of a wine bottle (name).
 	 * 
 	 * @return returns String relating to designation.
 	 */
@@ -109,7 +109,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the variety of a wine bottle.
+	 *  Method accesses the variety of a wine bottle.
 	 * 
 	 * @return returns String relating to variety of a wine bottle.
 	 */
@@ -118,7 +118,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method gives a string of all the taste notes of a wine.
+	 *  Method gives a string of all the taste notes of a wine.
 	 * 
 	 * @return A string with the taste notes of a wine.
 	 */
@@ -131,7 +131,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the raw array containing all the taste notes.
+	 *  Method accesses the raw array containing all the taste notes.
 	 * 
 	 * @return A String array with all the taste notes of a wine bottle.
 	 */
@@ -140,7 +140,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the country of origin of a wine bottle.
+	 *  Method accesses the country of origin of a wine bottle.
 	 * 
 	 * @return String corresponding to country of a wine object.
 	 */
@@ -149,7 +149,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the province of origin of a wine bottle.
+	 *  Method accesses the province of origin of a wine bottle.
 	 * 
 	 * @return String corresponding to province of a wine bottle.
 	 */
@@ -158,7 +158,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the name of the expert who reviewed the wine bottle.
+	 *  Method accesses the name of the expert who reviewed the wine bottle.
 	 * 
 	 * @return returns a String relating to a name.
 	 */
@@ -167,7 +167,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the uniqueID of a wine bottle.
+	 *  Method accesses the uniqueID of a wine bottle.
 	 * 
 	 * @return An Integer comparable of an ID number for each wine bottle.
 	 */
@@ -176,7 +176,7 @@ public class Wine {
 	}
 	
 	/**
-	 * @brief Method accesses the reviewer's name and twitter tag.
+	 *  Method accesses the reviewer's name and twitter tag.
 	 * 
 	 * @return A string corresponding to name and twitter tag.
 	 */

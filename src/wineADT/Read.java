@@ -1,28 +1,31 @@
 package wineADT;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @brief Delivers the method that reads our dataset.
+ * Delivers the method that reads our dataset.
  * 
  * @author Alexander Samaha
  * 
- * @date Last modified 12/03/2019.
+ * @version Last modified 12/03/2019.
  *
  */
 public class Read {
 	
-	// change this
+	public static Wine[] wines = read();
+	
+	
 	/**
-	 * @brief Reads files from dataset and creates a wine ADT object for the wine bottle.
+	 * Reads files from dataset and creates a wine ADT object for the wine bottle.
 	 * 
 	 * @return An array containing wine objects.
 	 * @throws IOException fails if there is a file error.
 	 */
-	protected static Wine[] read() throws IOException {
+	private static Wine[] read() {
 		// We can add files we would like to parse in the following array. We use an array list
 		// because it allows us to add dynamically.
 		String[] file_adr = { "data/winemag-data_first150k.txt" };
@@ -31,7 +34,10 @@ public class Read {
 		int k = 0;
 		while (k < file_adr.length) {
 			File f = new File(file_adr[k]);
-			Scanner sc = new Scanner(f, "UTF-8");
+			Scanner sc = null;
+			try {
+				sc = new Scanner(f, "UTF-8");
+			} catch (FileNotFoundException e) {}
 			sc.nextLine();
 			Integer id_count = 0;
 			while (sc.hasNextLine()) {
@@ -110,5 +116,6 @@ public class Read {
 		return array_wines;
 	
 	}
+	
 
 }

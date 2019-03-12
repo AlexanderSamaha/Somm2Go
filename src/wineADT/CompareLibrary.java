@@ -2,18 +2,18 @@ package wineADT;
 
 /**
  * 
- * @brief Contains methods called to ease comparison of wine bottles. These are all the
+ * Contains methods called to ease comparison of wine bottles. These are all the
  * characteristics we care about when comparing wine.
  * 
  * @author Alexander Samaha
  * 
- * @date last modified 11/03/2019.
+ * @version last modified 11/03/2019.
  *
  */
 public class CompareLibrary {
 	
 	/**
-	 * @brief Compares the unique ID given to each member of the dataset.
+	 * Compares the unique ID given to each member of the dataset.
 	 * 
 	 * @param i Wine object with characteristics.
 	 * @param j Wine object with characteristics.
@@ -24,7 +24,7 @@ public class CompareLibrary {
 	}
 	
 	/**
-	 * @brief Compares the price between two bottles.
+	 *   Compares the price between two bottles.
 	 * 
 	 * @param i Wine object with characteristics.
 	 * @param j Wine object with characteristics.
@@ -35,7 +35,7 @@ public class CompareLibrary {
 	}
 	
 	/**
-	 * @brief Compares the variety of a bottle (style) between two bottles.
+	 *   Compares the variety of a bottle (style) between two bottles.
 	 * 
 	 * @param i Wine object with characteristics.
 	 * @param j Wine object with characteristics.
@@ -46,7 +46,7 @@ public class CompareLibrary {
 	}
 	
 	/**
-	 * @brief Compares the rating between two bottles of wine.
+	 *   Compares the rating between two bottles of wine.
 	 * 
 	 * @param i Wine object with characteristics.
 	 * @param j Wine object with characteristics.
@@ -57,7 +57,7 @@ public class CompareLibrary {
 	}
 	
 	/**
-	 * @brief Compares between origin country of a bottle of wine.
+	 *   Compares between origin country of a bottle of wine.
 	 * 
 	 * @param i Wine object with characteristics.
 	 * @param j Wine object with characteristics.
@@ -68,7 +68,7 @@ public class CompareLibrary {
 	}
 	
 	/**
-	 * @brief Compares between province wine is from.
+	 *   Compares between province wine is from.
 	 * 
 	 * @param i Wine object with characteristics.
 	 * @param j Wine object with characteristics.
@@ -79,7 +79,7 @@ public class CompareLibrary {
 	}
 	
 	/**
-	 * @brief Compares between name of wine bottle.
+	 *   Compares between name of wine bottle.
 	 * 
 	 * @param i Wine object with characteristics.
 	 * @param j Wine object with characteristics.
@@ -90,7 +90,7 @@ public class CompareLibrary {
 	}
 	
 	/**
-	 * @brief Compares between winery of origin.
+	 *   Compares between winery of origin.
 	 * 
 	 * @param i Wine object with characteristics.
 	 * @param j Wine object with characteristics.
@@ -101,7 +101,7 @@ public class CompareLibrary {
 	}
 	
 	/**
-	 * @brief Compares between country value, if the same, compares between province.
+	 *   Compares between country value, if the same, compares between province.
 	 *  
 	 * @param i Wine object with characteristics.
 	 * @param j Wine object with characteristics.
