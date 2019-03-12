@@ -142,7 +142,7 @@ public class Profile {
 		if (size == 0)
 			priceRange = new double[2];
 		else if (size == 1) {
-			price = Searching.binary_search(wines.get(0)).get_price();
+			price = Searching.binary_search(Read.wines, wines.get(0)).get_price();
 			priceRange[0] = price * 0.85;
 			priceRange[1] = price * 1.15;
 		}
@@ -150,7 +150,7 @@ public class Profile {
 			priceRange[0] = Double.MAX_VALUE;
 			priceRange[1] = 0;
 			for (int i = 0; i < size; i++) {
-				price = Searching.binary_search(wines.get(i)).get_price();
+				price = Searching.binary_search(Read.wines, wines.get(i)).get_price();
 				if (price < priceRange[0])
 					priceRange[0] = price;
 				if (price > priceRange[1])
