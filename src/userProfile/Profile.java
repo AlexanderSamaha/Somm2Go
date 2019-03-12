@@ -137,23 +137,27 @@ public class Profile {
 	 * Otherwise, the range is the price of highest wine and price of lowest wine +/- 5%
 	 */
 	private void checkPriceChange() {
+		double price;
 		int size = wines.size();
 		if (size == 0)
 			priceRange = new double[2];
 		else if (size == 1) {
-			double winePrice = Searching.binary_search(wines.get(0)).get_price();
-			price[0] = winePrice * 0.85;
-			price[1] = winePrice * 1.15;
+			price = Searching.binary_search(wines.get(0)).get_price();
+			priceRange[0] = price * 0.85;
+			priceRange[1] = price * 1.15;
 		}
 		else {
-			double min = 0;
-			double max = 0;
-			int size = wines.size();
+			priceRange[0] = Double.MAX_VALUE;
+			priceRange[1] = 0;
 			for (int i = 0; i < size; i++) {
-				if 
+				price = Searching.binary_search(wines.get(i)).get_price();
+				if (price < priceRange[0])
+					priceRange[0] = price;
+				if (price > priceRange[1])
+					priceRange[1] = price;
 			}
-			price[0] = min * 0.95;
-			price[1] = max * 1.05;
+			priceRange[0] *= 0.95;
+			priceRange[1] *= 1.05;
 		}
 	}
 	

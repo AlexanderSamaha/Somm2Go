@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 /**
  * Class for managing the profiles
  * @author Mengxi Lei
- * @version Created 2019/03/07, Last Modified 2019/03/11
+ * @version Created 2019/03/07, Last Modified 2019/03/12
  */
 public class ProfileManager {
 	
@@ -137,7 +137,7 @@ public class ProfileManager {
 		Scanner input = null;
 		StringTokenizer[] inputArray = new StringTokenizer[3];
 		int length;
-		int[] price = new int[2];
+		double[] price = new double[2];
 		try {
 			input = new Scanner(file);
 		} catch (FileNotFoundException exception) {
@@ -153,8 +153,8 @@ public class ProfileManager {
 		length = inputArray[1].countTokens();
 		for (int i = 0; i < length; i++)
 			profile.addWine(Integer.parseInt(inputArray[1].nextToken()));
-		price[0] = Integer.parseInt(inputArray[2].nextToken());
-		price[1] = Integer.parseInt(inputArray[2].nextToken());
+		price[0] = Double.parseDouble(inputArray[2].nextToken());
+		price[1] = Double.parseDouble(inputArray[2].nextToken());
 		profile.setPriceRange(price);
 		input.close();
 	}
@@ -179,7 +179,7 @@ public class ProfileManager {
 	private void writeProfile() {
 		String[] taste;
 		Integer[] wine;
-		int[] range;
+		double[] range;
 		File file = new File ("profile/" + profile.getProfile() + ".bin");
 		try {
 			FileWriter output = new FileWriter(file);

@@ -1,4 +1,5 @@
 package searchsort;
+
 import java.util.*;
 
 /**
@@ -9,8 +10,8 @@ import java.util.*;
 public class Searching {
 	
 	/**
-	 * @brief Uses the parameter category to choose which compare function to use
-	 * @details compares the wine objects based on that category
+	 * Uses the parameter category to choose which compare function to use.
+	 * Compares the wine objects based on that category.
 	 * @param i - an object of type Wine to be compared against j
 	 * @param j - an object of type Wine to be compared against i
 	 * @param category - a string of which parameter in the Wine objects will be compared
@@ -48,7 +49,7 @@ public class Searching {
 	}
 		
 	/**
-	 * @brief linear search using Comparable
+	 * Linear search using Comparable.
 	 * @param x - an array of Wine objects to be searched
 	 * @param argument - a String of what is being searched for
 	 * @param category - a String of which parameter in the Wine objects will be compared
@@ -77,10 +78,10 @@ public class Searching {
 	}
 	
 	/**
-	 * @brief A combined binary linear search using Comparable
-	 * @details use binary search to find one Wine object that corresponds to search parameter argument
-	 * uses linear search to find index range of corresponding Wine objects
-	 * used only on the input array previously sorted by the parameter category
+	 * A combined binary linear search using Comparable.
+	 * Use binary search to find one Wine object that corresponds to search parameter argument.
+	 * Uses linear search to find index range of corresponding Wine objects.
+	 * Used only on the input array previously sorted by the parameter category.
 	 * @param x - an array of Wine objects to be searched
 	 * @param argument - a String of what is being searched for
 	 * @param category - a String of which parameter in the Wine objects will be compared
@@ -148,7 +149,7 @@ public class Searching {
 	}
 	
 	/**
-	 * @brief Binary search using Comparable
+	 * Binary search using Comparable.
 	 * @details Used only on input arrays previously sorted by uniqueID
 	 * @param x - an array of Wine objects to be searched
 	 * @param id - a String of what is being searched for
@@ -174,7 +175,7 @@ public class Searching {
 	}
 	
 	/**
-	 * @brief Finds wines with a name that contains the passed string
+	 * Finds wines with a name that contains the passed string.
 	 * @param x - an array of Wine objects to be searched
 	 * @param name - a String of what is being searched for
 	 * @return - returns an array of wines corresponding to the search parameter name
