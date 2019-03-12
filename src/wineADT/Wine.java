@@ -1,9 +1,11 @@
 package wineADT;
 
 /**
- * Public class for all wine objects.
+ * @brief Public class for all wine objects.
  * 
  * @author Alexander Samaha
+ * 
+ * @date Last modified 11/03/2019.
  *
  */
 public class Wine {
@@ -24,6 +26,16 @@ public class Wine {
 	private String reviewer;
 	private String twitter;
 	
+	/**
+	 * @brief Constructor of a wine object.
+	 * 
+	 * @param items Contains String information of a wine bottle.
+	 * @param taste Contains all the taste notes of a wine bottle.
+	 * @param region Contains the region of a wine bottle.
+	 * @param rating Contains the rating of a wine bottle.
+	 * @param id Unique ID of a wine bottle.
+	 * @param price Price of the wine bottle.
+	 */
 	public Wine(String[] items, String[] taste, String[] region, Integer rating, Integer id, Double price) {
 		country = items[0];
 		description = items[1];
@@ -39,7 +51,7 @@ public class Wine {
 	}
 	
 	/**
-	 * Method accesses the rating of a wine bottle.
+	 * @brief Method accesses the rating of a wine bottle.
 	 * 
 	 * @return returns Integer relating to rating.
 	 */
@@ -48,7 +60,7 @@ public class Wine {
 	}
 	
 	/**
-	 * Method accesses the price of a wine bottle.
+	 * @brief Method accesses the price of a wine bottle.
 	 * 
 	 * @return returns Double relating to price.
 	 */
@@ -57,7 +69,7 @@ public class Wine {
 	}
 	
 	/**
-	 * Method accesses the geographical characteristic of a bottle.
+	 * @brief Method accesses the geographical characteristic of a bottle.
 	 * 
 	 * @return returns a String with the region(s), province and country of a wine bottle.
 	 */
@@ -70,7 +82,7 @@ public class Wine {
 	}
 	
 	/**
-	 * Method accesses the original winery where the bottle originates.
+	 * @brief Method accesses the original winery where the bottle originates.
 	 * 
 	 * @return returns String relating to winery.
 	 */
@@ -79,7 +91,7 @@ public class Wine {
 	}
 	
 	/**
-	 * Method accesses the description of a wine as given by an expert.
+	 * @brief Method accesses the description of a wine as given by an expert.
 	 * 
 	 * @return returns String relating to description.
 	 */
@@ -88,7 +100,7 @@ public class Wine {
 	}
 	
 	/**
-	 * Method accesses the designation of a wine bottle (name).
+	 * @brief Method accesses the designation of a wine bottle (name).
 	 * 
 	 * @return returns String relating to designation.
 	 */
@@ -97,7 +109,7 @@ public class Wine {
 	}
 	
 	/**
-	 * Method accesses the variety of a wine bottle.
+	 * @brief Method accesses the variety of a wine bottle.
 	 * 
 	 * @return returns String relating to variety of a wine bottle.
 	 */
@@ -105,6 +117,11 @@ public class Wine {
 		return variety;
 	}
 	
+	/**
+	 * @brief Method gives a string of all the taste notes of a wine.
+	 * 
+	 * @return A string with the taste notes of a wine.
+	 */
 	public String get_taste_notes() {
 		String note_string = new String();
 		for (int i = 0; i < taste_notes.length; i++){
@@ -113,20 +130,35 @@ public class Wine {
 		return note_string;
 	}
 	
+	/**
+	 * @brief Method accesses the raw array containing all the taste notes.
+	 * 
+	 * @return A String array with all the taste notes of a wine bottle.
+	 */
 	public String[] get_taste_noteslist() {
 		return taste_notes;
 	}
 	
+	/**
+	 * @brief Method accesses the country of origin of a wine bottle.
+	 * 
+	 * @return String corresponding to country of a wine object.
+	 */
 	public String get_country() {
 		return country;
 	}
 	
+	/**
+	 * @brief Method accesses the province of origin of a wine bottle.
+	 * 
+	 * @return String corresponding to province of a wine bottle.
+	 */
 	public String get_province() {
 		return province;
 	}
 	
 	/**
-	 * Method accesses the name of the expert who reviewed the wine bottle.
+	 * @brief Method accesses the name of the expert who reviewed the wine bottle.
 	 * 
 	 * @return returns a String relating to a name.
 	 */
@@ -134,6 +166,20 @@ public class Wine {
 		return reviewer;
 	}
 	
+	/**
+	 * @brief Method accesses the uniqueID of a wine bottle.
+	 * 
+	 * @return An Integer comparable of an ID number for each wine bottle.
+	 */
+	public Integer get_uniqueID() {
+		return unique_id;
+	}
+	
+	/**
+	 * @brief Method accesses the reviewer's name and twitter tag.
+	 * 
+	 * @return A string corresponding to name and twitter tag.
+	 */
 	public String get_name_and_twitter() {
 		String combined_name = new String();
 		combined_name = reviewer + ", " + twitter;
