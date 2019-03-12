@@ -3,9 +3,9 @@ package searchsort;
 import java.util.*;
 
 /**
+ * A class for searching through a number of Wines
  * @author Daniel William Noorduyn
  * @version March 12, 2019
- * @brief A class for searching through a number of Wines
  */
 public class Searching {
 	
