@@ -1,7 +1,5 @@
 package searchsort;
 
-import wineADT;
-
 /**
  * Contains methods used by Sorting to sort an array of wines. Called interally by Sorting.java, no public access.
  * 
