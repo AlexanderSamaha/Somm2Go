@@ -1,4 +1,5 @@
 package searchsort;
+import java.util.*;
 
 public class Searching {
 	
@@ -73,18 +74,18 @@ public class Searching {
 		Integer intArgument = new Integer(argument);
 		
 		//array to place search hits into
-		Comparable[] searched = new Comparable[n];
-		int counter = 0;
+		ArrayList<Comparable> searched = new ArrayList<Comparable>();
 		
 		//seach linearly through entire inputted array
 		for(int i = 0; i < n; i++) {
 			if(wine_adt_categories(x[i], intArgument, category) == 0)
 			{
-				searched[counter] = x[i];
-				counter += 1;
+				searched.add(x[i]);
 			}
 		}
-		return searched;
+		Comparable[] searched_array = new Comparable[searched.size()];
+		searched_array = searched.toArray(searched_array);
+		return searched_array;
 	}
 	
 	public static Comparable[] binary_linear_search(Comparable[] x, String argument, String category) {
@@ -95,8 +96,7 @@ public class Searching {
 		Integer intArgument = new Integer(argument);
 		
 		//array to place search hits into
-		Comparable[] searched = new Comparable[n];
-		int counter = 0;
+		ArrayList<Comparable> searched = new ArrayList<Comparable>();
 		
 		//binary search to find one matching WineADT
 		int oneIndex = indexOf(x, intArgument, category);
@@ -121,10 +121,11 @@ public class Searching {
 		
 		//place found WineADTs into an array
 		for(int i = lowerBound; i <= upperBound; i++) {
-			searched[i-lowerBound] = x[i];
+			searched.add(x[i]);
 		}
-		
-		return searched;
+		Comparable[] searched_array = new Comparable[searched.size()];
+		searched_array = searched.toArray(searched_array);
+		return searched_array;
 	}
 	
 	
