@@ -10,7 +10,7 @@ import java.util.Scanner;
  * 
  * @author Alexander Samaha
  * 
- * @date Last modified 11/03/2019.
+ * @date Last modified 12/03/2019.
  *
  */
 public class Read {
@@ -22,15 +22,12 @@ public class Read {
 	 * @return An array containing wine objects.
 	 * @throws IOException fails if there is a file error.
 	 */
-	public static Object[] read() throws IOException {
-		//String[] file_adr = new String[args.length];
+	protected static Wine[] read() throws IOException {
+		// We can add files we would like to parse in the following array. We use an array list
+		// because it allows us to add dynamically.
 		String[] file_adr = { "data/winemag-data_first150k.txt" };
 		ArrayList<Wine> arr_list = new ArrayList<Wine>();
-		/*
-		for (int i = 0; i < file_adr.length; i++) {
-			file_adr[i] = args[i];
-		}
-		*/
+
 		int k = 0;
 		while (k < file_adr.length) {
 			File f = new File(file_adr[k]);
@@ -39,26 +36,26 @@ public class Read {
 			Integer id_count = 0;
 			while (sc.hasNextLine()) {
 				String scanned = sc.nextLine();
-				System.out.println(scanned);
+				// if there is a blank line, skip it before a fail.
 				if (scanned.isEmpty()) {
 					scanned = sc.nextLine();
 				}
+				// use this instead of StringTokenizer because it won't skip empty fields.
 				String[] st = scanned.split(",");
 				
-				// String st = new String(sc.nextLine());
-				//System.out.println(st.countTokens());
+				/* was put here to make sure all fields show up.
 				String toString = "";
 				for (int i = 0; i < st.length; i++) {
 					toString += st[i] + ", ";
 				}
-			
-				
-				
+				*/
+
 				String country = st[1];
 				String description = "";
+				// This piece grabs our entire description! this paragraph has our delimiters so it gets split.
 				int count = 0;
 				for (int i = 2; i < (st.length - 10) + 2; i++) {
-					if (st[i].endsWith("\",")) {
+					if (st[i].endsWith("\"")) {
 						description += st[i];
 					}
 					else {
@@ -70,9 +67,10 @@ public class Read {
 				
 				String designation = st[count+2];
 				
-				Integer points = !(st[count+3].isEmpty()) ? Integer.parseInt(st[count+3]) : 0;
+				// next two fields will fail if the field is empty, so make sure we assign it something.
+				Integer points = !(st[count+3].isEmpty()) ? Integer.parseInt(st[count+3]) : -1;
 				
-				Double price = !(st[count+4].isEmpty()) ? Double.parseDouble(st[count+4]) : 0.0;
+				Double price = !(st[count+4].isEmpty()) ? Double.parseDouble(st[count+4]) : -1.0;
 				
 				String province = st[count+5];
 				String[] region = {
@@ -81,7 +79,8 @@ public class Read {
 				};
 				String variety = st[count+8];
 				String winery = st[count+9];
-				System.out.println(id_count);
+				//System.out.println(id_count);
+				// unique ID system because some wine bottles have empty names.
 				Integer unique_id = id_count++;
 				
 				String[] items = {
@@ -94,7 +93,7 @@ public class Read {
 				};
 				
 				String[] taste = {};
-				
+				// Object constructor.
 				Wine curr_obj = new Wine(items, taste, region, points, unique_id, price);
 				
 				arr_list.add(curr_obj);
@@ -104,13 +103,12 @@ public class Read {
 			k++;
 			sc.close();
 		}
-		Object[] array_wines = arr_list.toArray();
-		return array_wines;
-		//return array_wines;
 		
-	}
+		// We no longer need an array list. we have our size required. Put into an array.
+		Wine[] array_wines = new Wine[arr_list.size()];
+		array_wines = arr_list.toArray(array_wines);
+		return array_wines;
 	
-	public static void main(String[] args) throws IOException {
-		Object[] array = read();
 	}
+
 }
