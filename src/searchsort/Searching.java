@@ -3,18 +3,15 @@ import java.util.*;
 
 public class Searching {
 	
-	//private static boolean wine_price = false;
-	//private static boolean wine_variety = false;
-	//private static boolean wine_rating = false;
-	//private static boolean wine_name = false;
-	//private static boolean wine_country = false;
-	//private static boolean wine_province = false;
-	//private static boolean wine_geo = false;
-	//private static boolean wine_taste_notes = false;
-	//private static boolean wine_designation = false;
-	//private static boolean wine_description = false;
-	//private static boolean wine_winery = false;
-	
+	/**
+	 * uses the parameter category to choose which compare function to use
+	 * compares the wine objects based on that category
+	 * 
+	 * @param i - an object of type Wine to be compared against j
+	 * @param j - an object of type Wine to be compared against i
+	 * @param category - a string of which parameter in the Wine objects will be compared
+	 * @return returns an int that is 0, <0, >0 depending on i compared to j 
+	 */
 	public static int wine_adt_categories(Wine i, Wine j, String category) {
 		if(category == "id")
 		{
@@ -66,6 +63,14 @@ public class Searching {
 		}
 	}
 		
+	/**
+	 * linear search using Comparable
+	 * 
+	 * @param x - an array of Wine objects to be searched
+	 * @param argument - a String of what is being searched for
+	 * @param category - a String of which parameter in the Wine objects will be compared
+	 * @return returns an array of Wine objects corresponding to the search parameter argument
+	 */
 	public static Comparable[] linear_search(Comparable[] x, String argument, String category) {
 		//length of input WineADT ADT List
 		int n = x.length;
@@ -88,6 +93,17 @@ public class Searching {
 		return searched_array;
 	}
 	
+	/**
+	 * a combined binary linear search using Comparable
+	 * use binary search to find one Wine object that corresponds to search parameter argument
+	 * uses linear search to find index range of corresponding Wine objects
+	 * used only on the input array previously sorted by the parameter category
+	 * 
+	 * @param x - an array of Wine objects to be searched
+	 * @param argument - a String of what is being searched for
+	 * @param category - a String of which parameter in the Wine objects will be compared
+	 * @return returns an array of Wine objects corresponding to the search parameter argument
+	 */
 	public static Comparable[] binary_linear_search(Comparable[] x, String argument, String category) {
 		//length of input WineADT ADT List
 		int n = x.length;
@@ -130,7 +146,7 @@ public class Searching {
 	
 	
 	//binary search for combined binary linear search
-	public static int indexOf(Comparable[] x, Integer key, String category) {
+	private static int indexOf(Comparable[] x, Integer key, String category) {
 		int lo = 0;
 		int hi = x.length - 1;
 		while(lo <- hi)
@@ -150,6 +166,15 @@ public class Searching {
 	}
 	
 	//straight up binary search
+	/**
+	 * binary search using Comparable
+	 * used only on input arrays previously sorted by the parameter category
+	 * 
+	 * @param x - an array of Wine objects to be searched
+	 * @param argument - a String of what is being searched for
+	 * @param category - a String of which parameter in the Wine objects will be compared
+	 * @return - returns one Wine object corresponding to the search parameter argument
+	 */
 	public static Wine binarySearch(Comparable[] x, String argument, String category) {
 		
 		//converts input argument into Integer
