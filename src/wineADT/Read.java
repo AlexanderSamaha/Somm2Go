@@ -117,5 +117,13 @@ public class Read {
 	
 	}
 	
+	public static void read_tasteNotes(Wine[] array_wines) {
+		for (int i = 0; i < array_wines.length; i++) {
+			array_wines[i].insert_taste_notes();
+			System.out.println(array_wines[i].get_taste_notes());
+		}
+		return;
+	}
+	
 
 }
