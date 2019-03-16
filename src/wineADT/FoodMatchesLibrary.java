@@ -6,6 +6,16 @@ import java.util.Map;
 
 public class FoodMatchesLibrary {
 	
+	/*
+	 * here are the links to figure out which style blends with which food.
+	 * 
+	 * https://www.foodandwine.com/slideshows/15-rules-great-wine-and-food-pairings#15
+	 * https://www.huffingtonpost.ca/natalie-maclean/food-and-wine-pairings-guide_b_2505616.html
+	 * 
+	 * SUPER USEFUL, good picture.
+	 * https://winefolly.com/tutorial/basic-wine-and-food-pairing-chart/
+	 */
+	
 	// meritage is a bordeaux-style red blend, make sure both match.
 	// bd-style white blend is sauvignon blanc, semillon, or muscadelle.
 	private static String[] styles = new String[] {
