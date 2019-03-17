@@ -94,8 +94,8 @@ public class Read {
 						description,
 						designation,
 						province,
-						variety,
-						winery
+						winery,
+						variety
 				};
 				
 				String[] taste = {};
@@ -113,8 +113,18 @@ public class Read {
 		// We no longer need an array list. we have our size required. Put into an array.
 		Wine[] array_wines = new Wine[arr_list.size()];
 		array_wines = arr_list.toArray(array_wines);
+		
+		FoodMatchesLibrary.read_hashmap();
 		return array_wines;
 	
+	}
+	
+	public static void read_tasteNotes(Wine[] array_wines) {
+		for (int i = 0; i < array_wines.length; i++) {
+			array_wines[i].insert_taste_notes();
+			// System.out.println(array_wines[i].get_taste_notes());
+		}
+		return;
 	}
 	
 

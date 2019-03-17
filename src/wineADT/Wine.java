@@ -1,5 +1,9 @@
 package wineADT;
 
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *  Public class for all wine objects.
  * 
@@ -125,9 +129,40 @@ public class Wine {
 	public String get_taste_notes() {
 		String note_string = new String();
 		for (int i = 0; i < taste_notes.length; i++){
-			note_string += taste_notes[i] + ", ";
+			if (i + 1 >= taste_notes.length)
+				note_string += taste_notes[i];
+			else {
+				note_string += taste_notes[i] + ", ";
+			}
 		}
 		return note_string;
+	}
+	
+	public void insert_taste_notes() {
+		String pattern = "";
+		String description = "";
+		ArrayList<String> tasters = new ArrayList<String>();
+		for (int i = 0; i < TasteNoteLibrary.get_patterns().length; i++) {
+			pattern = TasteNoteLibrary.get_patterns()[i];
+			description = this.description.toLowerCase();
+			Pattern pt = Pattern.compile(pattern);
+			Matcher st = pt.matcher(description);
+			int count = 0;
+			while (st.find()) {
+				count++;
+			}
+			if (count > 0) {
+				tasters.add(pattern);
+			}
+			
+		}
+		if (tasters.isEmpty()) {
+			tasters.add("no_notes");
+		}
+		
+		String[] new_notes = new String[tasters.size()];
+		new_notes = tasters.toArray(new_notes);
+		this.taste_notes = new_notes;
 	}
 	
 	/**

@@ -2,8 +2,9 @@ package userProfile;
 
 import java.util.ArrayList;
 
-import wineADT.*;
-import searchsort.*;
+import searchsort.Searching;
+import wineADT.Read;
+
 
 /**
  * Class representing the user's profile
