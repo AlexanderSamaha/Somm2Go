@@ -20,9 +20,9 @@ public class FoodMatchesLibrary {
 	// bd-style white blend is sauvignon blanc, semillon, or muscadelle.
 	private static String[] styles = new String[] {
 		"pinot noir", "chardonnay", "champagne", "cabernet sauvignon",
-		"sauvignon blanc", "dry rosé", "pinot grigio", "malbec", "moscato",
-		"syrah", "grüner veltliner", "zinfandel", "riesling", "rosé champagne",
-		"merlot", "shiraz", "gewürztraminer", "albariño", "malvasia", "müller-thurgau",
+		"sauvignon blanc", "dry rosÃ©", "pinot grigio", "malbec", "moscato",
+		"syrah", "grÃ¼ner veltliner", "zinfandel", "riesling", "rosÃ© champagne",
+		"merlot", "shiraz", "gewÃ¼rztraminer", "albariÃ±o", "malvasia", "mÃ¼ller-thurgau",
 		"roussanne", "viognier", "marsanne", "sparkling", "prosecco", "cava", "st. laurent",
 		"zweigelt", "gamay", "meritage", "tempranillo", "sangiovese", "grenache", "monastrell",
 		"aglianico"
@@ -54,6 +54,6 @@ public class FoodMatchesLibrary {
 			map.put(food[i], null);
 		}
 	}
-	
+	 
 	
 }
