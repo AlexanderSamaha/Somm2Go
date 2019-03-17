@@ -1,5 +1,7 @@
 package searchsort;
 
+import wineADT.*;
+
 /**
  * Contains methods used by Sorting to sort an array of wines. Called interally by Sorting.java, no public access.
  * 
@@ -22,7 +24,7 @@ class WineSort {
 		sort(array, 0, array.length - 1, type );		
 	}
 	
-	private static void sort(Wine [] array, int hi, int lo, int type) {
+	private static void sort(Wine [] array, int lo, int hi, int type) {
 		if (hi <= lo)
 			return;
 		int j = partition(array, lo, hi, type);
@@ -70,6 +72,7 @@ class WineSort {
 		case(4): return CompareLibrary.compare_province(v, w) < 0;
 		case(5): return CompareLibrary.compare_variety(v, w) < 0;	
 		case(6): return CompareLibrary.compare_geo(v, w) < 0;
+		case(7): return CompareLibrary.compare_uniqueID(v, w) < 0;
 		default: return CompareLibrary.compare_country(v, w) < 0;
 		}
 	}
