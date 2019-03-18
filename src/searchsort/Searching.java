@@ -7,7 +7,7 @@ import wineADT.*;
 /**
  * A class for searching through a number of Wines
  * @author Daniel William Noorduyn
- * @version March 12, 2019
+ * @version March 17, 2019
  */
 public class Searching {
 	
@@ -19,35 +19,34 @@ public class Searching {
 	 * @param category - a string of which parameter in the Wine objects will be compared
 	 * @return returns an int that is 0, <0, >0 depending on i compared to j 
 	 */
-	public static int wine_adt_categories(Integer i, Wine j, String category) {
-		if(category == "price")
+	public static int wine_adt_categories(Wine i, String argument, String category) {
+		if(category.equals("price"))
 		{
-			
-			return CompareLibrary.compare_price(i, j);
+			return i.get_price().compareTo(Double.parseDouble(argument));
 		}
-		else if(category == "variety")
+		else if(category.equals("variety"))
 		{
-			return CompareLibrary.compare_variety(i, j);
+			return i.get_variety().compareTo(argument);
 		}
-		else if(category == "rating")
+		else if(category.equals("rating"))
 		{
-			return CompareLibrary.compare_rating(i, j);
+			return i.get_rating().compareTo(Integer.parseInt(argument));
 		}
-		else if(category == "country")
+		else if(category.equals("country"))
 		{
-			return CompareLibrary.compare_country(i, j);
+			return i.get_country().compareTo(argument);
 		}
-		else if(category == "province")
+		else if(category.equals("province"))
 		{
-			return CompareLibrary.compare_province(i, j);
+			return i.get_province().compareTo(argument);
 		}
-		else if(category == "geo")
+		else if(category.equals("geo"))
 		{
-			return CompareLibrary.compare_geo(i, j);
+			return i.get_geo().compareTo(argument);
 		}
-		else if(category == "winery")
+		else if(category.equals("winery"))
 		{
-			return CompareLibrary.compare_winery(i, j);
+			return i.get_winery().compareTo(argument);
 		}
 		return 0;
 	}
@@ -63,15 +62,12 @@ public class Searching {
 		//length of input WineADT ADT List
 		int n = x.length;
 		
-		//converts input argument into Integer
-		Integer intArgument = new Integer(argument);
-		
 		//array to place search hits into
 		ArrayList<Wine> searched = new ArrayList<Wine>();
 		
-		//seach linearly through entire inputted array
+		//search linearly through entire inputed array
 		for(int i = 0; i < n; i++) {
-			if(wine_adt_categories(x[i], intArgument, category) == 0)
+			if(wine_adt_categories(x[i], argument, category) == 0)
 			{
 				searched.add(x[i]);
 			}
@@ -95,18 +91,15 @@ public class Searching {
 		//length of input WineADT ADT List
 		int n = x.length;
 		
-		//converts input argument into Integer
-		Integer intArgument = new Integer(argument);
-		
 		//array to place search hits into
 		ArrayList<Wine> searched = new ArrayList<Wine>();
 		
 		//binary search to find one matching WineADT
-		int oneIndex = index_of(x, intArgument, category);
+		int oneIndex = index_of(x, argument, category);
 		
 		//find lower boundary of matching WineADTs
 		while(oneIndex != 0) {
-			if(wine_adt_categories(x[oneIndex], intArgument, category) == 0)
+			if(wine_adt_categories(x[oneIndex], argument, category) == 0)
 				oneIndex -= 1;
 			else break;
 		}
@@ -115,7 +108,7 @@ public class Searching {
 		//find upper boundary of matching WineADTs
 		while(oneIndex != n-1)
 		{
-			if(wine_adt_categories(x[oneIndex], intArgument, category) == 0) {
+			if(wine_adt_categories(x[oneIndex], argument, category) == 0) {
 				oneIndex += 1;
 			}
 			else break;
@@ -133,17 +126,17 @@ public class Searching {
 	
 	
 	//binary search for combined binary linear search
-	private static int index_of(Wine [] x, Integer key, String category) {
+	private static int index_of(Wine [] x, String key, String category) {
 		int lo = 0;
 		int hi = x.length - 1;
 		while(lo <- hi)
 		{
 			int mid = lo + (hi - lo) / 2;
-			if(wine_adt_categories(key, x[mid], category) < 0) 
+			if(wine_adt_categories(x[mid], key, category) > 0) 
 			{
 				hi = mid - 1;
 			}
-			else if(wine_adt_categories(x[mid], key, category) > 0)
+			else if(wine_adt_categories(x[mid], key, category) < 0)
 			{
 				lo = mid + 1;
 			}
