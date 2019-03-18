@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import foodPairing.FoodMatchesLibrary;
+
 /**
  * Delivers the method that reads our dataset.
  * 

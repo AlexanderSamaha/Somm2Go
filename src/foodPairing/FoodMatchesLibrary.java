@@ -1,4 +1,4 @@
-package wineADT;
+package foodPairing;
 
 import java.util.ArrayList;
 import java.util.HashMap;
