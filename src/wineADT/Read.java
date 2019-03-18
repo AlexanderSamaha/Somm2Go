@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import foodPairing.FoodMatchesLibrary;
-
 /**
  * Delivers the method that reads our dataset.
  * 
@@ -116,7 +114,6 @@ public class Read {
 		Wine[] array_wines = new Wine[arr_list.size()];
 		array_wines = arr_list.toArray(array_wines);
 		
-		FoodMatchesLibrary.read_hashmap();
 		return array_wines;
 	
 	}

@@ -1,9 +1,16 @@
 package foodPairing;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
+import searchsort.Searching;
+import wineADT.Read;
+import wineADT.Wine;
+
+/**
+ * Class for pairing food and wines
+ * @author Mengxi Lei and Alexander Samaha
+ * @version Created 2019/03/16, Last modified 2019/03/18
+ */
 public class FoodMatchesLibrary {
 	
 	/*
@@ -18,7 +25,7 @@ public class FoodMatchesLibrary {
 	
 	// meritage is a bordeaux-style red blend, make sure both match.
 	// bd-style white blend is sauvignon blanc, semillon, or muscadelle.
-	private static String[] styles = new String[] {
+	private static String[] styles = {
 		"pinot noir", "chardonnay", "champagne", "cabernet sauvignon",
 		"sauvignon blanc", "dry rosé", "pinot grigio", "malbec", "moscato",
 		"syrah", "grüner veltliner", "zinfandel", "riesling", "rosé champagne",
@@ -28,32 +35,80 @@ public class FoodMatchesLibrary {
 		"aglianico"
 	};
 	
-	private static String[] food = new String[] {
+	private static String[] foods = {
 		"vegetables", "roasted vegetables", "soft cheese", "hard cheese", "starch", "light fish", "rich fish",
 		"white meat", "red meat", "cured meat", "sweets", "earthy", "salt", "tangy", "rich cheese", "sweet-spicy",
 		"fruit", "spiced", "fresh herbs"
 	};
 	
-	private static Map<String, String[]> map = new HashMap<String, String[]>();
+	private static String[][] pairings = {
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{}
+	};
 	
-	public static String[] get_styles_library() {
-		return styles;
+	/**
+	 * Recommend wines base on the given food
+	 * @param food Food that is given
+	 * @return Array of recommended wines
+	 */
+	public static Wine[] wineRecommand (String food) {
+		int index = -1;
+		Wine[] wines = null;
+		Wine[] temp;
+		ArrayList<Wine> tempWine = new ArrayList<Wine>();
+		for (int i = 0; i < foods.length; i++) {
+			if (food.equals(foods[i]))
+				index = i;
+		}
+		if (index == -1) {
+			wines = new Wine[0];
+			return wines;
+		}
+		for (int i = 0; i < pairings[index].length; i++) {
+			temp = Searching.linear_search(Read.wines, pairings[index][i], "variety");
+			for (int j = 0; j < temp.length; j++)
+				tempWine.add(temp[j]);
+		}
+		wines = tempWine.toArray(wines);
+		return wines;
 	}
 	
-	public static Map<String, String[]> get_hashmap(){
-		return map;
-	}
-	
-	public static String[] get_food_library() {
+	/**
+	 * Recommend food base on the given wine
+	 * @param wine Wine that is given
+	 * @return Array of recommended food
+	 */
+	public static String[] foodRecommend (Wine wine) {
+		String variety = wine.get_variety();
+		String[] food = null;
+		ArrayList<String> tempFood = new ArrayList<String>();
+		for (int i = 0; i < pairings.length; i++) {
+			for (int j = 0; j < pairings[i].length; j++) {
+				if (variety.equals(pairings[i][j])) {
+					tempFood.add(foods[i]);
+					break;
+				}
+			}
+		}
+		food = tempFood.toArray(food);
 		return food;
 	}
-	
-	public static void read_hashmap() {
-		
-		for (int i = 0; i < food.length; i++) {
-			map.put(food[i], null);
-		}
-	}
-	 
 	
 }
