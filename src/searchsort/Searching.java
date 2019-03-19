@@ -28,6 +28,10 @@ public class Searching {
 		{
 			return i.get_variety().compareTo(argument);
 		}
+		else if(category.equals("unique_ID"))
+		{
+			return i.get_uniqueID().compareTo(Integer.parseInt(argument));
+		}
 		else if(category.equals("rating"))
 		{
 			return i.get_rating().compareTo(Integer.parseInt(argument));
@@ -98,21 +102,23 @@ public class Searching {
 		int oneIndex = index_of(x, argument, category);
 		
 		//find lower boundary of matching WineADTs
-		while(oneIndex != 0) {
+		while(oneIndex >= 0) {
 			if(wine_adt_categories(x[oneIndex], argument, category) == 0)
 				oneIndex -= 1;
 			else break;
 		}
+		if(oneIndex < 0) oneIndex = 0;
 		int lowerBound = oneIndex;
 		
 		//find upper boundary of matching WineADTs
-		while(oneIndex != n-1)
+		while(oneIndex <= n-1)
 		{
 			if(wine_adt_categories(x[oneIndex], argument, category) == 0) {
 				oneIndex += 1;
 			}
 			else break;
 		}
+		if(oneIndex > n-1) oneIndex = n-1;
 		int upperBound = oneIndex;
 		
 		//place found WineADTs into an array
