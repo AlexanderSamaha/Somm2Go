@@ -34,6 +34,7 @@ class WineSort {
 	 */
 	
 	protected static void sort(Wine [] array, int type) {
+		
 		if(isSorted(array, type)) return;
 		sort(array, 0, array.length - 1, type );		
 	}
@@ -87,11 +88,12 @@ class WineSort {
 		case(5): return CompareLibrary.compare_variety(v, w) < 0;	
 		case(6): return CompareLibrary.compare_geo(v, w) < 0;
 		case(7): return CompareLibrary.compare_uniqueID(v, w) < 0;
+		case(8): return CompareLibrary.compare_winery(v, w) < 0;
 		default: return CompareLibrary.compare_country(v, w) < 0;
 		}
 	}
 	
-	//Exhcnage wines at position i and j
+	//Exhchange wines at position i and j
 	private static void exch(Wine [] array, int i, int j) {
 		Wine temp = array[i];
 		array[i] = array[j];

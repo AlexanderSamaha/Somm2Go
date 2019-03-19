@@ -48,6 +48,8 @@ public class Sorting {
 			return; 
 		case "unique_ID": WineSort.sort(array, 7);
 			return; 
+		case "winery": WineSort.sort(array, 8);
+			return;
 		default: 
 			return;
 		}
