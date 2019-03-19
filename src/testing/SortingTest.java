@@ -1,4 +1,4 @@
-package searchsort;
+package testing;
 
 import wineADT.*;
 
@@ -7,6 +7,9 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import searchsort.Sorting;
+import searchsort.WineSort;
 
 public class SortingTest {
 
@@ -40,7 +43,6 @@ public class SortingTest {
 		assert(WineSort.isSorted(test, 7));
 		Sorting.sort(test, "winery");
 		assert(WineSort.isSorted(test, 8));
-		
 	}
 	
 	/*@Test

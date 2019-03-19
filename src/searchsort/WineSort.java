@@ -19,7 +19,7 @@ class WineSort {
 	 * @param y type of sort used
 	 * @return - true if sorted, false otherwise
 	 */
-	public static boolean isSorted(Wine [] array, int y) {
+	protected static boolean isSorted(Wine [] array, int y) {
 		for (int i = 1; i < array.length; i++) {
 			if (less(array[i], array[i-1], y)) return false; 
 		}
