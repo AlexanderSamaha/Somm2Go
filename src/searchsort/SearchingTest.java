@@ -34,11 +34,6 @@ public class SearchingTest {
 		
 		Sorting.sort(wineArray, "unique_ID");
 		search3 = Searching.binary_linear_search(wineArray, "10", "unique_ID" );
-		System.out.println(wine1.get_uniqueID());
-		System.out.println(search2[0].get_uniqueID());
-		System.out.println(search3[0].get_uniqueID());
-		
-		
 		assertTrue(wine1.get_uniqueID() == search2[0].get_uniqueID() && search2[0].get_uniqueID() == search3[0].get_uniqueID());
 	}
 	
@@ -46,17 +41,15 @@ public class SearchingTest {
 	public void searchTestCaseTwo() {
 		Wine [] search1, search2;
 		
-		search1 = Searching.linear_search(wineArray, "96", "price" );
+		search1 = Searching.linear_search(wineArray, "50", "price" );
 		
 		Sorting.sort(wineArray, "price");
-		search2 = Searching.binary_linear_search(wineArray, "96", "price" );
+		search2 = Searching.binary_linear_search(wineArray, "50", "price" );
+		
+		Sorting.sort(search1, "unique_ID");
+		Sorting.sort(search2, "unique_ID");
 		
 		for(int i = 0; i < search1.length; i++) {
-			System.out.println(search1[i].get_uniqueID());
-			System.out.println(search2[i].get_uniqueID());
-			System.out.println(search1[i].get_price());
-			System.out.println(search2[i].get_price());
-			
 			assertTrue(CompareLibrary.compare_uniqueID(search1[i], search2[i]) == 0);
 		}
 	}
@@ -65,12 +58,15 @@ public class SearchingTest {
 	public void searchTestCaseThree() {
 		Wine [] search1, search2;
 		
-		search1 = Searching.linear_search(wineArray, "Ice", "variety" );
+		search1 = Searching.linear_search(wineArray, "Sparkling", "variety" );
 		
 		Sorting.sort(wineArray, "variety");
-		search2 = Searching.binary_linear_search(wineArray, "Ice", "variety" );
+		search2 = Searching.binary_linear_search(wineArray, "Sparkling", "variety" );
 		
-		for(int i = 0; i <search1.length; i++) {
+		Sorting.sort(search1, "unique_ID");
+		Sorting.sort(search2, "unique_ID");
+		
+		for(int i = 0; i < search1.length; i++) {			
 			assertTrue(CompareLibrary.compare_uniqueID(search1[i], search2[i]) == 0);
 		}
 	}
@@ -79,12 +75,15 @@ public class SearchingTest {
 	public void searchTestCaseFour() {
 		Wine [] search1, search2;
 		
-		search1 = Searching.linear_search(wineArray, "76", "rating" );
+		search1 = Searching.linear_search(wineArray, "90", "rating" );
 		
 		Sorting.sort(wineArray, "rating");
-		search2 = Searching.binary_linear_search(wineArray, "76", "rating" );
+		search2 = Searching.binary_linear_search(wineArray, "90", "rating" );
 		
-		for(int i = 0; i <search1.length; i++) {
+		Sorting.sort(search1, "unique_ID");
+		Sorting.sort(search2, "unique_ID");
+		
+		for(int i = 0; i < search1.length; i++) {			
 			assertTrue(CompareLibrary.compare_uniqueID(search1[i], search2[i]) == 0);
 		}
 	}
@@ -98,7 +97,10 @@ public class SearchingTest {
 		Sorting.sort(wineArray, "country");
 		search2 = Searching.binary_linear_search(wineArray, "Canada", "country" );
 		
-		for(int i = 0; i <search1.length; i++) {
+		Sorting.sort(search1, "unique_ID");
+		Sorting.sort(search2, "unique_ID");
+		
+		for(int i = 0; i < search1.length; i++) {			
 			assertTrue(CompareLibrary.compare_uniqueID(search1[i], search2[i]) == 0);
 		}
 	}
