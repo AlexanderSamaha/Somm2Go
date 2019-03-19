@@ -28,6 +28,10 @@ public class Searching {
 		{
 			return i.get_variety().compareTo(argument);
 		}
+		else if(category.equals("unique_ID"))
+		{
+			return i.get_uniqueID().compareTo(Integer.parseInt(argument));
+		}
 		else if(category.equals("rating"))
 		{
 			return i.get_rating().compareTo(Integer.parseInt(argument));
@@ -98,17 +102,17 @@ public class Searching {
 		int oneIndex = index_of(x, argument, category);
 		
 		//find lower boundary of matching WineADTs
-		while(oneIndex != 0) {
-			if(wine_adt_categories(x[oneIndex], argument, category) == 0)
+		while(oneIndex > 0) {
+			if(wine_adt_categories(x[oneIndex-1], argument, category) == 0)
 				oneIndex -= 1;
 			else break;
 		}
 		int lowerBound = oneIndex;
 		
 		//find upper boundary of matching WineADTs
-		while(oneIndex != n-1)
+		while(oneIndex < n-1)
 		{
-			if(wine_adt_categories(x[oneIndex], argument, category) == 0) {
+			if(wine_adt_categories(x[oneIndex+1], argument, category) == 0) {
 				oneIndex += 1;
 			}
 			else break;
@@ -116,8 +120,11 @@ public class Searching {
 		int upperBound = oneIndex;
 		
 		//place found WineADTs into an array
-		for(int i = lowerBound; i <= upperBound; i++) {
-			searched.add(x[i]);
+		if(oneIndex >=0) {
+			
+			for(int i = lowerBound; i <= upperBound; i++) {
+				searched.add(x[i]);
+			}
 		}
 		Wine[] searched_array = new Wine[searched.size()];
 		searched_array = searched.toArray(searched_array);
@@ -129,7 +136,7 @@ public class Searching {
 	private static int index_of(Wine [] x, String key, String category) {
 		int lo = 0;
 		int hi = x.length - 1;
-		while(lo <- hi)
+		while(lo <= hi)
 		{
 			int mid = lo + (hi - lo) / 2;
 			if(wine_adt_categories(x[mid], key, category) > 0) 
