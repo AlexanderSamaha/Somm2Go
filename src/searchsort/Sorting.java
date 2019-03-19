@@ -2,6 +2,8 @@ package searchsort;
 
 import java.util.ArrayList;
 
+import wineADT.*;
+
 /**
  * Provides methods for sorting an array of type Wine.
  * 
@@ -21,29 +23,33 @@ public class Sorting {
 	 * @return sorted array of wines
 	 */
 	public static Wine [] sort(Wine [] array, String cat) {
-		Sorting.sort(array, cat);
+		Sorting.sort2(array, cat);
 		return array;
 	}
 	
 	
 	
 	//Function to send the array to be sorted based on catagory
-	private static void sort (Wine [] array, String cat) {
+	private static void sort2 (Wine [] array, String cat) {
 		switch (cat) {
-		case "country":
-			return WineSort.sort(array, 0);
-		case "designation":
-			return WineSort.sort(array, 1);
-		case "rating":
-			return WineSort.sort(array, 2);
-		case "price":
-			return WineSort.sort(array, 3);
-		case "province":  
-			return WineSort.sort(array, 4);
-		case "variety": 
-			return WineSort.sort(array, 5);
-		case "geo":
-			return WineSort.sort(array, 6);
+		case "country":WineSort.sort(array, 0);
+			return;
+		case "designation":WineSort.sort(array, 1);
+			return;
+		case "rating": WineSort.sort(array, 2);
+			return;
+		case "price":WineSort.sort(array, 3);
+			return; 
+		case "province": WineSort.sort(array, 4);  
+			return; 
+		case "variety": WineSort.sort(array, 5); 
+			return; 
+		case "geo": WineSort.sort(array, 6);
+			return; 
+		case "unique_ID": WineSort.sort(array, 7);
+			return; 
+		case "winery": WineSort.sort(array, 8);
+			return;
 		default: 
 			return;
 		}

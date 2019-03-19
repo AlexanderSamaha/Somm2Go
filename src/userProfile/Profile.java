@@ -2,6 +2,10 @@ package userProfile;
 
 import java.util.ArrayList;
 
+import searchsort.Searching;
+import wineADT.Read;
+
+
 /**
  * Class representing the user's profile
  * @author Mengxi Lei

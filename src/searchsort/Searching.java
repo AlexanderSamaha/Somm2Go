@@ -2,10 +2,12 @@ package searchsort;
 
 import java.util.*;
 
+import wineADT.*;
+
 /**
  * A class for searching through a number of Wines
  * @author Daniel William Noorduyn
- * @version March 12, 2019
+ * @version March 17, 2019
  */
 public class Searching {
 	
@@ -17,68 +19,70 @@ public class Searching {
 	 * @param category - a string of which parameter in the Wine objects will be compared
 	 * @return returns an int that is 0, <0, >0 depending on i compared to j 
 	 */
-	public static int wine_adt_categories(Wine i, Wine j, String category) {
-		if(category == "price")
+	public static int wine_adt_categories(Wine i, String argument, String category) {
+		if(category.equals("price"))
 		{
-			return CompareLibrary.compare_price(i, j);
+			return i.get_price().compareTo(Double.parseDouble(argument));
 		}
-		else if(category == "variety")
+		else if(category.equals("variety"))
 		{
-			return CompareLibrary.compare_variety(i, j);
+			return i.get_variety().compareTo(argument);
 		}
-		else if(category == "rating")
+		else if(category.equals("unique_ID"))
 		{
-			return CompareLibrary.compare_rating(i, j);
+			return i.get_uniqueID().compareTo(Integer.parseInt(argument));
 		}
-		else if(category == "country")
+		else if(category.equals("rating"))
 		{
-			return CompareLibrary.compare_country(i, j);
+			return i.get_rating().compareTo(Integer.parseInt(argument));
 		}
-		else if(category == "province")
+		else if(category.equals("country"))
 		{
-			return CompareLibrary.compare_province(i, j);
+			return i.get_country().compareTo(argument);
 		}
-		else if(category == "geo")
+		else if(category.equals("province"))
 		{
-			return CompareLibrary.compare_geo(i, j);
+			return i.get_province().compareTo(argument);
 		}
-		else if(category == "winery")
+		else if(category.equals("geo"))
 		{
-			return CompareLibrary.compare_winery(i, j);
+			return i.get_geo().compareTo(argument);
 		}
+		else if(category.equals("winery"))
+		{
+			return i.get_winery().compareTo(argument);
+		}
+		return 0;
 	}
 		
 	/**
-	 * Linear search using Comparable.
+	 * Linear search using Wine.
 	 * @param x - an array of Wine objects to be searched
 	 * @param argument - a String of what is being searched for
 	 * @param category - a String of which parameter in the Wine objects will be compared
 	 * @return returns an array of Wine objects corresponding to the search parameter argument
 	 */
-	public static Comparable[] linear_search(Comparable[] x, String argument, String category) {
+	public static Wine [] linear_search(Wine [] x, String argument, String category) {
 		//length of input WineADT ADT List
 		int n = x.length;
 		
-		//converts input argument into Integer
-		Integer intArgument = new Integer(argument);
-		
 		//array to place search hits into
-		ArrayList<Comparable> searched = new ArrayList<Comparable>();
+		ArrayList<Wine> searched = new ArrayList<Wine>();
 		
-		//seach linearly through entire inputted array
+		//search linearly through entire inputed array
 		for(int i = 0; i < n; i++) {
-			if(wine_adt_categories(x[i], intArgument, category) == 0)
+			if(wine_adt_categories(x[i], argument, category) == 0)
 			{
 				searched.add(x[i]);
 			}
 		}
-		Comparable[] searched_array = new Comparable[searched.size()];
+		Wine[] searched_array = new Wine[searched.size()];
 		searched_array = searched.toArray(searched_array);
 		return searched_array;
 	}
 	
 	/**
-	 * A combined binary linear search using Comparable.
+	 * A combined binary linear search using Wine.
 	 * Use binary search to find one Wine object that corresponds to search parameter argument.
 	 * Uses linear search to find index range of corresponding Wine objects.
 	 * Used only on the input array previously sorted by the parameter category.
@@ -87,31 +91,28 @@ public class Searching {
 	 * @param category - a String of which parameter in the Wine objects will be compared
 	 * @return returns an array of Wine objects corresponding to the search parameter argument
 	 */
-	public static Comparable[] binary_linear_search(Comparable[] x, String argument, String category) {
+	public static Wine [] binary_linear_search(Wine [] x, String argument, String category) {
 		//length of input WineADT ADT List
 		int n = x.length;
 		
-		//converts input argument into Integer
-		Integer intArgument = new Integer(argument);
-		
 		//array to place search hits into
-		ArrayList<Comparable> searched = new ArrayList<Comparable>();
+		ArrayList<Wine> searched = new ArrayList<Wine>();
 		
 		//binary search to find one matching WineADT
-		int oneIndex = index_of(x, intArgument, category);
+		int oneIndex = index_of(x, argument, category);
 		
 		//find lower boundary of matching WineADTs
-		while(oneIndex != 0) {
-			if(wine_adt_categories(x[oneIndex], intArgument, category) == 0)
+		while(oneIndex > 0) {
+			if(wine_adt_categories(x[oneIndex-1], argument, category) == 0)
 				oneIndex -= 1;
 			else break;
 		}
 		int lowerBound = oneIndex;
 		
 		//find upper boundary of matching WineADTs
-		while(oneIndex != n-1)
+		while(oneIndex < n-1)
 		{
-			if(wine_adt_categories(x[oneIndex], intArgument, category) == 0) {
+			if(wine_adt_categories(x[oneIndex+1], argument, category) == 0) {
 				oneIndex += 1;
 			}
 			else break;
@@ -119,27 +120,30 @@ public class Searching {
 		int upperBound = oneIndex;
 		
 		//place found WineADTs into an array
-		for(int i = lowerBound; i <= upperBound; i++) {
-			searched.add(x[i]);
+		if(oneIndex >=0) {
+			
+			for(int i = lowerBound; i <= upperBound; i++) {
+				searched.add(x[i]);
+			}
 		}
-		Comparable[] searched_array = new Comparable[searched.size()];
+		Wine[] searched_array = new Wine[searched.size()];
 		searched_array = searched.toArray(searched_array);
 		return searched_array;
 	}
 	
 	
 	//binary search for combined binary linear search
-	private static int index_of(Comparable[] x, Integer key, String category) {
+	private static int index_of(Wine [] x, String key, String category) {
 		int lo = 0;
 		int hi = x.length - 1;
-		while(lo <- hi)
+		while(lo <= hi)
 		{
 			int mid = lo + (hi - lo) / 2;
-			if(wine_adt_categories(key, x[mid], category) < 0) 
+			if(wine_adt_categories(x[mid], key, category) > 0) 
 			{
 				hi = mid - 1;
 			}
-			else if(wine_adt_categories(x[mid], key, category) > 0)
+			else if(wine_adt_categories(x[mid], key, category) < 0)
 			{
 				lo = mid + 1;
 			}
@@ -149,27 +153,28 @@ public class Searching {
 	}
 	
 	/**
-	 * Binary search using Comparable.
+	 * Binary search using Wine.
 	 * @details Used only on input arrays previously sorted by uniqueID
 	 * @param x - an array of Wine objects to be searched
 	 * @param id - a String of what is being searched for
 	 * @return - returns one Wine object corresponding to the search parameter id
 	 */
-	public static Wine binary_search(Comparable[] x, Integer id) {		
+	public static Wine binary_search(Wine [] x, Integer id) {		
 				
 		int lo = 0;
 		int hi = x.length - 1;
-		while(lo <- hi)
+		while(lo <= hi)
 		{
 			int mid = lo + (hi - lo) / 2;
-			if(CompareLibrary.compare_uniqueID(id, x[mid])) 
+			if(id.compareTo(x[mid].get_uniqueID()) < 0)
 			{
 				hi = mid - 1;
 			}
-			else if(CompareLibrary.compare_uniqueID(x[mid], id))
+			else if(id.compareTo(x[mid].get_uniqueID()) > 0)
 			{
 				lo = mid + 1;
 			}
+			else return x[mid];
 		}
 		return x[-1];
 	}
@@ -180,22 +185,24 @@ public class Searching {
 	 * @param name - a String of what is being searched for
 	 * @return - returns an array of wines corresponding to the search parameter name
 	 */
-	public static Comparable[] linear_name_search(Comparable[] x, String name) {
+	public static Wine [] linear_name_search(Wine [] x, String name) {
 		//length of input WineADT ADT List
 		int n = x.length;
 		
 		//array to place search hits into
-		ArrayList<Comparable> searched = new ArrayList<Comparable>();
+		ArrayList<Wine> searched = new ArrayList<Wine>();
 				
-		//seach linearly through entire inputed array
+		//search linearly through entire inputed array
 		for(int i = 0; i < n; i++) {
-			if(WineADT.get_name.contains(name))
+			if(x[i].get_designation().contains(name))
 			{
 				searched.add(x[i]);
 			}
 		}
-		Comparable[] searched_array = new Comparable[searched.size()];
+		Wine[] searched_array = new Wine[searched.size()];
 		searched_array = searched.toArray(searched_array);
 		return searched_array;
 	}
+	
+	
 }
