@@ -32,50 +32,44 @@ class WineSort {
 	 * @param array array of wines to be sorted
 	 * @param type number representing the catagory to sort by.
 	 */
-	
-	protected static void sort(Wine [] array, int type) {
+	protected static void sort(Wine [] wines, int type) {
 		
-		if(isSorted(array, type)) return;
-		sort(array, 0, array.length - 1, type );		
-	}
-	
-	private static void sort(Wine [] array, int lo, int hi, int type) {
-		if (hi <= lo)
-			return;
-		int j = partition(array, lo, hi, type);
-		sort(array, lo, j-1, type);
-		sort(array, j+1, hi, type);
+		if(isSorted(wines, type)) return;
+		mergeSort(wines, type);
+		return;
 		
 	}
 	
-	private static int partition (Wine [] array, int lo, int hi, int type) {
-		int i = lo;
-		int j = hi + 1;
-		Wine v = array[lo];
-		while (true) {
-			
-			//Find lower item thats out of place
-			while (less(array[++i], v, type)) {
-				if (i == hi)
-					break;
-			}
-			//Find higher item thats out of place
-			while (less(v, array[--j], type)) {
-				if (j == lo)
-					break;
-			}
-			
-			//Check if boundaries are crossed
-			if (i >= j)
-				break;
-			
-			exch(array, i, j);
+	//Split the array into base components
+	private static Wine [] mergeSort(Wine [] array, int type ) {
+		int n = array.length;
+		if (n <= 1) return array;
+		Wine [] w1 = new Wine [n/2];
+		Wine [] w2 = new Wine [n - n/2];
+		for (int i = 0; i < w1.length; i++)
+			w1[i] = array [i];
+		for (int i = 0; i < w2.length; i++)
+			w2[i] = array[i + n/2];
+		
+		mergeSort(w1, type);
+		mergeSort(w2, type);
+		merge(w1, w2, array, type);
+		return array;
+		
+	}
+	//merge two sorted arrays
+	private static Wine [] merge(Wine [] w1, Wine [] w2, Wine [] array, int type) {
+		int i = 0, j = 0;
+		for (int z = 0; z < w1.length + w2.length; z++) {
+			if 		(i >= w1.length) 				array[z] = w2[j++];
+			else if (j >= w2.length) 				array[z] = w1[i++];
+			else if ((less(w1[i], w2[j], type)))	array[z] = w1[i++];
+			else									array[z] = w2[j++];
 		}
-		
-		//Place partitioning item at array[j]
-		exch(array, lo, j);
-		return j;
+		return array;
 	}
+	
+	
 	
 	//Function to tell if less based on category
 	private static boolean less(Wine v, Wine w, int type) {
