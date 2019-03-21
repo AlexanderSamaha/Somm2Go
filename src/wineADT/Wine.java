@@ -25,6 +25,7 @@ public class Wine {
 	private String variety;
 	private String winery;
 	private Integer unique_id;
+	private String[] food_matches;
 	
 	// Some of these wine bottles have a review and reviewer.
 	private String reviewer;
@@ -181,6 +182,10 @@ public class Wine {
 	 */
 	public String get_country() {
 		return country;
+	}
+	
+	public String[] get_food_matches() {
+		return food_matches;
 	}
 	
 	/**
