@@ -96,7 +96,7 @@ public class GraphTNotes {
 				array[z] = i1[i++];
 				matches2[z] = w1[i++];
 			}
-			else if ((less(i1[i], i2[j], w1[i], w2[j]))) {
+			else if ((less(-1*i1[i], -1*i2[j], w1[i], w2[j]))) {
 				array[z] = i1[i++];
 				matches2[z] = w1[i++];
 			}
