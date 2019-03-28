@@ -7,7 +7,7 @@ import wineADT.*;
 /**
  * A class for searching through a number of Wines
  * @author Daniel William Noorduyn
- * @version March 17, 2019
+ * @version March 21, 2019
  */
 public class Searching {
 	
@@ -195,6 +195,31 @@ public class Searching {
 		//search linearly through entire inputed array
 		for(int i = 0; i < n; i++) {
 			if(x[i].get_designation().contains(name))
+			{
+				searched.add(x[i]);
+			}
+		}
+		Wine[] searched_array = new Wine[searched.size()];
+		searched_array = searched.toArray(searched_array);
+		return searched_array;
+	}
+	
+	/**
+	 * Finds wines with a taste note that contains the passed string.
+	 * @param x - an array of Wine objects to be searched
+	 * @param name - a String of what is being searched for
+	 * @return - returns an array of wines corresponding to the search parameter taste_notes
+	 */
+	public static Wine [] linear_taste_notes_search(Wine [] x, String taste_notes) {
+		//length of input WineADT ADT List
+		int n = x.length;
+		
+		//array to place search hits into
+		ArrayList<Wine> searched = new ArrayList<Wine>();
+				
+		//search linearly through entire inputed array
+		for(int i = 0; i < n; i++) {
+			if(x[i].get_taste_notes().contains(taste_notes))
 			{
 				searched.add(x[i]);
 			}
