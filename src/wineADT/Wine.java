@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import foodPairing.FoodMatchesLibrary;
+
 /**
  *  Public class for all wine objects.
  * 
@@ -27,7 +29,7 @@ public class Wine {
 	private Integer unique_id;
 	private String[] food_matches;
 	
-	// Some of these wine bottles have a review and reviewer.
+	// Some of these wine bottles have a review and reviewer. Not yet working.
 	private String reviewer;
 	private String twitter;
 	
@@ -53,6 +55,10 @@ public class Wine {
 		this.rating = rating;
 		this.price = price;
 		unique_id = id;
+	}
+	
+	public void set_food_matches() {
+		this.food_matches = FoodMatchesLibrary.foodRecommend(this);
 	}
 	
 	/**
