@@ -2,14 +2,16 @@ package foodPairing;
 
 import java.util.ArrayList;
 
+import searchsort.Filtering;
 import searchsort.Searching;
+import userProfile.ProfileManager;
 import wineADT.Read;
 import wineADT.Wine;
 
 /**
  * Class for pairing food and wines
  * @author Mengxi Lei and Alexander Samaha
- * @version Created 2019/03/16, Last modified 2019/03/18
+ * @version Created 2019/03/16, Last modified 2019/03/29
  */
 public class FoodMatchesLibrary {
 	
@@ -73,6 +75,7 @@ public class FoodMatchesLibrary {
 		Wine[] wines = null;
 		Wine[] temp;
 		ArrayList<Wine> tempWine = new ArrayList<Wine>();
+		double[] price;
 		for (int i = 0; i < foods.length; i++) {
 			if (food.equals(foods[i]))
 				index = i;
@@ -87,6 +90,8 @@ public class FoodMatchesLibrary {
 				tempWine.add(temp[j]);
 		}
 		wines = tempWine.toArray(wines);
+		wines = Filtering.linear_filtering(wines, "price", Double.toString(ProfileManager.getProfile().getPriceRange()[0]),
+										   Double.toString(ProfileManager.getProfile().getPriceRange()[1]));
 		return wines;
 	}
 	
