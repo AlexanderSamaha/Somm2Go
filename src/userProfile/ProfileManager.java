@@ -10,22 +10,22 @@ import java.util.StringTokenizer;
 /**
  * Class for managing the profiles
  * @author Mengxi Lei
- * @version Created 2019/03/07, Last Modified 2019/03/12
+ * @version Created 2019/03/07, Last Modified 2019/03/29
  */
 public class ProfileManager {
 	
 	//Declare variables
 	private final static int MAX_SIZE = 10;
 	private final static String PROFILE_LIST = "profile/profile.bin";
-	private int size;
-	private String[] names;
-	private Profile profile;
+	private static int size;
+	private static String[] names;
+	private static Profile profile;
 	
 	/**
 	 * Constructor method
 	 * Setup the profile by creating a new one or reading from an existing one
 	 */
-	public ProfileManager () {
+	public static void profileInit () {
 		//Declare variables
 		int userInput;
 		boolean doubleBreak;
@@ -99,16 +99,24 @@ public class ProfileManager {
 	/**
 	 * Close the profile, make sure to output the profile is it have been modified
 	 */
-	public void close() {
+	public static void close() {
 		if (profile.getModified())
 			writeProfile();
+	}
+	
+	/**
+	 * Return the current profile
+	 * @return the current profile
+	 */
+	public static Profile getProfile() {
+		return profile;
 	}
 	
 	/**
 	 * Read the list of available profiles from file
 	 * File name from constant PROFILE_LIST
 	 */
-	private void read() {
+	private static void read() {
 		File file = new File(PROFILE_LIST);
 		Scanner input = null;
 		try {
@@ -132,7 +140,7 @@ public class ProfileManager {
 	 * Load the profile of the given name
 	 * @param name name of profile being loaded
 	 */
-	private void read(String name) {
+	private static void read(String name) {
 		File file = new File("profile/" + name + ".bin");
 		Scanner input = null;
 		StringTokenizer[] inputArray = new StringTokenizer[3];
@@ -162,7 +170,7 @@ public class ProfileManager {
 	/**
 	 * Update the list of profiles to file
 	 */
-	private void write() {
+	private static void write() {
 		File file = new File(PROFILE_LIST);
 		try {
 			FileWriter output = new FileWriter(file);
@@ -176,7 +184,7 @@ public class ProfileManager {
 	/**
 	 * Write the profile information to file
 	 */
-	private void writeProfile() {
+	private static void writeProfile() {
 		String[] taste;
 		Integer[] wine;
 		double[] range;
@@ -200,7 +208,7 @@ public class ProfileManager {
 	/**
 	 * Create a new profile and set it as the current profile
 	 */
-	private void newProfile() {
+	private static void newProfile() {
 		Scanner input = new Scanner(System.in);
 		boolean duplicate;
 		String name;
@@ -228,7 +236,7 @@ public class ProfileManager {
 	/**
 	 * Delete a existing profile
 	 */
-	private void deleteProfile() {
+	private static void deleteProfile() {
 		int userInput;
 		File file;
 		Scanner input = new Scanner(System.in);
