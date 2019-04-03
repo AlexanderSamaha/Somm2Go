@@ -34,7 +34,7 @@ public class FoodMatchesLibrary {
 		"merlot", "shiraz", "gewürztraminer", "albariño", "malvasia", "müller-thurgau",
 		"roussanne", "viognier", "marsanne", "sparkling", "prosecco", "cava", "st. laurent",
 		"zweigelt", "gamay", "meritage", "tempranillo", "sangiovese", "grenache", "monastrell",
-		"aglianico"
+		"aglianico", "semillon", "muscadelle"
 	};
 	
 	private static String[] foods = {
@@ -44,25 +44,25 @@ public class FoodMatchesLibrary {
 	};
 	
 	private static String[][] pairings = {
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{}
+			/*vegetables*/{"sauvignon blanc", "grüner veltliner", "pinot grigio", "albariño", "champagne", "prosecco", "cava"},
+			/*roasted vegetables*/{"sauvignon blanc", "grüner veltliner", "pinot grigio", "albariño", "st. laurent", "pinot noir", "zweigelt", "gamay", "meritage", "tempranillo", "sangiovese", "zinfandel", "grenache", "merlot"},
+			/*soft cheese*/{"gewürztraminer", "müller-thurgau", "malvasia", "moscato", "riesling", "champagne", "prosecco", "cava", "chardonnay", "roussanne", "marsanne", "viognier", "ice wine", "late harvest", "sherry", "port", "semillon"},
+			/*hard cheese*/{"gewürztraminer", "müller-thurgau", "malvasia", "moscato", "riesling", "champagne", "prosecco", "cava", "cabernet sauvignon", "monastrell", "aglianico", "malbec", "syrah", "meritage", "tempranillo", "sangiovese", "zinfandel", "grenache", "merlot"},
+			/*starch*/{"sauvignon blanc", "grüner veltliner", "pinot grigio", "albariño", "champagne", "prosecco", "cava", "chardonnay", "roussanne", "marsanne", "viognier", "st. laurent", "pinot noir", "zweigelt", "gamay", "tempranillo", "sangiovese", "zinfandel", "grenache", "merlot", "cabernet sauvignon", "monastrell", "aglianico", "malbec", "syrah", "ice wine", "late harvest", "sherry", "port"},
+			/*light fish*/{"sauvignon blanc", "grüner veltliner", "pinot grigio", "albariño", "chardonnay", "roussanne", "marsanne", "viognier", "champagne", "prosecco", "cava"},
+			/*rich fish*/{"st. laurent", "pinot noir", "zweigelt", "gamay", "chardonnay", "roussanne", "marsanne", "viognier"},
+			/*white meat*/{"meritage", "chardonnay", "roussanne", "marsanne", "viognier", "st. laurent", "pinot noir", "zweigelt", "gamay", "tempranillo", "sangiovese", "zinfandel", "grenache", "merlot"},
+			/*red meat*/{"meritage", "tempranillo", "sangiovese", "zinfandel", "grenache", "merlot", "cabernet sauvignon", "monastrell", "aglianico", "malbec", "syrah", "shiraz"},
+			/*cured meat*/{"gewürztraminer", "müller-thurgau", "malvasia", "moscato", "riesling", "st. laurent", "pinot noir", "zweigelt", "gamay", "meritage", "tempranillo", "sangiovese", "zinfandel", "grenache", "merlot", "cabernet sauvignon", "ice wine", "late harvest", "sherry", "port"},
+			/*sweets*/{"gewürztraminer", "müller-thurgau", "malvasia", "moscato", "riesling", "ice wine", "late harvest", "sherry", "port"},
+			/*earthy foods*/{"pinot noir", "merlot", "gamay", "grenache", "sauvignon blanc"},
+			/*salt*/{"champagne", "sauvignon blanc", "pinot grigio", "dry rosé", "gewürztraminer", "riesling"},
+			/*tangy*/{"sauvignon blanc", "albariño", "chardonnay", "gamay", "zweigelt", "pinot noir", "dry rosé"},
+			/*rich cheese*/{"dry rosé", "chardonnay", "champagne", "sauvignon blanc", "riesling", "grüner veltliner", "semillon", "marsanne", "roussanne", "pinot noir", "gamay", "zweigelt"},
+			/*sweet-spicy*/{"malbec", "riesling"},
+			/*fruit*/{"moscato", "syrah"},
+			/*spiced*/{"syrah", "zinfandel", "cabernet sauvignon", "pinot grigio", "merlot", "riesling", "gewürztraminer", "rosé champagne"},
+			/*fresh herbs*/{"grüner veltliner", "syrah"}
 	};
 	
 	/**
