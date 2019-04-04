@@ -43,7 +43,7 @@ public class Wine {
 	 * @param id Unique ID of a wine bottle.
 	 * @param price Price of the wine bottle.
 	 */
-	public Wine(String[] items, String[] taste, String[] region, Integer rating, Integer id, Double price) {
+	public Wine(String[] items, String[] taste, String[] region, Integer rating, Integer id, Double price, String[] reviewer) {
 		country = items[0];
 		description = items[1];
 		designation = items[2];
@@ -55,6 +55,8 @@ public class Wine {
 		this.rating = rating;
 		this.price = price;
 		unique_id = id;
+		this.reviewer = reviewer[0];
+		this.twitter = reviewer[1];
 	}
 	
 	public void set_food_matches() {
@@ -145,6 +147,9 @@ public class Wine {
 		return note_string;
 	}
 	
+	/**
+	 * Method inserts taste notes from patterns in TasteNoteLibrary.
+	 */
 	public void insert_taste_notes() {
 		String pattern = "";
 		String description = "";
@@ -163,9 +168,11 @@ public class Wine {
 			}
 			
 		}
+		/*
 		if (tasters.isEmpty()) {
 			tasters.add("no_notes");
 		}
+		*/
 		
 		String[] new_notes = new String[tasters.size()];
 		new_notes = tasters.toArray(new_notes);
@@ -190,8 +197,31 @@ public class Wine {
 		return country;
 	}
 	
+	/**
+	 * Retrieves the list of food matches.
+	 * 
+	 * @return A String array corresponding to food matches.
+	 */
 	public String[] get_food_matches() {
 		return food_matches;
+	}
+	
+	/**
+	 * Transforms list into string format for ease of viewing.
+	 * 
+	 * @return A string corresponding to food matches.
+	 */
+	public String toString_food_matches() {
+		String current = "[";
+		for (int i = 0; i < this.get_food_matches().length; i++) {
+			if (this.get_food_matches().length - 1 == i) {
+				current += this.get_food_matches()[i] + "]";
+			}
+			else {
+				current += this.get_food_matches()[i] + ", ";
+			}
+		}
+		return current;
 	}
 	
 	/**
@@ -231,5 +261,29 @@ public class Wine {
 		combined_name = reviewer + ", " + twitter;
 		return combined_name;
 	}
-	
+	/*
+	public static void main(String[] args) {
+		Wine[] new_arr = Read.wines;
+		Read.read_tasteNotes(new_arr);
+		int count = 0;
+		int taste1 = 0;
+		int taste2 = 0;
+		int taste3 = 0;
+		int taste = 0;
+		for (int i = 0; i < new_arr.length; i++) {
+			new_arr[i].set_food_matches();
+			if (new_arr[i].get_food_matches().length > 0) {
+				count++;
+			}
+			if (new_arr[i].get_taste_noteslist().length == 1) taste1++;
+			if (new_arr[i].get_taste_noteslist().length == 2) taste2++;
+			if (new_arr[i].get_taste_noteslist().length == 3) taste3++;
+			if (new_arr[i].get_taste_noteslist().length > 0) {
+				taste++;
+			}
+			//System.out.println(new_arr[i].get_variety() + ", " + new_arr[i].toString_food_matches());
+		}
+		System.out.println(count + ", 1 taste" + taste1 + ", 2 taste" + taste2 + ", 3 taste" + taste3 + ", " + taste + ", " + new_arr.length);
+	}
+	*/
 }

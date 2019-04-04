@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TasteNoteLibrary {
 	
-	public static SetWeight[] get_special_pat = special_weights(get_special_pattern());
+	// public static SetWeight[] get_special_pat = special_weights(get_special_pattern());
 	
 	/**
 	 * This Library is created based upon the scholarly publication found here.
@@ -51,7 +51,7 @@ public class TasteNoteLibrary {
 	public static String[][] get_special_pattern() {
 		return special_pat;
 	}
-	
+	/*
 	private static SetWeight[] special_weights(String[][] pattern) {
 		ArrayList<SetWeight> special_pat = new ArrayList<SetWeight>();
 		for (int i = 0; i < pattern.length; i++) {
@@ -63,6 +63,7 @@ public class TasteNoteLibrary {
 		new_arr = special_weight.toArray(new_arr);
 		return new_arr;
 	}
+	*/
 	
 	
 	
