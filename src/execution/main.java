@@ -133,6 +133,13 @@ public class main {
 					else if(category .equals("wine id")) {
 						wine = Searching.binary_search(Sorting.sort(full_list, "unique_ID"), Integer.parseInt(query));
 						System.out.println(toString(wine));
+						//after current wine search is done
+						System.out.println("Would you like to perform a new wine search?");
+						answer = myObj.nextLine();
+						if(answer .equals("No") | answer .equals("no")) {
+							done = true;
+							cont = false;
+						}
 					}
 					else {
 						searched_list = Searching.linear_search(full_list, query, category );
