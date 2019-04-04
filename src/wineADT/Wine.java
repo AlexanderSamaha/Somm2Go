@@ -261,7 +261,7 @@ public class Wine {
 		combined_name = reviewer + ", " + twitter;
 		return combined_name;
 	}
-	/*
+	
 	public static void main(String[] args) {
 		Wine[] new_arr = Read.wines;
 		Read.read_tasteNotes(new_arr);
@@ -283,7 +283,7 @@ public class Wine {
 			}
 			//System.out.println(new_arr[i].get_variety() + ", " + new_arr[i].toString_food_matches());
 		}
-		System.out.println(count + ", 1 taste" + taste1 + ", 2 taste" + taste2 + ", 3 taste" + taste3 + ", " + taste + ", " + new_arr.length);
+		System.out.println(count + ", 1 taste: " + taste1 + ", 2 taste: " + taste2 + ", 3 taste: " + taste3 + ", " + taste + ", " + new_arr.length);
 	}
-	*/
+	
 }

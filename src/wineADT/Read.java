@@ -45,9 +45,6 @@ public class Read {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			/*try {
-				sc = new Scanner(f, "UTF-8");
-			} catch (Exception e) {}*/
 			sc.nextLine();
 			Integer id_count = 0;
 			if(!flag) {
