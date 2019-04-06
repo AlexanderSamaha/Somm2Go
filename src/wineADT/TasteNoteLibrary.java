@@ -22,9 +22,9 @@ public class TasteNoteLibrary {
 		"brown", "spyci", "matured",
 		"dark", "chocolate", "cedar", "pine", "tabacco", "tuiled", "smoky", "brics", "ripe",
 		"soft", "black", "extracted", "tar", "marmelade", "muscle", "round", "nice", "fruity",
-		"pleasant", "cherry", "redcurrant", "rubis", "raspberry", "supple", "tender", "light",
-		"full", "long", "fat", "coince", "honey", "walnut", "peach", "pear", "grilled", "white",
-		"acidic", "butter", "lemon", "apple", "box-wood",
+		"pleasant", "redcurrant", "rubis", "raspberry", "supple", "tender", "light",
+		"full", "long", "fat", "coince", "walnut", "peach", "pear", "grilled", "white",
+		"acidic", "butter", "apple", "box-wood",
 		
 		"sugar", "balanced", "woody", "strawberry", "open", "excellent", "meaty", "spicy", "tannins",
 		"prunes", "hard", "vegetative", "thinn", "strange", "volatile", "sad", "oxydised", "old",
