@@ -28,7 +28,7 @@ public class Filtering {
 		
 		//search linearly through entire inputed array
 		for(int i = 0; i < n; i++) {
-			if(Searching.wine_adt_categories(x[i], high, category) < 0 && Searching.wine_adt_categories(x[i], low, category) > 0)
+			if(Searching.wine_adt_categories(x[i], high, category) <= 0 && Searching.wine_adt_categories(x[i], low, category) >= 0)
 			{
 				searched.add(x[i]);
 			}

@@ -3,7 +3,7 @@ package execution;
 import searchsort.*;
 import wineADT.*;
 
-public class Main {
+public class OldMain {
 	//Basic to string method for Wine
 	public static String toString(Wine w) {
 		String temp = "";
