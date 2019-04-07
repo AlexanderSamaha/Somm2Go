@@ -1,6 +1,7 @@
 package graphTNotes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import wineADT.*;
 
@@ -12,7 +13,7 @@ import wineADT.*;
  */
 public class CalcEW {
 
-	private static final double thresHold = 10; // Threshold to be reached for an Edge to be made
+	private static final double thresHold = 2; // Threshold to be reached for an Edge to be made
 
 	private static SetWeight[] specialWeights; // Special weights array.
 
@@ -49,7 +50,7 @@ public class CalcEW {
 
 		// For each vertex, calculate edges and weights.
 		for (int i = 0; i < array.length; i++) {
-			calculate(e, array, i);
+			e = calculate(e, array, i);
 		}
 
 		edges = e.toArray(new Edge[e.size()]);
@@ -57,18 +58,25 @@ public class CalcEW {
 	}
 
 	// Calculate all the edges for this wine
-	private static void calculate(ArrayList<Edge> e, Wine[] array, int index) {
+	private static ArrayList<Edge> calculate(ArrayList<Edge> e, Wine[] array, int index) {
 
 		double weight;
 		Edge t;
+		
+		if (array[index].get_taste_noteslist().length == 0) {
+			return e;
+		}
 		// For each wine in the array, calculate edges
-		for (int i = 0; i < array.length; i++) {
+		for (int i = index + 1; i < array.length; i++) {
+			
 			weight = weight(array[index], array[i]);
 			// If weight is less then threshold, add edge to graph
 			if (weight < thresHold) {
 				t = new Edge(index, i, weight);
+				e.add(t);
 			}
 		}
+		return e;
 
 	}
 
@@ -78,21 +86,35 @@ public class CalcEW {
 		double sw;
 		String[] base = w.get_taste_noteslist();
 		String[] comp = x.get_taste_noteslist();
+		// Sort taste notes
+		Arrays.sort(base);
+		Arrays.sort(comp);
+		/*
+		 * // For each note in the wine, compare to the other for (int i = 0; i <
+		 * base.length; i++) { for (int k = 0; k < comp.length; k++) { // Test if the
+		 * wines have the same taste note. if (base[i].equalsIgnoreCase(comp[k])) { //
+		 * See if not is uniquely weighted, if so subtract from total weight sw =
+		 * sWeight(base[i]); if (!(sw == -1.0)) { weight = weight - sw; } else { // if
+		 * not uniquely weighted add weight weight = weight + 1; } } } }
+		 */
+		int i = 0, k = 0;
+		while (i < base.length && k < comp.length) {
+			if (base[i].compareTo(comp[k]) > 0) {
 
-		// For each note in the wine, compare to the other
-		for (int i = 0; i < base.length; i++) {
-			for (int k = 0; k < comp.length; k++) {
-				// Test if the wines have the same taste note.
-				if (base[i].equalsIgnoreCase(comp[i])) {
-					// See if not is uniquely weighted, if so subtract from total weight
-					sw = sWeight(base[i]);
-					if (!(sw == -1.0)) {
-						weight = weight - sw;
-					} else {
-						// if not uniquely weighted add weight
-						weight = weight + 1;
-					}
+				weight = weight + 1;
+				k++;
+			} else if (base[i].compareTo(comp[k]) < 0) {
+				weight = weight + 1;
+				i++;
+			} else {
+				sw = sWeight(base[i]);
+				if (!(sw == -1.0)) {
+					weight = weight - sw;
+				}else {
+					weight = weight - 1;
 				}
+				k++;
+				i++;
 			}
 		}
 		// Ensure weights aren't negative
@@ -111,6 +133,6 @@ public class CalcEW {
 				}
 			}
 		}
-		return -1;
+		return -1.0;
 	}
 }
