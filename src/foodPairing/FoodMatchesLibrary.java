@@ -106,12 +106,17 @@ public class FoodMatchesLibrary {
 		ArrayList<String> tempFood = new ArrayList<String>();
 		for (int i = 0; i < pairings.length; i++) {
 			for (int j = 0; j < pairings[i].length; j++) {
-				if (variety.equals(pairings[i][j])) {
+				if (variety.toLowerCase().contains(pairings[i][j].toLowerCase())) {
 					tempFood.add(foods[i]);
 					break;
 				}
+				
+				
+			
 			}
 		}
+		//food = tempFood.toArray(food);
+		food = new String[tempFood.size()];
 		food = tempFood.toArray(food);
 		return food;
 	}

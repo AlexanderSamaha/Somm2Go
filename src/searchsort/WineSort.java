@@ -8,7 +8,7 @@ import wineADT.*;
  * @author David Carrie
  * @version Last modified 2019/03/11
  */
-class WineSort {
+public class WineSort {
 	
 	//should not be instantiated
 	private WineSort() {}

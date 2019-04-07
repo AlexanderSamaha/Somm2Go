@@ -1,15 +1,13 @@
 package testing;
 
-import wineADT.*;
-
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import searchsort.Searching;
 import searchsort.Sorting;
-import searchsort.WineSort;
+import wineADT.Read;
+import wineADT.Wine;
 
 public class SortingTest {
 
@@ -21,7 +19,7 @@ public class SortingTest {
 	public void tearDown() throws Exception {
 	}
 	
-
+	/* TESTING FOR HELPER FUNCTION
 	@Test
 	public void sort() {
 		Wine [] test = Read.wines;
@@ -45,7 +43,7 @@ public class SortingTest {
 		assert(WineSort.isSorted(test, 8));
 	}
 	
-	/*@Test
+	@Test
 	public void searchTestCaseOne() {
 		
 		Wine [] wineArray = Read.wines;
@@ -61,8 +59,9 @@ public class SortingTest {
 		Sorting.sort(wineArray, "unique_ID");
 		search3 = Searching.binary_linear_search(wineArray, "10", "unique_ID" );
 		
-		assertTrue(wine1.get_uniqueID() == search2[0].get_uniqueID() && search2[0].get_uniqueID() == search3[0].get_uniqueID());
+		assert(wine1.get_uniqueID() == search2[0].get_uniqueID() && search2[0].get_uniqueID() == search3[0].get_uniqueID());
 		
 	}
 	*/
+	
 }
