@@ -11,7 +11,7 @@ import java.util.Scanner;
  * 
  * @author Alexander Samaha
  * 
- * @version Last modified 12/03/2019.
+ * @version Last modified 08/04/2019.
  *
  */
 public class Read {
@@ -211,6 +211,10 @@ public class Read {
 	
 	}
 	
+	/**
+	 * Inserts the taste note (from pattern in TasteNoteLibrary) for the wines
+	 * @param array_wines Wines which the taste note is being inserted
+	 */
 	public static void read_tasteNotes(Wine[] array_wines) {
 		for (int i = 0; i < array_wines.length; i++) {
 			array_wines[i].insert_taste_notes();
