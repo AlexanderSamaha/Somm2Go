@@ -1,7 +1,13 @@
 package wineADT;
 
-import java.util.ArrayList;
-
+/**
+ *  Public class for the taste notes.
+ * 
+ * @author Alexander Samaha
+ * 
+ * @version Last modified 08/04/2019.
+ *
+ */
 public class TasteNoteLibrary {
 	
 	// public static SetWeight[] get_special_pat = special_weights(get_special_pattern());
@@ -11,7 +17,7 @@ public class TasteNoteLibrary {
 	 * http://cns.bu.edu/~gsc/Articles/WineSpeak-DoesItConveyInformation.pdf
 	 * 
 	 */
-	public static String[] patterns = new String[]{
+	private static String[] patterns = new String[]{
 		"burgundy", "climate", "heart", "honnest", "bottle", "pleasure",
 		"perfect", "feeling", "style", "fleshy", "final", "dark", "intense", "deep",
 		"blackcurrant", "cherry", "fruit", "rubis", "raspberry", "spice", "growth",
@@ -43,14 +49,22 @@ public class TasteNoteLibrary {
 			{"fruit", "6.0"}, {"floral", "3.0"}, {"sweet", "8.0"}, {"dry", "8.0"}, {"crisp", "7.0"}, {"smoky","3.0"}, {"fruity", "8.0"}, {"acidic", "8.0"}, {"balanced", "5.0"}	
 	};
 	
-	
+	/**
+	 * Return the array of taste notes
+	 * @return Array of taste notes
+	 */
 	public static String[] get_patterns() {
 		return patterns;
 	}
 	
+	/**
+	 * Return the array of taste note with special "values"
+	 * @return Array of taste note with special "values"
+	 */
 	public static String[][] get_special_pattern() {
 		return special_pat;
 	}
+	
 	/*
 	private static SetWeight[] special_weights(String[][] pattern) {
 		ArrayList<SetWeight> special_pat = new ArrayList<SetWeight>();

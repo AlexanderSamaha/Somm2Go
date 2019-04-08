@@ -9,6 +9,14 @@ import searchsort.Searching;
 import searchsort.Sorting;
 import wineADT.Wine;
 
+/**
+ * Class that utilize the graph to give wine recommendations
+ * 
+ * @author Alexander Samaha, David Carrie
+ * 
+ * @version Last modified 08/04/2019.
+ *
+ */
 public class Recommendations {
 
 	private Wine base;
@@ -61,6 +69,10 @@ public class Recommendations {
 		
 	}
 	
+	/**
+	 * Return the result of the graph (from the base)
+	 * @return Result of the graph (from the base)
+	 */
 	public Wine [] get_results() {
 		return graph.all(base);
 	}
