@@ -6,7 +6,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import searchsort.Filtering;
 import searchsort.Searching;
+import searchsort.Sorting;
 import userProfile.ProfileManager;
 import wineADT.Read;
 import wineADT.Wine;
@@ -15,6 +17,7 @@ import wineADT.Wine;
  * Execution class, containing the main method that will run the whole program
  * @author Mengxi Lei
  * @version Created 2019/04/08, Last modified 2019/04/09
+ * Need to work on: main and manageProfile
  */
 public class Main {
 	
@@ -147,7 +150,7 @@ public class Main {
 	private static void addWineSearch() {
 		int userInput;
 		String temp = "";
-		Wine[] wines;
+		Wine[] wines = null;
 		boolean first = true;
 		//Let the user choose what to search by
 		while (true) {
@@ -202,32 +205,112 @@ public class Main {
 	//Searching
 	private static Wine[] searching(Wine[] wines) {
 		int userInput;
-		boolean runned = false;
 		String temp = "";
-		Wine[] result;
+		Wine[] result = wines;
+		Wine tempWine;
 		//Let the user choose which category to search for
 		while (true) {
 			temp = "Please choose between the following options:\n" + "    1: Search by country"
-																	+ "    2: Search by description"
-																	+ "    3: Search by taste notes"
-																	+ "    4: Search by designation"
-																	+ "    5: Search by rating"
-																	+ "    6: Search by price"
-																	+ "    7: Search by province"
-																	+ "    8: Search by region"
-																	+ "    9: Search by variety"
-																	+ "    10: Search by winery"
-																	+ "    11: Search by name"
-																	+ "    12: Search by ID"
+																	+ "    2: Search by taste notes"
+																	+ "    3: Search by name"
+																	+ "    4: Search by rating"
+																	+ "    5: Search by price"
+																	+ "    6: Search by province"
+																	+ "    7: Search by variety"
+																	+ "    8: Search by winery"
+																	+ "    9: Search by ID"
 																	+ "    0: Back to previous menu";
 			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 			switch(userInput) {
-				case 1: wines = 
-				case 0: 
-					if (runned)
-						return result;
-					else
-						return wines;
+				case 1:	wines = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which country you want to search for"), "country");
+						break;
+				case 2:	wines = Searching.linear_taste_notes_search(wines, JOptionPane.showInputDialog(null, "Which taste note you want to search for"));
+						break;
+				case 3: wines = Searching.linear_name_search(wines, JOptionPane.showInputDialog(null, "Which name you want to search for"));
+						break;
+				case 4: wines = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which rating you want to search for"), "rating");
+						break;
+				case 5: wines = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which price you want to search for"), "price");
+						break;
+				case 6: wines = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which province you want to search for"), "province");
+						break;
+				case 7: wines = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which variety you want to search for"), "variety");
+						break;
+				case 8: wines = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which winery you want to search for"), "winery");
+						break;
+				case 9: tempWine = Searching.binary_search(wines, Integer.parseInt(JOptionPane.showInputDialog(null, "Which ID you want to search for")));
+						result = new Wine[1];
+						result[0] = tempWine;
+						break;
+				case 0: return result;
+				default: JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+			}
+		}
+	}
+	
+	//Filtering
+	private static Wine[] filtering(Wine[] wines) {
+		int userInput;
+		String temp;
+		Wine[] result = wines;
+		//Let the user choose between managing favorite wines or tastes
+		while (true) {
+			temp = "Please choose between the following options:\n" + "    1: Filter by price\n"
+		                                                            + "    2: Filter by rating\n"
+		                                                            + "    0: Back to main menu";
+			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
+			switch(userInput) {
+				case 1: Filtering.linear_filtering(result, "price", JOptionPane.showInputDialog(null, "Enter the lower bound for price"), 
+																	JOptionPane.showInputDialog(null, "Enter the higher bound for price"));
+						break;
+				case 2: Filtering.linear_filtering(result, "rating", JOptionPane.showInputDialog(null, "Enter the lower bound for rating"), 
+						JOptionPane.showInputDialog(null, "Enter the higher bound for rating"));
+						break;
+				case 0: return result;
+				default:
+					JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+			}
+		}
+	}
+	
+	//Sorting
+	private static Wine[] sorting(Wine[] wines) {
+		int userInput;
+		String temp = "";
+		Wine[] result = wines;
+		//Let the user choose which category to search for
+		while (true) {
+			temp = "Please choose between the following options:\n" + "    1: Sort by country"
+																	+ "    2: Sort by geography"
+																	+ "    3: Sort by name"
+																	+ "    4: Sort by rating"
+																	+ "    5: Sort by price"
+																	+ "    6: Sort by province"
+																	+ "    7: Sort by variety"
+																	+ "    8: Sort by winery"
+																	+ "    9: Sort by ID"
+																	+ "    0: Back to previous menu";
+			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
+			switch(userInput) {
+				case 1:	wines = Sorting.sort(wines, "country");
+						break;
+				case 2:	wines = Sorting.sort(wines, "geo");
+						break;
+				case 3: wines = Sorting.sort(wines, "designation");
+						break;
+				case 4: wines = Sorting.sort(wines, "rating");
+						break;
+				case 5: wines = Sorting.sort(wines, "price");
+						break;
+				case 6: wines = Sorting.sort(wines, "province");
+						break;
+				case 7: wines = Sorting.sort(wines, "variety");
+						break;
+				case 8: wines = Sorting.sort(wines, "winery");
+						break;
+				case 9: wines = Sorting.sort(wines, "unique_ID");
+						break;
+				case 0: return result;
 			}
 		}
 	}
