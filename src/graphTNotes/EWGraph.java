@@ -5,6 +5,8 @@ package graphTNotes;
  * p.611. Robert Sedgewick and Kevin Wayne.
  * 
  * @author David Carrie
+ * 
+ * @version Last modified 09/04/2019.
  *
  */
 public class EWGraph {

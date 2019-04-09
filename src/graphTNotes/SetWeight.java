@@ -3,6 +3,8 @@ package graphTNotes;
  * ADT for weighting specific taste notes with special weights.
  * 
  * @author David Carrie
+ * 
+ * @version Last modified 09/04/2019.
  *
  */
 public class SetWeight {
