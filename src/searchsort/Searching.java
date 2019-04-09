@@ -7,7 +7,7 @@ import wineADT.*;
 /**
  * A class for searching through a number of Wines
  * @author Daniel William Noorduyn
- * @version March 21, 2019
+ * @version April 8, 2019
  */
 public class Searching {
 	
@@ -176,7 +176,7 @@ public class Searching {
 			}
 			else return x[mid];
 		}
-		return x[-1];
+		return null;
 	}
 	
 	/**

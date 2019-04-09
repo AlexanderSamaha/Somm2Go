@@ -92,7 +92,7 @@ public class Profile {
 	
 	/**
 	 * Add the given wine to profile
-	 * @param element String representing the wine being added
+	 * @param element Integer representing the wine being added
 	 */
 	public void addWine(Integer element) {
 		if (wines.indexOf(element) != -1)
@@ -104,7 +104,7 @@ public class Profile {
 	
 	/**
 	 * Delete the given wine from profile
-	 * @param element String representing the wine being deleted
+	 * @param element Integer representing the wine being deleted
 	 */
 	public void deleteWine(Integer element) {
 		int index = wines.indexOf(element);

@@ -11,7 +11,7 @@ import foodPairing.FoodMatchesLibrary;
  * 
  * @author Alexander Samaha
  * 
- * @version Last modified 08/04/2019.
+ * @version Last modified 09/04/2019.
  *
  */
 public class Wine {
@@ -263,6 +263,22 @@ public class Wine {
 		String combined_name = new String();
 		combined_name = reviewer + ", " + twitter;
 		return combined_name;
+	}
+	
+	/**
+	 * Return the string representation of the wine
+	 * @return the string representation of the wine
+	 */
+	public String toString() {
+		String temp = unique_id + ": " + designation 
+					  + ", Taste Note - [" + get_taste_notes() 
+					  + "], " + variety 
+					  + ", $" + price 
+					  + ", Rating - " + rating + ", "
+					  + description + ", "
+					  + winery + ", "
+				      + "Location - [" + get_geo() + "]";
+		return temp;
 	}
 	
 }
