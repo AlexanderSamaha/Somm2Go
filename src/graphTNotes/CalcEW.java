@@ -9,6 +9,8 @@ import wineADT.*;
  * Class to calculate edges and weights.
  * 
  * @author David Carrie
+ * 
+ * @version Last modified 09/04/2019.
  *
  */
 public class CalcEW {

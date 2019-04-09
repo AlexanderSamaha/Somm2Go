@@ -5,9 +5,11 @@ import java.util.ArrayList;
 
 import wineADT.*;
 /**
- * Calculates relations between wines using taste notes.
+ * Calculates relations between wines using taste notes. Only intended to be called by Recommendations.java
  * 
  * @author David Carrie
+ * 
+ * @version Last modified 09/04/2019.
  *
  */
 public class GraphTNotes {
