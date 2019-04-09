@@ -43,7 +43,7 @@ public class ProfileManager {
 				break;
 			}
 			//Choose between load a profile or delete a profile (if cannot create more profiles)
-			else if (size < MAX_SIZE) {
+			else if (size == MAX_SIZE) {
 				doubleBreak = false;
 				while(true) {
 					temp = "Enter the number corresponding to the option you want to choose:\n" + "    0: Delete a profile\n";
