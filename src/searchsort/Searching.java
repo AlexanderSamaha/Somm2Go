@@ -159,8 +159,7 @@ public class Searching {
 	 * @param id - a String of what is being searched for
 	 * @return - returns one Wine object corresponding to the search parameter id
 	 */
-	public static Wine binary_search(Wine [] x, Integer id) {		
-				
+	public static Wine binary_search(Wine[] x, Integer id) {
 		int lo = 0;
 		int hi = x.length - 1;
 		while(lo <= hi)
@@ -228,6 +227,5 @@ public class Searching {
 		searched_array = searched.toArray(searched_array);
 		return searched_array;
 	}
-	
 	
 }

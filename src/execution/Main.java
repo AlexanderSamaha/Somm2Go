@@ -11,13 +11,13 @@ import searchsort.Searching;
 import searchsort.Sorting;
 import userProfile.ProfileManager;
 import wineADT.Read;
+import wineADT.TasteNoteLibrary;
 import wineADT.Wine;
 
 /**
  * Execution class, containing the main method that will run the whole program
  * @author Mengxi Lei
  * @version Created 2019/04/08, Last modified 2019/04/09
- * Need to work on: main and manageProfile
  */
 public class Main {
 	
@@ -52,8 +52,9 @@ public class Main {
 			switch(userInput) {
 				case 1: manageProfile();
 						break;
-				case 2: break;
-				case 3: break;
+				case 2: search();
+						break;
+				case 3: recommend();
 				case 0: cont = false;
 						break;
 				default:
@@ -87,7 +88,7 @@ public class Main {
 			switch(userInput) {
 				case 1: manageWine();
 						break;
-				case 2: break;
+				case 2: manageTasteNote();
 				case 0: return;
 				default:
 					JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
@@ -134,7 +135,7 @@ public class Main {
 				addWineSearch();
 			else if (userInput == 2) {
 				userInput = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the unique ID of the wine you with to favorite"));
-				temp = "Is this the wine you wish to favorite:\n    " + Searching.binary_search(Read.wines, userInput) + "\n"
+				temp = "Is this the wine you wish to favorite:\n    " + Searching.binary_search(Read.idSorted, userInput) + "\n"
 						+ "Enter yes to confirm, anything else to abondon the change.";
 				if (displayInput(temp).equalsIgnoreCase("yes"))
 					ProfileManager.getProfile().addWine(userInput);
@@ -155,7 +156,6 @@ public class Main {
 		//Let the user choose what to search by
 		while (true) {
 			while (first) {
-				first = false;
 				temp = "Please choose between the following options:\n" + "    1: Start by searching"
 																		+ "    2: Start by filtering"
 																		+ "    0: Back to previous menu";
@@ -173,13 +173,13 @@ public class Main {
 			}
 			temp = "";
 			for (int i = 0; i < wines.length; i++)
-				
+				temp = temp + wines[i] + "\n";
 			temp = temp + "\n" + "Please choose between the following options:\n" + "    ID: Add the wine to favorite"
 																				  + "    -1: Continue Searching"
 																				  + "    -2: Continue filtering"
 																				  + "    -3: Continue sorting"
 																				  + "    -4: Back to previous menu";
-			userInput = Integer.parseInt(JOptionPane.showInputDialog(temp));
+			userInput = Integer.parseInt(displayInput(temp));
 			switch(userInput) {
 				case -1: wines = searching(wines);
 						 break;
@@ -189,8 +189,53 @@ public class Main {
 						 break;
 				case -4: return;
 				default: ProfileManager.getProfile().addWine(userInput);
-						 break;
 			}
+		}
+	}
+	
+	//Function which allow user to ad or delete taste notes
+	private static void manageTasteNote() {
+		int userInput;
+		String temp;
+		String[] tasteNote;
+		while (true) {
+			temp = "";
+			tasteNote = ProfileManager.getProfile().getTaste();
+			for (int i = 0; i < tasteNote.length; i++)
+				temp = temp + (i+1) + ": " + tasteNote[i] + "\n";
+			temp = temp + "\n" + "Please choose between the following options:\n" + "    ID of taste note: Delete favorite taste note\n"
+					    														  + "    " + (tasteNote.length+1) + ": Add favorite taste note\n"
+					    														  + "    0: Back to previous menu";
+			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
+			if (userInput == 0)
+				return;
+			else if (userInput == tasteNote.length+1)
+				addTasteNote();
+			else if (userInput > 0 && userInput <= tasteNote.length)
+				ProfileManager.getProfile().deleteTaste(tasteNote[userInput]);
+			else
+				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+		}
+	}
+	
+	//Allow user to add a taste note to their favorite
+	private static void addTasteNote() {
+		int userInput;
+		String temp;
+		String[] tasteNotes = TasteNoteLibrary.get_patterns();
+		while (true) {
+			temp = "";
+			for (int i = 0; i < tasteNotes.length; i++)
+				temp = temp + (i+1) + ": " + tasteNotes[i] + "\n";
+			temp = temp + "\n" + "Please choose between the following options:\n" + "    ID of taste note: Add that taste note to favorite\n"
+																				  + "    0: Back to previous menu";
+			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
+			if (userInput == 0)
+				return;
+			else if (userInput > 0 && userInput <= tasteNotes.length)
+				ProfileManager.getProfile().deleteTaste(tasteNotes[userInput]);
+			else
+				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 		}
 	}
 	
@@ -202,12 +247,63 @@ public class Main {
 	
 	
 	
+	//Menu for searching, sorting and filtering
+	private static void search() {
+		int userInput;
+		String temp = "";
+		Wine[] wines = null;
+		boolean first = true;
+		//Let the user choose what to search by
+		while (true) {
+			while (first) {
+				temp = "Please choose between the following options:\n" + "    1: Start by searching"
+																		+ "    2: Start by filtering"
+																		+ "    3: Start by sorting"
+																		+ "    0: Back to previous menu";
+				userInput = Integer.parseInt(JOptionPane.showInputDialog(temp));
+				switch(userInput) {
+					case 1: wines = searching(Read.wines);
+							first = false;
+						    break;
+					case 2: wines = filtering(Read.wines);
+							first = false;
+							break;
+					case 3: wines = sorting(Read.wines);
+							first = false;
+							break;
+					case 0: return;
+					default: JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+				}
+			}
+			temp = "";
+			for (int i = 0; i < wines.length; i++)
+				temp = temp + wines[i] + "\n";
+			temp = temp + "\n" + "Please choose between the following options:\n" + "    1: Continue Searching"
+																				  + "    2: Continue filtering"
+																				  + "    3: Continue sorting"
+																				  + "    4: Reset results"
+																				  + "    0: Back to previous menu";
+			userInput = Integer.parseInt(displayInput(temp));
+			switch(userInput) {
+				case 1: wines = searching(wines);
+						break;
+				case 2: wines = filtering(wines);
+						break;
+				case 3: wines = sorting(wines);
+						break;
+				case 4: first = true;
+						break;
+				case 0: return;
+				default: JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+			}
+		}
+	}
+	
 	//Searching
 	private static Wine[] searching(Wine[] wines) {
 		int userInput;
 		String temp = "";
 		Wine[] result = wines;
-		Wine tempWine;
 		//Let the user choose which category to search for
 		while (true) {
 			temp = "Please choose between the following options:\n" + "    1: Search by country"
@@ -238,9 +334,7 @@ public class Main {
 						break;
 				case 8: wines = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which winery you want to search for"), "winery");
 						break;
-				case 9: tempWine = Searching.binary_search(wines, Integer.parseInt(JOptionPane.showInputDialog(null, "Which ID you want to search for")));
-						result = new Wine[1];
-						result[0] = tempWine;
+				case 9: result = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which ID you want to search for"), "unique_ID");
 						break;
 				case 0: return result;
 				default: JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
@@ -311,6 +405,35 @@ public class Main {
 				case 9: wines = Sorting.sort(wines, "unique_ID");
 						break;
 				case 0: return result;
+			}
+		}
+	}
+	
+	
+	
+//===============================================================================================================================================================
+//==========   Helper functions - Searching   ===================================================================================================================
+//===============================================================================================================================================================
+	
+	
+	
+	//Menu for wine recommendation
+	private static void recommend() {
+		int userInput;
+		String temp;
+		//Let the user choose between managing favorite wines or tastes
+		while (true) {
+			temp = "Please choose between the following options:\n" + "    1: Manage favorite wines\n"
+		                                                            + "    2: Manage favorite tastes\n"
+		                                                            + "    0: Back to main menu";
+			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
+			switch(userInput) {
+				case 1: manageWine();
+						break;
+				case 2: manageTasteNote();
+				case 0: return;
+				default:
+					JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 			}
 		}
 	}

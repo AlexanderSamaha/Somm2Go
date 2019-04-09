@@ -10,7 +10,7 @@ import wineADT.Wine;
 /**
  * Class representing the user's profile
  * @author Mengxi Lei
- * @version Created 2019/03/07, Last Modified 2019/04/08
+ * @version Created 2019/03/07, Last Modified 2019/04/09
  */
 public class Profile {
 	
@@ -31,6 +31,7 @@ public class Profile {
 		taste = new ArrayList<String>();
 		wines = new ArrayList<Integer>();
 		priceRange = new double[2];
+		priceRange[1] = 100;
 		modified = false;
 	}
 
@@ -56,7 +57,7 @@ public class Profile {
 	public Wine[] getWines() {
 		Wine[] temp = new Wine[wines.size()];
 		for (int i = 0; i < temp.length; i++)
-			temp[i] = Searching.binary_search(Read.wines, wines.get(i));
+			temp[i] = Searching.binary_search(Read.idSorted, wines.get(i));
 		return temp;
 	}
 	/**
@@ -141,17 +142,19 @@ public class Profile {
 	
 	/**
 	 * Update the price range
-	 * If no wine, then price range is 0 to 0
+	 * If no wine, then price range is 0 to 100
 	 * If there is only one wine, the price range is price of wine +/- 15%
 	 * Otherwise, the range is the price of highest wine and price of lowest wine +/- 5%
 	 */
 	private void checkPriceChange() {
 		double price;
 		int size = wines.size();
-		if (size == 0)
+		if (size == 0) {
 			priceRange = new double[2];
+			priceRange[1] = 100;
+		}
 		else if (size == 1) {
-			price = Searching.binary_search(Read.wines, wines.get(0)).get_price();
+			price = Searching.binary_search(Read.idSorted, wines.get(0)).get_price();
 			priceRange[0] = price * 0.85;
 			priceRange[1] = price * 1.15;
 		}
@@ -159,7 +162,7 @@ public class Profile {
 			priceRange[0] = Double.MAX_VALUE;
 			priceRange[1] = 0;
 			for (int i = 0; i < size; i++) {
-				price = Searching.binary_search(Read.wines, wines.get(i)).get_price();
+				price = Searching.binary_search(Read.idSorted, wines.get(i)).get_price();
 				if (price < priceRange[0])
 					priceRange[0] = price;
 				if (price > priceRange[1])
