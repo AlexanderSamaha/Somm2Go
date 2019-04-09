@@ -8,9 +8,7 @@ public class Main {
 		//Declare variables
 		
 		//Initial program setup
-		ProfileManager.profileInit();
-		
-		
+		ProfileManager.profileInit();		
 		
 		//Termination of program
 		ProfileManager.close();

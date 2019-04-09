@@ -144,7 +144,7 @@ public class ProfileManager {
 	private static void read(String name) {
 		File file = new File("profile/" + name + ".bin");
 		Scanner input = null;
-		StringTokenizer[] inputArray = new StringTokenizer[3];
+		StringTokenizer inputString;
 		int length;
 		double[] price = new double[2];
 		try {
@@ -154,16 +154,21 @@ public class ProfileManager {
 			System.exit(0);
 		}
 		profile = new Profile(name);
-		for (int i = 0; i < inputArray.length; i++)
-			inputArray[i] = new StringTokenizer(input.nextLine(), ",");
-		length = inputArray[0].countTokens();
-		for (int i = 0; i < length; i++)
-			profile.addTaste(inputArray[0].nextToken());
-		length = inputArray[1].countTokens();
-		for (int i = 0; i < length; i++)
-			profile.addWine(Integer.parseInt(inputArray[1].nextToken()));
-		price[0] = Double.parseDouble(inputArray[2].nextToken());
-		price[1] = Double.parseDouble(inputArray[2].nextToken());
+		if (input.nextLine().equals("Exist")) {
+			inputString = new StringTokenizer(input.nextLine(), ",");
+			length = inputString.countTokens();
+			for (int i = 0; i < length; i++)
+				profile.addTaste(inputString.nextToken());
+		}
+		if (input.nextLine().equals("Exist")) {
+			inputString = new StringTokenizer(input.nextLine(), ",");
+			length = inputString.countTokens();
+			for (int i = 0; i < length; i++)
+				profile.addWine(Integer.parseInt(inputString.nextToken()));
+		}
+		inputString = new StringTokenizer(input.nextLine(), ",");
+		price[0] = Double.parseDouble(inputString.nextToken());
+		price[1] = Double.parseDouble(inputString.nextToken());
 		profile.setPriceRange(price);
 		input.close();
 	}
@@ -193,13 +198,23 @@ public class ProfileManager {
 		try {
 			FileWriter output = new FileWriter(file);
 			taste = profile.getTaste();
-			for (int i = 0; i < taste.length-1; i++)
-				output.write(taste[i] + ",");
-			output.write(taste[taste.length-1] + "\r\n");
+			if (taste.length == 0)
+				output.write("None\r\n");
+			else {
+				output.write("Exist\r\n");
+				for (int i = 0; i < taste.length-1; i++)
+					output.write(taste[i] + ",");
+				output.write(taste[taste.length-1] + "\r\n");
+			}
 			wine = profile.getWines();
-			for (int i = 0; i < wine.length-1; i++)
-				output.write(wine[i].get_uniqueID() + ",");
-			output.write(wine[wine.length-1].get_uniqueID() + "\r\n");
+			if (wine.length == 0)
+				output.write("None\r\n");
+			else {
+				output.write("Exist\r\n");
+				for (int i = 0; i < wine.length-1; i++)
+					output.write(wine[i].get_uniqueID() + ",");
+				output.write(wine[wine.length-1].get_uniqueID() + "\r\n");
+			}
 			range = profile.getPriceRange();
 			output.write(range[0] + "," + range[1]);
 			output.close();
