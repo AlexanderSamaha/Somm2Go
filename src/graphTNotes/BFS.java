@@ -52,7 +52,10 @@ public class BFS {
 		}
 		return winesIndexs.toArray(new Integer[winesIndexs.size()]);
 	}
-	
+	/**
+	 * Get the nodes connected to the source in order of distance in number of edges
+	 * @return array of integers that represent node values
+	 */
 	public Integer [] getDist() {
 		return this.byDist;
 	}
