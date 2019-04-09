@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import searchsort.Searching;
 import wineADT.Read;
+import wineADT.Wine;
 
 
 /**
  * Class representing the user's profile
  * @author Mengxi Lei
- * @version Created 2019/03/07, Last Modified 2019/03/12
+ * @version Created 2019/03/07, Last Modified 2019/04/08
  */
 public class Profile {
 	
@@ -45,14 +46,18 @@ public class Profile {
 	 * @return taste as a array (not arraylist)
 	 */
 	public String[] getTaste() {
-		return (String[]) taste.toArray();
+		String[] temp = new String[taste.size()];
+		return taste.toArray(temp);
 	}
 	/**
 	 * Accessor method for user's favorite wines
 	 * @return favorite as a array (not arraylist)
 	 */
-	public Integer[] getWines() {
-		return (Integer[]) wines.toArray();
+	public Wine[] getWines() {
+		Wine[] temp = new Wine[wines.size()];
+		for (int i = 0; i < temp.length; i++)
+			temp[i] = Searching.binary_search(Read.wines, wines.get(i));
+		return temp;
 	}
 	/**
 	 * Accessor method for the user's price range

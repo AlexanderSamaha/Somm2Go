@@ -1,9 +1,14 @@
 package execution;
-
+import java.util.Scanner;
 import searchsort.*;
 import wineADT.*;
 
+
 public class OldMain {
+	
+	private static boolean cont = true;
+	private static boolean done = false;
+	
 	//Basic to string method for Wine
 	public static String toString(Wine w) {
 		String temp = "";
@@ -16,63 +21,154 @@ public class OldMain {
 		temp = temp + w.get_uniqueID();
 		return temp;
 	}
-	//Print first 5 wines
+	//Print wines
 	public static void testPrint (Wine [] wa) {
-		for (int i = 0; i < 5; i ++) {
-			System.out.println(toString(wa[i]));
+		boolean ten = false;
+		//prints a partial list of returned wines if over 10 returned
+		if(wa.length > 10) {
+			ten = true;
+			System.out.println("Your current searching/filtering found over ten wines. You may want to consider narrowing down your search.");
+			System.out.println("Here are the first ten of the total requested wines:");
+			for (int i = 0; i < 10; i ++) {
+				System.out.println(toString(wa[i]));
+			}
+		}
+		else {
+			System.out.println("Here are the requested wines:");
+			for (int i = 0; i < wa.length; i ++) {
+				System.out.println(toString(wa[i]));
+			}
+		}
+		//check if user is satisfied with result wines
+		if(ten == true) {
+			System.out.println("Would you like to see all the requested wines? (Yes/No)");
+			Scanner myObj = new Scanner(System.in);
+			String answer = myObj.nextLine();
+			if(answer .equals("Yes") | answer .equals("yes")) {
+				System.out.println("Here are the requested wines:");
+				for (int i = 0; i < wa.length; i ++) {
+					System.out.println(toString(wa[i]));
+				}
+			}
+			System.out.println("Would you like to continue narrowing your searching down?");
+			answer = myObj.nextLine();
+			if(answer .equals("Yes") | answer .equals("yes")) {
+				return;
+			}
+			else {
+				System.out.println("Enjoy the wine!");
+				//after current wine search is done
+				System.out.println("Would you like to perform a new wine search?");
+				answer = myObj.nextLine();
+				myObj.close();
+				if(answer .equals("No") | answer .equals("no")) {
+					done = true;
+					cont = false;
+				}
+			}
+		}
+		else if(ten == false) {
+			System.out.println("Enjoy the wine!");
+			
+			//after current wine search is done
+			System.out.println("Would you like to perform a new wine search?");
+			Scanner myObj = new Scanner(System.in);
+			String answer = myObj.nextLine();
+			if(answer .equals("No") | answer .equals("no")) {
+				done = true;
+				cont = false;
+			}
 		}
 	}
-	//Print last 5 wines
-	public static void testPrintRV(Wine [] wa) {
-		for (int i = wa.length - 1; i > wa.length - 6; i --) {
-			System.out.println(toString(wa[i]));
+
+	public static void main(String args[]) {			
+			//Opening pre-amble
+			System.out.println("Welcome to Somm2Go!");
+		while(cont == true) {
+			done = false;
+			//initializing values
+			Wine [] full_list = Read.wines;
+			Wine [] searched_list;
+			Wine wine;
+			
+			System.out.println("To begin discovering wines, please regard the categories below.");
+			System.out.println("1. country");
+			System.out.println("2. description");
+			System.out.println("3. taste notes");
+			System.out.println("4. designation");
+			System.out.println("5. rating");
+			System.out.println("6. price");
+			System.out.println("7. province");
+			System.out.println("8. region");
+			System.out.println("9. variety");
+			System.out.println("10. winery");
+			System.out.println("11. name");
+			System.out.println("10. wine id");
+			
+			while(done == false) {
+				
+				//User decides between filtering and searching
+				System.out.println("Would you like to filter wines by PRICE or RATING, or search wines by category? (enter filter or search)");
+				Scanner myObj = new Scanner(System.in);
+				String answer = myObj.nextLine();
+				if(answer .equals("search")){
+			
+					//User enters first search query
+					System.out.println("Enter a category:");
+					String category = myObj.nextLine();
+					System.out.println("Now enter the search query: ");
+					String query = myObj.nextLine();
+					
+					//return wines based on user's search
+					if(category .equals("taste notes")) {
+						searched_list = Searching.linear_taste_notes_search(full_list, query );
+						full_list = searched_list;
+						testPrint(searched_list);
+					}
+					else if(category .equals("name")) {
+						searched_list = Searching.linear_name_search(full_list, query );
+						full_list = searched_list;
+						testPrint(searched_list);
+					}
+					else if(category .equals("wine id")) {
+						wine = Searching.binary_search(Sorting.sort(full_list, "unique_ID"), Integer.parseInt(query));
+						System.out.println(toString(wine));
+						//after current wine search is done
+						System.out.println("Would you like to perform a new wine search?");
+						answer = myObj.nextLine();
+						if(answer .equals("No") | answer .equals("no")) {
+							done = true;
+							cont = false;
+						}
+					}
+					else {
+						searched_list = Searching.linear_search(full_list, query, category );
+						full_list = searched_list;
+						testPrint(searched_list);
+					}
+				}
+				
+				else if(answer .equals("filter")) {
+					//User enters first search query
+					System.out.println("Would you like to filter by price or rating?:");
+					String category = myObj.nextLine();
+					System.out.println("Now enter the lower bound: ");
+					String low = myObj.nextLine();
+					System.out.println("Now enter the upper bound: ");
+					String high = myObj.nextLine();
+					searched_list = Filtering.linear_filtering(full_list, category, low, high);
+					full_list = searched_list;
+					testPrint(searched_list);
+				}
+				
+				else {
+					System.out.println("Please check the spelling of 'searching' or 'filtering' and re enter.");
+					continue;
+				}
+			
+			}
+
 		}
-	}
-	public static void main(String[] args) {
-		
-		Wine [] test1 = Read.wines;
-		Wine [] test2, test3, test5, test6;
-		Wine test4;
-		Sorting.sort(test1, "country");
-		System.out.printf("Sorted by Country:\n");
-		testPrint(test1);
-		testPrintRV(test1);
-		
-		Sorting.sort(test1, "price");
-		System.out.printf("\nSorted by Price:\n");
-		testPrint(test1);
-		testPrintRV(test1);
-		
-		Sorting.sort(test1,  "rating");
-		System.out.printf("\nSorted by rating:\n");
-		testPrint(test1);
-		testPrintRV(test1);
-		
-		System.out.printf("\nTest search 1:\n");
-		test2 = Searching.linear_name_search(test1, "Preludio Barrel" );
-		testPrint(test2);
-		testPrintRV(test2);
-		
-		System.out.printf("\nTest search 2:\n");
-		test3 = Searching.linear_name_search(test1, "Ice" );
-		testPrint(test3);
-		testPrintRV(test3);
-		
-		Sorting.sort(test1, "unique_ID");
-		System.out.printf("\nTest search 3:\n");
-		test4 = Searching.binary_search(test1, 10 );
-		System.out.println(toString(test4));
-		
-		System.out.printf("\nTest search 4:\n");
-		test5 = Searching.linear_search(test1, "50", "price" );
-		testPrint(test5);
-		testPrintRV(test5);
-		
-		Sorting.sort(test1, "province");
-		System.out.printf("\nTest search 5:\n");
-		test6 = Searching.linear_search(test1, "California", "province" );
-		testPrint(test6);
-		testPrintRV(test6);
 		
 	}
 
