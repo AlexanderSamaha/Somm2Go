@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import wineADT.Wine;
 
 /**
- * calculates all paths in order of distance from given source. Written with reference to:
+ * Calculates all paths using breadth first search in order of distance from given source. Written with reference to:
  * Algorithms Fourth Edition p.541. Robert Sedgewick and Kevin Wayne.
  * 
  * @author David Carrie
+ * 
+ * Last modified 09/04/2019.
  *
  */
 public class BFS {
@@ -18,7 +20,11 @@ public class BFS {
 	private final int s;
 	private Integer [] byDist;
 	
-	
+	/**
+	 * Consturct a new BFS (breadth first search object) with given edge weighted graph and starting vertex
+	 * @param graph edge weighted graph to run the search on
+	 * @param src source vertex to originate search from
+	 */
 	public BFS (EWGraph graph, int src) {
 		marked = new boolean [graph.V()];
 		edgeTo = new int [graph.V()];
@@ -46,7 +52,10 @@ public class BFS {
 		}
 		return winesIndexs.toArray(new Integer[winesIndexs.size()]);
 	}
-	
+	/**
+	 * Get the nodes connected to the source in order of distance in number of edges
+	 * @return array of integers that represent node values
+	 */
 	public Integer [] getDist() {
 		return this.byDist;
 	}

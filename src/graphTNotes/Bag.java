@@ -24,6 +24,8 @@ import java.util.NoSuchElementException;
  *  @author Kevin Wayne
  *
  *  @param <Item> the generic type of an item in this bag
+ *  
+ *  @version Version-added 09/04/2019(Not official).
  */
 public class Bag<Item> implements Iterable<Item> {
     private Node<Item> first;    // beginning of bag
