@@ -449,7 +449,34 @@ public class Main {
 	
 	//Recommend wine base on food
 	private static void wineFromFood() {
-		
+		int userInput;
+		ArrayList<String> foods = new ArrayList<String>();
+		String temp;
+		String[] foodList = FoodMatchesLibrary.getFoods();
+		//Let the user choose between favorited wines or searching a wine
+		while (true) {
+			temp = "The following is the food you currently have added (recommend 1 to 3 food): ";
+			for (int i = 0; i < foods.size(); i++)
+				temp = temp + ", ";
+			temp = temp + "\nPlease choose between the following options:\n";
+			for (int i = 0; i < foodList.length; i++)
+				temp = temp + "    " + i + ": Add " + foodList[i] + "to list of food";
+			temp += "    -1: Search with current list of food";
+			temp += "    -2: Back to previous menu";
+			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
+			if (userInput == -1) {
+				
+				return;
+			}
+			else if (userInput == -2)
+				return;
+			else if (userInput >= 0 && userInput < foodList.length) {
+				if (!foods.contains(foodList[userInput]))
+					foods.add(foodList[userInput]);
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+		}
 	}
 	
 	//Recommend food base on wine
