@@ -450,13 +450,17 @@ public class Main {
 	//Recommend wine base on food
 	private static void wineFromFood() {
 		int userInput;
-		ArrayList<String> foods = new ArrayList<String>();
+		String[] food;
 		String temp;
 		String[] foodList = FoodMatchesLibrary.getFoods();
+		Wine[] wines;
+		ArrayList<String> tempFoods = new ArrayList<String>();
+		ArrayList<Wine> tempWine = new ArrayList<Wine>();
+		ArrayList<Wine> tempWine2;
 		//Let the user choose between favorited wines or searching a wine
 		while (true) {
 			temp = "The following is the food you currently have added (recommend 1 to 3 food): ";
-			for (int i = 0; i < foods.size(); i++)
+			for (int i = 0; i < tempFoods.size(); i++)
 				temp = temp + ", ";
 			temp = temp + "\nPlease choose between the following options:\n";
 			for (int i = 0; i < foodList.length; i++)
@@ -465,14 +469,31 @@ public class Main {
 			temp += "    -2: Back to previous menu";
 			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 			if (userInput == -1) {
-				
+				if (tempFoods.size() == 0) {
+					JOptionPane.showMessageDialog(null, "You currently have no food added, please add at least one food.");
+					break;
+				}
+				food = new String[tempFoods.size()];
+				food = tempFoods.toArray(food);
+				tempWine.addAll(Arrays.asList(FoodMatchesLibrary.wineRecommand(tempFoods.get(0))));
+				for (int i = 1; i < tempFoods.size(); i++) {
+					tempWine2 = new ArrayList<Wine>();
+					wines = FoodMatchesLibrary.wineRecommand(tempFoods.get(i));
+					for (Wine element : wines)
+						if (tempWine.contains(element))
+							tempWine2.add(element);
+					tempWine = tempWine2;
+				}
+				wines = new Wine[tempWine.size()];
+				wines = tempWine.toArray(wines);
+				recommendDisplay(wines);
 				return;
 			}
 			else if (userInput == -2)
 				return;
 			else if (userInput >= 0 && userInput < foodList.length) {
-				if (!foods.contains(foodList[userInput]))
-					foods.add(foodList[userInput]);
+				if (!tempFoods.contains(foodList[userInput]))
+					tempFoods.add(foodList[userInput]);
 			}
 			else
 				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
