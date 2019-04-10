@@ -1,11 +1,14 @@
 package execution;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import Recommendations.Recommendations;
 import foodPairing.FoodMatchesLibrary;
 import searchsort.Filtering;
 import searchsort.Searching;
@@ -414,7 +417,7 @@ public class Main {
 	
 	
 //===============================================================================================================================================================
-//==========   Helper functions - Searching   ===================================================================================================================
+//==========   Helper functions - Recommendation   ==============================================================================================================
 //===============================================================================================================================================================
 	
 	
@@ -423,7 +426,7 @@ public class Main {
 	private static void recommend() {
 		int userInput;
 		String temp;
-		//Let the user choose between managing favorite wines or tastes
+		//Let the user choose between different recommendation option
 		while (true) {
 			temp = "Please choose between the following options:\n" + "    1: Recommend wine base on food\n"
 		                                                            + "    2: Recommend food base on wine\n"
@@ -431,11 +434,12 @@ public class Main {
 																	+ "    0: Back to main menu";
 			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 			switch(userInput) {
-				case 1: manageWine();
+				case 1: wineFromFood();
 						break;
-				case 2: foodToWine();
+				case 2: foodFromWine();
 						break;
-				case 3: break;
+				case 3: wineRecommend();
+						break;
 				case 0: return;
 				default:
 					JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
@@ -443,15 +447,20 @@ public class Main {
 		}
 	}
 	
+	//Recommend wine base on food
+	private static void wineFromFood() {
+		
+	}
+	
 	//Recommend food base on wine
-	private static void foodToWine() {
+	private static void foodFromWine() {
 		int userInput;
 		String temp;
-		//Let the user choose between managing favorite wines or tastes
+		//Let the user choose between favorited wines or searching a wine
 		while (true) {
 			temp = "Please choose between the following options:\n" + "    1: Pick a wine from favorite\n"
 		                                                            + "    2: Search for a wine\n"
-																	+ "    0: Back to main menu";
+																	+ "    0: Back to previous menu";
 			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 			switch(userInput) {
 				case 1: ftwFavorite();
@@ -559,21 +568,208 @@ public class Main {
 		}
 	}
 	
+	//General wine recommendation
+	private static void wineRecommend() {
+		int userInput;
+		String temp;
+		//Let the user choose between managing favorite wines or tastes
+		while (true) {
+			temp = "Please choose between the following options:\n" + "    1: Recommend wine from a specific favorited wine\n"
+																	+ "    2: Recommend wine from favorited wine\n"
+		                                                            + "    3: Recommend wine from a specific wine (through searching)\n"
+																	+ "    0: Back to main menu";
+			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
+			switch(userInput) {
+				case 1: recommendSpecific();
+						break;
+				case 2: recommendFavorite();
+						break;
+				case 3: recommendSearching();
+						break;
+				case 0: return;
+				default:
+					JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+			}
+		}
+	}
+	
+	//Recommend wine from a specific favorited wine
+	private static void recommendSpecific() {
+		int userInput;
+		String temp;
+		Recommendations recommend;
+		Wine[] wines = ProfileManager.getProfile().getWines();
+		//Check if they have favorited wine on file
+		if (wines.length == 0) {
+			JOptionPane.showMessageDialog(null, "You don't have any wine favorited yet, please favorite one first or choose a different option");
+			return;
+		}
+		//Let the user choose which favorited wine they want to use
+		while (true) {
+			temp = "";
+			for (int i = 0; i < wines.length; i++)
+				temp = temp + wines[i] + "\n";
+			temp = temp + "\n" + "Please choose between the following options:\n" + "    ID: Use this wine for food recommendation\n"
+																				  + "    -1: Back to previous menu";
+			userInput = Integer.parseInt(displayInput(temp));
+			if (userInput == -1)
+				return;
+			wines = Searching.linear_search(wines, Integer.toString(userInput), "unique_ID");
+			if (wines.length == 0)
+				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+			else {
+				recommend = new Recommendations(Read.wines, wines[0]);
+				wines = recommend.get_results();
+				recommendDisplay(wines);
+				return;
+			}
+		}
+	}
+	
+	//Recommend wine from favorited wine
+	private static void recommendFavorite() {
+		Recommendations recommend;
+		ArrayList<Wine> temp;
+		ArrayList<Wine> temp2;
+		Wine[] wines = ProfileManager.getProfile().getWines();
+		//Check if they have favorited wine on file
+		if (wines.length == 0) {
+			JOptionPane.showMessageDialog(null, "You don't have any wine favorited yet, please favorite one first or choose a different option");
+			return;
+		}
+		temp = new ArrayList<Wine>();
+		temp2 = new ArrayList<Wine>();
+		for (int i = 0; i < wines.length; i++) {
+			recommend = new Recommendations(Read.wines, wines[i]);
+			temp.addAll(Arrays.asList(recommend.get_results()));
+		}
+		//Check for duplication
+		for (Wine object : temp)
+			if (!temp2.contains(object))
+				temp2.add(object);
+		wines = new Wine[temp2.size()];
+		wines = temp2.toArray(wines);
+		recommendDisplay(wines);
+		return;
+	}
+	
+	//Recommend wine from a specific wine from searching
+	private static void recommendSearching() {
+		int userInput;
+		String temp = "";
+		Recommendations recommend;
+		Wine[] wines = null;
+		boolean first = true;
+		//Let the user choose what to search by
+		while (true) {
+			while (first) {
+				temp = "Please choose between the following options:\n" + "    1: Start by searching\n"
+																		+ "    2: Start by filtering\n"
+																		+ "    0: Back to previous menu\n";
+				userInput = Integer.parseInt(JOptionPane.showInputDialog(temp));
+				switch(userInput) {
+					case 1: wines = searching(Read.wines);
+							first = false;
+						    break;
+					case 2: wines = filtering(Read.wines);
+							first = false;
+							break;
+					case 0: return;
+					default: JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+				}
+			}
+			temp = "";
+			for (int i = 0; i < wines.length; i++)
+				temp = temp + wines[i] + "\n";
+			temp = temp + "\n" + "Please choose between the following options:\n" + "    ID: Use this wine for food recommendation\n"
+																				  + "    -1: Continue Searching\n"
+																				  + "    -2: Continue filtering\n"
+																				  + "    -3: Continue sorting\n"
+																				  + "    -4: Back to previous menu";
+			userInput = Integer.parseInt(displayInput(temp));
+			switch(userInput) {
+				case -1: wines = searching(wines);
+						 break;
+				case -2: wines = filtering(wines);
+						 break;
+				case -3: wines = sorting(wines);
+						 break;
+				case -4: return;
+				default:
+					wines = Searching.linear_search(wines, Integer.toString(userInput), "unique_ID");
+					if (wines.length == 0)
+						JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+					else {
+						recommend = new Recommendations(Read.wines, wines[0]);
+						wines = recommend.get_results();
+						recommendDisplay(wines);
+						return;
+					}
+			}
+		}
+	}
+	
+	//Display the result of the recommendation
+	private static void recommendDisplay(Wine[] wines) {
+		int userInput;
+		String temp = "";
+		//Let the user choose what to search by
+		while (true) {
+			temp = "";
+			for (int i = 0; i < wines.length; i++)
+				temp = temp + wines[i] + "\n";
+			temp = temp + "\n" + "You can reduce the above list through the following ways:\n" + "    1: Continue Searching\n"
+																							   + "    2: Continue filtering\n"
+																							   + "    3: Continue sorting\n"
+																							   + "    4: Filter using favorited taste note\n"
+																							   + "    0: Back to previous menu";
+			userInput = Integer.parseInt(displayInput(temp));
+			switch(userInput) {
+				case 1: wines = searching(wines);
+						break;
+				case 2: wines = filtering(wines);
+						break;
+				case 3: wines = sorting(wines);
+						break;
+				case 4: wines = filterTasteNote(wines);
+						break;
+				case 0: return;
+				default: JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
+			}
+		}
+	}
+	
+	//Filter with user's favorite taste note
+	private static Wine[] filterTasteNote(Wine[] wines) {
+		Wine[] tempWines;
+		ArrayList<Wine> temp = new ArrayList<Wine>();
+		ArrayList<Wine> temp2 = new ArrayList<Wine>();
+		String[] tastes = ProfileManager.getProfile().getTaste();
+		//Check if no favorite taste note
+		if (tastes.length == 0)
+			return wines;
+		//Get all the wines that matches the list of taste notes
+		for (int i = 0; i < tastes.length; i++) {
+			tempWines = Searching.linear_taste_notes_search(wines, tastes[i]);
+			temp.addAll(Arrays.asList(tempWines));
+		}
+		//Check for duplication
+		for (Wine object : temp)
+			if (!temp2.contains(object))
+				temp2.add(object);
+		//Return
+		tempWines = new Wine[temp2.size()];
+		tempWines = temp2.toArray(tempWines);
+		return tempWines;
+	}
+	
+	
 	
 //===============================================================================================================================================================
 //==========   Helper functions - Others   ======================================================================================================================
 //===============================================================================================================================================================
 	
 	
-	
-	//Display long message with scroll bars
-	private static void display(String message) {
-		JTextArea text = new JTextArea(message);
-	    text.setEditable(false);
-	    JScrollPane scroll = new JScrollPane(text);
-	    scroll.setPreferredSize(new Dimension(800, 600));
-	    JOptionPane.showMessageDialog(null, scroll);
-	}
 	
 	//Display long message with scroll bars and ask for input
 	private static String displayInput(String message) {
