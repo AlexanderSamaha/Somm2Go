@@ -7,7 +7,7 @@ import wineADT.*;
 /**
  * A class for searching through a number of Wines
  * @author Daniel William Noorduyn
- * @version March 21, 2019
+ * @version April 8, 2019
  */
 public class Searching {
 	
@@ -159,8 +159,7 @@ public class Searching {
 	 * @param id - a String of what is being searched for
 	 * @return - returns one Wine object corresponding to the search parameter id
 	 */
-	public static Wine binary_search(Wine [] x, Integer id) {		
-				
+	public static Wine binary_search(Wine[] x, Integer id) {
 		int lo = 0;
 		int hi = x.length - 1;
 		while(lo <= hi)
@@ -176,7 +175,7 @@ public class Searching {
 			}
 			else return x[mid];
 		}
-		return x[-1];
+		return null;
 	}
 	
 	/**
@@ -228,6 +227,5 @@ public class Searching {
 		searched_array = searched.toArray(searched_array);
 		return searched_array;
 	}
-	
 	
 }

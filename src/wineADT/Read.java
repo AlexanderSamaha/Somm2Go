@@ -17,6 +17,7 @@ import java.util.Scanner;
 public class Read {
 	
 	public static Wine[] wines = read();
+	public static Wine[] idSorted = duplicate(wines);
 	
 	
 	/**
@@ -223,5 +224,13 @@ public class Read {
 		return;
 	}
 	
-
+	//Duplicate an array of wines
+	private static Wine[] duplicate(Wine[] wine) {
+		Wine[] temp = new Wine[wine.length];
+		for (int i = 0; i < wine.length; i++)
+			temp[i] = wine[i];
+		return temp;
+	}
+	
+	
 }

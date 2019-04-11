@@ -11,7 +11,7 @@ import wineADT.Wine;
 /**
  * Class for pairing food and wines
  * @author Mengxi Lei and Alexander Samaha
- * @version Created 2019/03/16, Last modified 2019/04/08
+ * @version Created 2019/03/16, Last modified 2019/04/09
  */
 public class FoodMatchesLibrary {
 	
@@ -116,6 +116,14 @@ public class FoodMatchesLibrary {
 		food = new String[tempFood.size()];
 		food = tempFood.toArray(food);
 		return food;
+	}
+	
+	/**
+	 * Accessor for foods list
+	 * @return foods list
+	 */
+	public static String[] getFoods() {
+		return foods;
 	}
 	
 }
