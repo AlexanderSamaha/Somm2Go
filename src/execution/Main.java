@@ -840,8 +840,10 @@ public class Main {
 		ArrayList<Wine> temp2 = new ArrayList<Wine>();
 		String[] tastes = ProfileManager.getProfile().getTaste();
 		//Check if no favorite taste note
-		if (tastes.length == 0)
+		if (tastes.length == 0) {
+			JOptionPane.showMessageDialog(null, "You currently have no favorited taste notes in the profile.");
 			return wines;
+		}
 		//Get all the wines that matches the list of taste notes
 		for (int i = 0; i < tastes.length; i++) {
 			tempWines = Searching.linear_taste_notes_search(wines, tastes[i]);
