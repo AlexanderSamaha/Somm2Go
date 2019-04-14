@@ -56,7 +56,7 @@ public class EWGraph {
 	}
 
 	/**
-	 * Returns and iterable of all adjacent edges from a given vertex.
+	 * Returns an Iterable of all adjacent edges from a given vertex.
 	 * 
 	 * @param v vertex index.
 	 * @return all adjacent edges.
@@ -66,9 +66,9 @@ public class EWGraph {
 	}
 
 	/**
-	 * Returns an iterable of all the graph's edges (ignoring self loops)
+	 * Returns an Iterable of all the graph's edges (ignoring self loops)
 	 * 
-	 * @return iterable of edges.
+	 * @return Iterable of edges.
 	 */
 	public Iterable<Edge> edges() {
 		Bag<Edge> bag = new Bag<Edge>();

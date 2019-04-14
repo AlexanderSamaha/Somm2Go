@@ -10,7 +10,7 @@ import searchsort.Sorting;
 import wineADT.Wine;
 
 /**
- * Class that utilize the graph to give wine recommendations
+ * Class that utilizes the graph to give wine recommendations
  * 
  * @author Alexander Samaha, David Carrie
  * 
