@@ -11,7 +11,7 @@ import java.util.Scanner;
  * 
  * @author Alexander Samaha
  * 
- * @version Last modified 08/04/2019.
+ * @version Last modified 13/04/2019.
  *
  */
 public class Read {
@@ -132,7 +132,8 @@ public class Read {
 					}
 					// use this instead of StringTokenizer because it won't skip empty fields.
 					String[] st = scanned.split(",");
-					
+					//System.out.println(arr_list.size());
+					id_count = arr_list.size();
 					/* was put here to make sure all fields show up.
 					String toString = "";
 					for (int i = 0; i < st.length; i++) {
@@ -231,6 +232,20 @@ public class Read {
 			temp[i] = wine[i];
 		return temp;
 	}
+	
+	/*
+	public static void main(String[] args) {
+		Wine[] array = Read.wines;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i].get_uniqueID() != i) {
+				System.out.println(i);
+				break;
+				//System.out.println("does not work");
+			}
+		}
+		//System.out.println("works");
+	}
+	*/
 	
 	
 }
