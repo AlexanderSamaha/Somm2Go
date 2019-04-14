@@ -1,4 +1,4 @@
-package testing;
+package unitTesting;
 
 import org.junit.After;
 import org.junit.Before;

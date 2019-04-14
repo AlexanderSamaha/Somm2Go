@@ -48,6 +48,8 @@ public class Main {
 		//Initial program setup
 		Read.init();
 		JOptionPane.showMessageDialog(null, "Welcome to Somm2Go!");
+		JOptionPane.showMessageDialog(null, "Please do not give empty inputs or inputs in the wrong format (such as letters instead of numbers)\n"
+											+ "since they will crash the program.");
 		ProfileManager.profileInit();
 		
 		//Let the user choose between searching for wine, recommendation or profile management
@@ -223,7 +225,7 @@ public class Main {
 			else if (userInput == tasteNote.length+1)
 				addTasteNote();
 			else if (userInput > 0 && userInput <= tasteNote.length)
-				ProfileManager.getProfile().deleteTaste(tasteNote[userInput]);
+				ProfileManager.getProfile().deleteTaste(tasteNote[userInput-1]);
 			else
 				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 		}
@@ -243,8 +245,10 @@ public class Main {
 			userInput = Integer.parseInt(displayInput(temp));
 			if (userInput == 0)
 				return;
-			else if (userInput > 0 && userInput <= tasteNotes.length)
-				ProfileManager.getProfile().deleteTaste(tasteNotes[userInput]);
+			else if (userInput > 0 && userInput <= tasteNotes.length) {
+				ProfileManager.getProfile().addTaste(tasteNotes[userInput-1]);
+				return;
+			}
 			else
 				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 		}
@@ -805,6 +809,9 @@ public class Main {
 	
 	//Display the result of the recommendation
 	private static void recommendDisplay(Wine[] wines) {
+		//Check for long results
+		if (wines.length > 5000)
+			JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process." + wines.length);
 		int userInput;
 		String temp = "";
 		//Let the user choose what to search by
