@@ -25,6 +25,9 @@ import wineADT.Wine;
  */
 public class Main {
 	
+	//Define constants
+	private static final int OVERSIZE = 5000;
+	
 //===============================================================================================================================================================
 //==========   Main Method   ====================================================================================================================================
 //===============================================================================================================================================================
@@ -236,7 +239,7 @@ public class Main {
 				temp = temp + (i+1) + ": " + tasteNotes[i] + "\n";
 			temp = temp + "\n" + "Please choose between the following options:\n" + "    ID of taste note: Add that taste note to favorite\n"
 																				  + "    0: Back to previous menu";
-			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
+			userInput = Integer.parseInt(displayInput(temp));
 			if (userInput == 0)
 				return;
 			else if (userInput > 0 && userInput <= tasteNotes.length)
@@ -327,22 +330,40 @@ public class Main {
 			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 			switch(userInput) {
 				case 1:	result = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which country you want to search for"), "country");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 2:	result = Searching.linear_taste_notes_search(wines, JOptionPane.showInputDialog(null, "Which taste note you want to search for"));
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 3: result = Searching.linear_name_search(wines, JOptionPane.showInputDialog(null, "Which name you want to search for"));
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 4: result = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which rating you want to search for"), "rating");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 5: result = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which price you want to search for"), "price");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 6: result = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which province you want to search for"), "province");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 7: result = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which variety you want to search for"), "variety");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 8: result = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which winery you want to search for"), "winery");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 9: result = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which ID you want to search for"), "unique_ID");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 0: return wines;
 				default: JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
@@ -364,9 +385,13 @@ public class Main {
 			switch(userInput) {
 				case 1: result = Filtering.linear_filtering(result, "price", JOptionPane.showInputDialog(null, "Enter the lower bound for price"), 
 																			 JOptionPane.showInputDialog(null, "Enter the higher bound for price"));
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 2: result = Filtering.linear_filtering(result, "rating", JOptionPane.showInputDialog(null, "Enter the lower bound for rating"), 
 																			  JOptionPane.showInputDialog(null, "Enter the higher bound for rating"));
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 0: return result;
 				default:
@@ -395,22 +420,40 @@ public class Main {
 			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 			switch(userInput) {
 				case 1:	result = Sorting.sort(wines, "country");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 2:	result = Sorting.sort(wines, "geo");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 3: result = Sorting.sort(wines, "designation");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 4: result = Sorting.sort(wines, "rating");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 5: result = Sorting.sort(wines, "price");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 6: result = Sorting.sort(wines, "province");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 7: result = Sorting.sort(wines, "variety");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 8: result = Sorting.sort(wines, "winery");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 9: result = Sorting.sort(wines, "unique_ID");
+						if (result.length > OVERSIZE)
+							JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process.");
 						return result;
 				case 0: return result;
 			}
