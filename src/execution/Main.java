@@ -33,7 +33,7 @@ public class Main {
 	
 	/**
 	 * Main method that will run the whole program
-	 * @param args Commend line arguments
+	 * @param args Command line arguments
 	 */
 	public static void main(String[] args) {
 		
