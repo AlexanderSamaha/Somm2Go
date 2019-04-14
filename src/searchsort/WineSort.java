@@ -6,7 +6,7 @@ import wineADT.*;
  * Contains methods used by Sorting to sort an array of wines. Called interally by Sorting.java, no public access.
  * 
  * @author David Carrie
- * @version Last modified 2019/03/11
+ * @version Last modified 2019/04/14
  */
 public class WineSort {
 	
@@ -28,16 +28,13 @@ public class WineSort {
 	
 	/**
 	 * Method used by Sorting.java to sort the wines by catagory, for internal use.
-	 * 
-	 * @param array array of wines to be sorted
+	 * @param wines array of wines to be sorted
 	 * @param type number representing the catagory to sort by.
 	 */
-	protected static void sort(Wine [] wines, int type) {
-		
+	protected static void sort(Wine [] wines, int type) {		
 		if(isSorted(wines, type)) return;
 		mergeSort(wines, type);
 		return;
-		
 	}
 	
 	//Split the array into base components
