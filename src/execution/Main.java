@@ -48,6 +48,8 @@ public class Main {
 		//Initial program setup
 		Read.init();
 		JOptionPane.showMessageDialog(null, "Welcome to Somm2Go!");
+		JOptionPane.showMessageDialog(null, "Please do not give empty inputs or inputs in the wrong format (such as letters instead of numbers)\n"
+											+ "since they will crash the program.");
 		ProfileManager.profileInit();
 		
 		//Let the user choose between searching for wine, recommendation or profile management
