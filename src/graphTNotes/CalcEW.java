@@ -26,7 +26,7 @@ public class CalcEW {
 	/**
 	 * Calculate the edges between wines
 	 * 
-	 * @param array wines which the edges are building calculated
+	 * @param array wines which the edges are calculated and built
 	 * @return the array of edges between the wines
 	 */
 	public static Edge[] compute(Wine[] array) {
@@ -34,7 +34,7 @@ public class CalcEW {
 	}
 
 	/**
-	 * Set the list of of special weighted tasteNotes.
+	 * Set the list of special weighted taste notes.
 	 * 
 	 * @param sw array of specially weighted taste notes.
 	 */

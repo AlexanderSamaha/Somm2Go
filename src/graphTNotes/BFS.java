@@ -10,7 +10,7 @@ import wineADT.Wine;
  * 
  * @author David Carrie
  * 
- * Last modified 09/04/2019.
+ * @version Last Modified 09/04/2019.
  *
  */
 public class BFS {
@@ -21,7 +21,7 @@ public class BFS {
 	private Integer [] byDist;
 	
 	/**
-	 * Consturct a new BFS (breadth first search object) with given edge weighted graph and starting vertex
+	 * Construct a new BFS (breadth first search object) with given edge weighted graph and starting vertex
 	 * @param graph edge weighted graph to run the search on
 	 * @param src source vertex to originate search from
 	 */
