@@ -244,7 +244,7 @@ public class Main {
 			if (userInput == 0)
 				return;
 			else if (userInput > 0 && userInput <= tasteNotes.length) {
-				ProfileManager.getProfile().addTaste(tasteNotes[userInput]);
+				ProfileManager.getProfile().addTaste(tasteNotes[userInput-1]);
 				return;
 			}
 			else
@@ -807,6 +807,9 @@ public class Main {
 	
 	//Display the result of the recommendation
 	private static void recommendDisplay(Wine[] wines) {
+		//Check for long results
+		if (wines.length > 5000)
+			JOptionPane.showMessageDialog(null, "The result contains more than 5000 wines, this might take some time for the program to process." + wines.length);
 		int userInput;
 		String temp = "";
 		//Let the user choose what to search by
