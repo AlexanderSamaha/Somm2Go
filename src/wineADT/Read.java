@@ -11,14 +11,21 @@ import java.util.Scanner;
  * 
  * @author Alexander Samaha
  * 
- * @version Last modified 13/04/2019.
+ * @version Last modified 14/04/2019.
  *
  */
 public class Read {
+	public static Wine[] wines;
+	public static Wine[] idSorted;
 	
-	public static Wine[] wines = read();
-	public static Wine[] idSorted = duplicate(wines);
-	
+	/**
+	 * Initializer function that set up the two static variables of the class
+	 */
+	public static void init() {
+		wines = read();
+		read_tasteNotes(wines);
+		idSorted = duplicate(wines);
+	}
 	
 	/**
 	 * Reads files from dataset and creates a wine ADT object for the wine bottle.

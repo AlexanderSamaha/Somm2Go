@@ -10,7 +10,7 @@ import wineADT.*;
  * 
  * @author David Carrie
  * 
- * @version Last modified 09/04/2019.
+ * @version Last modified 14/04/2019.
  *
  */
 public class CalcEW {
@@ -26,8 +26,8 @@ public class CalcEW {
 	/**
 	 * Calculate the edges between wines
 	 * 
-	 * @param array
-	 * @return
+	 * @param array wines which the edges are building calculated
+	 * @return the array of edges between the wines
 	 */
 	public static Edge[] compute(Wine[] array) {
 		return build(array);

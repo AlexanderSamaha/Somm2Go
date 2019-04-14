@@ -10,7 +10,7 @@ import wineADT.Wine;
 /**
  * Class representing the user's profile
  * @author Mengxi Lei
- * @version Created 2019/03/07, Last Modified 2019/04/09
+ * @version Created 2019/03/07, Last Modified 2019/04/14
  */
 public class Profile {
 	
@@ -23,7 +23,6 @@ public class Profile {
 	
 	/**
 	 * Constructor method for profile
-	 * @param name name of user
 	 * @param profile profile name
 	 */
 	public Profile (String profile) {

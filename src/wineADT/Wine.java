@@ -11,7 +11,7 @@ import foodPairing.FoodMatchesLibrary;
  * 
  * @author Alexander Samaha
  * 
- * @version Last modified 09/04/2019.
+ * @version Last modified 14/04/2019.
  *
  */
 public class Wine {
@@ -42,6 +42,7 @@ public class Wine {
 	 * @param rating Contains the rating of a wine bottle.
 	 * @param id Unique ID of a wine bottle.
 	 * @param price Price of the wine bottle.
+	 * @param reviewer Reviewer of the wine bottle.
 	 */
 	public Wine(String[] items, String[] taste, String[] region, Integer rating, Integer id, Double price, String[] reviewer) {
 		country = items[0];

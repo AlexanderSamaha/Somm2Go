@@ -21,7 +21,7 @@ import wineADT.Wine;
 /**
  * Execution class, containing the main method that will run the whole program
  * @author Mengxi Lei
- * @version Created 2019/04/08, Last modified 2019/04/13
+ * @version Created 2019/04/08, Last modified 2019/04/14
  */
 public class Main {
 	
@@ -43,8 +43,9 @@ public class Main {
 		boolean cont = true;
 		
 		//Initial program setup
-		JOptionPane.showMessageDialog(null, "Welcome to Somm2Go!");
+		Read.init();
 		ProfileManager.profileInit();
+		JOptionPane.showMessageDialog(null, "Welcome to Somm2Go!");
 		
 		//Let the user choose between searching for wine, recommendation or profile management
 		while (cont) {

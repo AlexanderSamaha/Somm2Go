@@ -7,7 +7,7 @@ import wineADT.*;
 /**
  * A class for searching through a number of Wines
  * @author Daniel William Noorduyn
- * @version April 8, 2019
+ * @version April 14, 2019
  */
 public class Searching {
 	
@@ -15,9 +15,8 @@ public class Searching {
 	 * Uses the parameter category to choose which compare function to use.
 	 * Compares the wine objects based on that category.
 	 * @param i - an object of type Wine to be compared against j
-	 * @param j - an object of type Wine to be compared against i
 	 * @param category - a string of which parameter in the Wine objects will be compared
-	 * @return returns an int that is 0, <0, >0 depending on i compared to j 
+	 * @return returns an int that is 0, less than 0, greater than 0 depending on i compared to j 
 	 */
 	public static int wine_adt_categories(Wine i, String argument, String category) {
 		if(category.equals("price"))
@@ -154,7 +153,7 @@ public class Searching {
 	
 	/**
 	 * Binary search using Wine.
-	 * @details Used only on input arrays previously sorted by uniqueID
+	 * Used only on input arrays previously sorted by uniqueID
 	 * @param x - an array of Wine objects to be searched
 	 * @param id - a String of what is being searched for
 	 * @return - returns one Wine object corresponding to the search parameter id
