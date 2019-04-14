@@ -162,12 +162,13 @@ public class Main {
 		while (true) {
 			while (first) {
 				temp = "Please choose between the following options:\n" + "    1: Start by searching\n"
-																		+ "    2: Start by filtering\n"
+																		+ "    2: Start by filtering (WARNING, the result might take a long time to print)\n"
 																		+ "    0: Back to previous menu\n";
 				userInput = Integer.parseInt(JOptionPane.showInputDialog(temp));
 				switch(userInput) {
 					case 1: wines = searching(Read.wines);
-							first = false;
+							if (wines.length < Read.wines.length)
+								first = false;
 						    break;
 					case 2: wines = filtering(Read.wines);
 							first = false;
@@ -262,13 +263,14 @@ public class Main {
 		while (true) {
 			while (first) {
 				temp = "Please choose between the following options:\n" + "    1: Start by searching\n"
-																		+ "    2: Start by filtering\n"
-																		+ "    3: Start by sorting\n"
+																		+ "    2: Start by filtering (WARNING, the result might take a long time to print)\n"
+																		+ "    3: Start by sorting (WARNING, the result might take a long time to print)\n"
 																		+ "    0: Back to main menu";
 				userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 				switch(userInput) {
 					case 1: wines = searching(Read.wines);
-							first = false;
+							if (wines.length < Read.wines.length)
+								first = false;
 						    break;
 					case 2: wines = filtering(Read.wines);
 							first = false;
@@ -341,7 +343,7 @@ public class Main {
 						return result;
 				case 9: result = Searching.linear_search(wines, JOptionPane.showInputDialog(null, "Which ID you want to search for"), "unique_ID");
 						return result;
-				case 0: return result;
+				case 0: return wines;
 				default: JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 			}
 		}
@@ -359,11 +361,11 @@ public class Main {
 		                                                            + "    0: Back to main menu";
 			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 			switch(userInput) {
-				case 1: Filtering.linear_filtering(result, "price", JOptionPane.showInputDialog(null, "Enter the lower bound for price"), 
-																	JOptionPane.showInputDialog(null, "Enter the higher bound for price"));
+				case 1: result = Filtering.linear_filtering(result, "price", JOptionPane.showInputDialog(null, "Enter the lower bound for price"), 
+																			 JOptionPane.showInputDialog(null, "Enter the higher bound for price"));
 						return result;
-				case 2: Filtering.linear_filtering(result, "rating", JOptionPane.showInputDialog(null, "Enter the lower bound for rating"), 
-																	 JOptionPane.showInputDialog(null, "Enter the higher bound for rating"));
+				case 2: result = Filtering.linear_filtering(result, "rating", JOptionPane.showInputDialog(null, "Enter the lower bound for rating"), 
+																			  JOptionPane.showInputDialog(null, "Enter the higher bound for rating"));
 						return result;
 				case 0: return result;
 				default:
@@ -371,7 +373,7 @@ public class Main {
 			}
 		}
 	}
-	
+
 	//Sorting
 	private static Wine[] sorting(Wine[] wines) {
 		int userInput;
@@ -569,12 +571,13 @@ public class Main {
 		while (true) {
 			while (first) {
 				temp = "Please choose between the following options:\n" + "    1: Start by searching\n"
-																		+ "    2: Start by filtering\n"
+																		+ "    2: Start by filtering (WARNING, the result might take a long time to print)\n"
 																		+ "    0: Back to previous menu\n";
 				userInput = Integer.parseInt(JOptionPane.showInputDialog(temp));
 				switch(userInput) {
 					case 1: wines = searching(Read.wines);
-							first = false;
+							if (wines.length < Read.wines.length)
+								first = false;
 						    break;
 					case 2: wines = filtering(Read.wines);
 							first = false;
@@ -712,12 +715,13 @@ public class Main {
 		while (true) {
 			while (first) {
 				temp = "Please choose between the following options:\n" + "    1: Start by searching\n"
-																		+ "    2: Start by filtering\n"
+																		+ "    2: Start by filtering (WARNING, the result might take a long time to print)\n"
 																		+ "    0: Back to previous menu\n";
 				userInput = Integer.parseInt(JOptionPane.showInputDialog(temp));
 				switch(userInput) {
 					case 1: wines = searching(Read.wines);
-							first = false;
+							if (wines.length < Read.wines.length)
+								first = false;
 						    break;
 					case 2: wines = filtering(Read.wines);
 							first = false;
