@@ -223,7 +223,7 @@ public class Main {
 			else if (userInput == tasteNote.length+1)
 				addTasteNote();
 			else if (userInput > 0 && userInput <= tasteNote.length)
-				ProfileManager.getProfile().deleteTaste(tasteNote[userInput]);
+				ProfileManager.getProfile().deleteTaste(tasteNote[userInput-1]);
 			else
 				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 		}
@@ -243,8 +243,10 @@ public class Main {
 			userInput = Integer.parseInt(displayInput(temp));
 			if (userInput == 0)
 				return;
-			else if (userInput > 0 && userInput <= tasteNotes.length)
-				ProfileManager.getProfile().deleteTaste(tasteNotes[userInput]);
+			else if (userInput > 0 && userInput <= tasteNotes.length) {
+				ProfileManager.getProfile().addTaste(tasteNotes[userInput]);
+				return;
+			}
 			else
 				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 		}
