@@ -14,7 +14,7 @@ public class SetWeight {
 	/**
 	 * Construct a new weight for a specific note
 	 * @param s taste note
-	 * @param weight of note
+	 * @param weight weight of note
 	 */
 	public SetWeight(String s, double weight) {
 		note = s;

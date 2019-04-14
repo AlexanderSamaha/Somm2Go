@@ -79,7 +79,7 @@ public class Edge implements Comparable<Edge> {
 	}
 	
 	/**
-	 * Customized to String method for Edge
+	 * Customized toString method for Edge
 	 * @return returns a string representing Edge
 	 */
 	public String toString() {
