@@ -280,12 +280,9 @@ public class Main {
 					default: JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 				}
 			}
-			JOptionPane.showMessageDialog(null, wines.length);
 			temp = "";
-			for (int i = 0; i < wines.length; i++) {
-				System.out.println(i + "," + temp.length());
+			for (int i = 0; i < wines.length; i++)
 				temp = temp + wines[i] + "\n";
-			}
 			temp = temp + "\n" + "Please choose between the following options:\n" + "    1: Continue Searching\n"
 																				  + "    2: Continue filtering\n"
 																				  + "    3: Continue sorting\n"
