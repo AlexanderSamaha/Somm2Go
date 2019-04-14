@@ -17,7 +17,7 @@ public class WineSort {
 	 * Checks to see if the array is sorted successfully
 	 * @param array array of potentially sorted wines	
 	 * @param y type of sort used
-	 * @return - true if sorted, false otherwise
+	 * @return true if sorted, false otherwise
 	 */
 	protected static boolean isSorted(Wine [] array, int y) {
 		for (int i = 1; i < array.length; i++) {
