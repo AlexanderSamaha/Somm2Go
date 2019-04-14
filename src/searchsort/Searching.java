@@ -7,16 +7,17 @@ import wineADT.*;
 /**
  * A class for searching through a number of Wines
  * @author Daniel William Noorduyn
- * @version April 14, 2019
+ * @version Last Modified 14/04/19
  */
 public class Searching {
 	
 	/**
 	 * Uses the parameter category to choose which compare function to use.
-	 * Compares the wine objects based on that category.
-	 * @param i - an object of type Wine to be compared against j
-	 * @param category - a string of which parameter in the Wine objects will be compared
-	 * @return returns an int that is 0, less than 0, greater than 0 depending on i compared to j 
+	 * Compares the wine objects based on that category and a user input argument
+	 * @param i - an object of type Wine to be compared against the argument
+	 * @param argument - a String of what is being compared to each wine
+	 * @param category - a String of which parameter in the Wine objects will be compared
+	 * @return returns an int that is 0, less than 0, greater than 0 depending on i compared to argument
 	 */
 	public static int wine_adt_categories(Wine i, String argument, String category) {
 		if(category.equals("price"))
@@ -55,7 +56,7 @@ public class Searching {
 	}
 		
 	/**
-	 * Linear search using Wine.
+	 * Linear search on wines
 	 * @param x - an array of Wine objects to be searched
 	 * @param argument - a String of what is being searched for
 	 * @param category - a String of which parameter in the Wine objects will be compared
@@ -84,7 +85,7 @@ public class Searching {
 	 * A combined binary linear search using Wine.
 	 * Use binary search to find one Wine object that corresponds to search parameter argument.
 	 * Uses linear search to find index range of corresponding Wine objects.
-	 * Used only on the input array previously sorted by the parameter category.
+	 * Used only on an input array previously sorted by the parameter category.
 	 * @param x - an array of Wine objects to be searched
 	 * @param argument - a String of what is being searched for
 	 * @param category - a String of which parameter in the Wine objects will be compared
@@ -131,7 +132,7 @@ public class Searching {
 	}
 	
 	
-	//binary search for combined binary linear search
+	// Binary search for combined binary linear search
 	private static int index_of(Wine [] x, String key, String category) {
 		int lo = 0;
 		int hi = x.length - 1;
@@ -152,7 +153,7 @@ public class Searching {
 	}
 	
 	/**
-	 * Binary search using Wine.
+	 * Binary search on Wine objects
 	 * Used only on input arrays previously sorted by uniqueID
 	 * @param x - an array of Wine objects to be searched
 	 * @param id - a String of what is being searched for
@@ -178,10 +179,10 @@ public class Searching {
 	}
 	
 	/**
-	 * Finds wines with a name that contains the passed string.
+	 * Linear search finding wines with a name that contains the passed string.
 	 * @param x - an array of Wine objects to be searched
-	 * @param name - a String of what is being searched for
-	 * @return - returns an array of wines corresponding to the search parameter name
+	 * @param name - a String of the Wine name
+	 * @return - returns an array of wines corresponding to the searched Wine name
 	 */
 	public static Wine [] linear_name_search(Wine [] x, String name) {
 		//length of input WineADT ADT List
@@ -203,9 +204,9 @@ public class Searching {
 	}
 	
 	/**
-	 * Finds wines with a taste note that contains the passed string.
+	 * Linear search finding wines with a taste note that contains the passed string.
 	 * @param x - an array of Wine objects to be searched
-	 * @param name - a String of what is being searched for
+	 * @param taste_notes - a String of what taste note is being searched for
 	 * @return - returns an array of wines corresponding to the search parameter taste_notes
 	 */
 	public static Wine [] linear_taste_notes_search(Wine [] x, String taste_notes) {

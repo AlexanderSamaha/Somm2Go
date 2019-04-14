@@ -7,18 +7,18 @@ import wineADT.*;
  * A class that filters wines by a given range
  * 
  * @author Daniel Noorduyn
- * @version March 21, 2019
+ * @version Last Modified 21/03/19
  *
  */
 public class Filtering {
 
 	/**
-	 * Linear search using Wine.
-	 * @param x - an array of Wine objects to be searched
-	 * @param category - a String of which parameter in the Wine objects will be compared
+	 * Linearly filters wines based on price and rating
+	 * @param x - an array of Wine objects to be filtered
+	 * @param category - a String of which category the Wine objects will be filtered by
 	 * @param low - a String of the lower boundary of the desired filtering range
 	 * @param high - a String of the higher boundary of the desired filtering range
-	 * @return returns an array of Wine objects corresponding to the search parameter argument
+	 * @return returns an array of Wine objects corresponding to the filtering parameters
 	 */
 	public static Wine [] linear_filtering(Wine [] x, String category, String low, String high) {
 		int n = x.length;
