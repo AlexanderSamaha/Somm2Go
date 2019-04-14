@@ -47,8 +47,8 @@ public class Main {
 		
 		//Initial program setup
 		Read.init();
-		ProfileManager.profileInit();
 		JOptionPane.showMessageDialog(null, "Welcome to Somm2Go!");
+		ProfileManager.profileInit();
 		
 		//Let the user choose between searching for wine, recommendation or profile management
 		while (cont) {
@@ -63,6 +63,7 @@ public class Main {
 				case 2: search();
 						break;
 				case 3: recommend();
+						break;
 				case 0: cont = false;
 						break;
 				default:
@@ -496,35 +497,32 @@ public class Main {
 	//Recommend wine base on food
 	private static void wineFromFood() {
 		int userInput;
-		String[] food;
 		String temp;
 		String[] foodList = FoodMatchesLibrary.getFoods();
 		Wine[] wines;
-		ArrayList<String> tempFoods = new ArrayList<String>();
+		ArrayList<String> foods = new ArrayList<String>();
 		ArrayList<Wine> tempWine = new ArrayList<Wine>();
 		ArrayList<Wine> tempWine2;
 		//Let the user choose between favorited wines or searching a wine
 		while (true) {
 			temp = "The following is the food you currently have added (recommend 1 to 3 food): ";
-			for (int i = 0; i < tempFoods.size(); i++)
-				temp = temp + ", ";
+			for (int i = 0; i < foods.size(); i++)
+				temp = temp + foods.get(i) + ", ";
 			temp = temp + "\nPlease choose between the following options:\n";
 			for (int i = 0; i < foodList.length; i++)
-				temp = temp + "    " + i + ": Add " + foodList[i] + "to list of food";
-			temp += "    -1: Search with current list of food";
+				temp = temp + "    " + i + ": Add " + foodList[i] + " to list of food\n";
+			temp += "    -1: Search with current list of food\n";
 			temp += "    -2: Back to previous menu";
 			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 			if (userInput == -1) {
-				if (tempFoods.size() == 0) {
+				if (foods.size() == 0) {
 					JOptionPane.showMessageDialog(null, "You currently have no food added, please add at least one food.");
 					break;
 				}
-				food = new String[tempFoods.size()];
-				food = tempFoods.toArray(food);
-				tempWine.addAll(Arrays.asList(FoodMatchesLibrary.wineRecommand(tempFoods.get(0))));
-				for (int i = 1; i < tempFoods.size(); i++) {
+				tempWine.addAll(Arrays.asList(FoodMatchesLibrary.wineRecommand(foods.get(0))));
+				for (int i = 1; i < foods.size(); i++) {
 					tempWine2 = new ArrayList<Wine>();
-					wines = FoodMatchesLibrary.wineRecommand(tempFoods.get(i));
+					wines = FoodMatchesLibrary.wineRecommand(foods.get(i));
 					for (Wine element : wines)
 						if (tempWine.contains(element))
 							tempWine2.add(element);
@@ -538,8 +536,8 @@ public class Main {
 			else if (userInput == -2)
 				return;
 			else if (userInput >= 0 && userInput < foodList.length) {
-				if (!tempFoods.contains(foodList[userInput]))
-					tempFoods.add(foodList[userInput]);
+				if (!foods.contains(foodList[userInput]))
+					foods.add(foodList[userInput]);
 			}
 			else
 				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");

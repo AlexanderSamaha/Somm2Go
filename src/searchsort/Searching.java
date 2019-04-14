@@ -14,9 +14,9 @@ public class Searching {
 	/**
 	 * Uses the parameter category to choose which compare function to use.
 	 * Compares the wine objects based on that category and a user input argument
-	 * @param i - an object of type Wine to be compared against the argument
-	 * @param argument - a String of what is being compared to each wine
-	 * @param category - a String of which parameter in the Wine objects will be compared
+	 * @param i an object of type Wine to be compared against the argument
+	 * @param argument a String of what is being compared to each wine
+	 * @param category a String of which parameter in the Wine objects will be compared
 	 * @return returns an int that is 0, less than 0, greater than 0 depending on i compared to argument
 	 */
 	public static int wine_adt_categories(Wine i, String argument, String category) {
@@ -26,7 +26,7 @@ public class Searching {
 		}
 		else if(category.equals("variety"))
 		{
-			return i.get_variety().compareTo(argument);
+			return i.get_variety().compareToIgnoreCase(argument);
 		}
 		else if(category.equals("unique_ID"))
 		{
@@ -57,9 +57,9 @@ public class Searching {
 		
 	/**
 	 * Linear search on wines
-	 * @param x - an array of Wine objects to be searched
-	 * @param argument - a String of what is being searched for
-	 * @param category - a String of which parameter in the Wine objects will be compared
+	 * @param x an array of Wine objects to be searched
+	 * @param argument a String of what is being searched for
+	 * @param category a String of which parameter in the Wine objects will be compared
 	 * @return returns an array of Wine objects corresponding to the search parameter argument
 	 */
 	public static Wine [] linear_search(Wine [] x, String argument, String category) {
@@ -86,9 +86,9 @@ public class Searching {
 	 * Use binary search to find one Wine object that corresponds to search parameter argument.
 	 * Uses linear search to find index range of corresponding Wine objects.
 	 * Used only on an input array previously sorted by the parameter category.
-	 * @param x - an array of Wine objects to be searched
-	 * @param argument - a String of what is being searched for
-	 * @param category - a String of which parameter in the Wine objects will be compared
+	 * @param x an array of Wine objects to be searched
+	 * @param argument a String of what is being searched for
+	 * @param category a String of which parameter in the Wine objects will be compared
 	 * @return returns an array of Wine objects corresponding to the search parameter argument
 	 */
 	public static Wine [] binary_linear_search(Wine [] x, String argument, String category) {
@@ -155,9 +155,9 @@ public class Searching {
 	/**
 	 * Binary search on Wine objects
 	 * Used only on input arrays previously sorted by uniqueID
-	 * @param x - an array of Wine objects to be searched
-	 * @param id - a String of what is being searched for
-	 * @return - returns one Wine object corresponding to the search parameter id
+	 * @param x an array of Wine objects to be searched
+	 * @param id a String of what is being searched for
+	 * @return returns one Wine object corresponding to the search parameter id
 	 */
 	public static Wine binary_search(Wine[] x, Integer id) {
 		int lo = 0;
@@ -180,9 +180,9 @@ public class Searching {
 	
 	/**
 	 * Linear search finding wines with a name that contains the passed string.
-	 * @param x - an array of Wine objects to be searched
-	 * @param name - a String of the Wine name
-	 * @return - returns an array of wines corresponding to the searched Wine name
+	 * @param x an array of Wine objects to be searched
+	 * @param name a String of the Wine name
+	 * @return returns an array of wines corresponding to the searched Wine name
 	 */
 	public static Wine [] linear_name_search(Wine [] x, String name) {
 		//length of input WineADT ADT List
@@ -205,9 +205,9 @@ public class Searching {
 	
 	/**
 	 * Linear search finding wines with a taste note that contains the passed string.
-	 * @param x - an array of Wine objects to be searched
-	 * @param taste_notes - a String of what taste note is being searched for
-	 * @return - returns an array of wines corresponding to the search parameter taste_notes
+	 * @param x an array of Wine objects to be searched
+	 * @param taste_notes a String of what taste note is being searched for
+	 * @return returns an array of wines corresponding to the search parameter taste_notes
 	 */
 	public static Wine [] linear_taste_notes_search(Wine [] x, String taste_notes) {
 		//length of input WineADT ADT List
