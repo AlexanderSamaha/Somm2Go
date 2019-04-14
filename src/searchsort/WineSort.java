@@ -3,21 +3,21 @@ package searchsort;
 import wineADT.*;
 
 /**
- * Contains methods used by Sorting to sort an array of wines. Called interally by Sorting.java, no public access.
+ * Contains methods used by Sorting to sort an array of wines. 
+ * Called internally by Sorting.java, no public access.
  * 
  * @author David Carrie
- * @version Last modified 2019/03/11
+ * @version Last modified 2019/04/14
  */
 public class WineSort {
 	
 	//should not be instantiated
 	private WineSort() {}
 	/**
-	 * Checks to see if the array is sorted succesfully
-	 * 
-	 * @param array array of wines	
+	 * Checks to see if the array is sorted successfully
+	 * @param array array of potentially sorted wines	
 	 * @param y type of sort used
-	 * @return - true if sorted, false otherwise
+	 * @return true if sorted, false otherwise
 	 */
 	protected static boolean isSorted(Wine [] array, int y) {
 		for (int i = 1; i < array.length; i++) {
@@ -27,17 +27,14 @@ public class WineSort {
 	}
 	
 	/**
-	 * Method used by Sorting.java to sort the wines by catagory, for internal use.
-	 * 
-	 * @param array array of wines to be sorted
-	 * @param type number representing the catagory to sort by.
+	 * Method used by Sorting.java to sort the wines by category, for internal use.
+	 * @param wines array of wines to be sorted
+	 * @param type number representing the category to sort wines by
 	 */
-	protected static void sort(Wine [] wines, int type) {
-		
+	protected static void sort(Wine [] wines, int type) {		
 		if(isSorted(wines, type)) return;
 		mergeSort(wines, type);
 		return;
-		
 	}
 	
 	//Split the array into base components

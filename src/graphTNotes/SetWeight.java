@@ -3,6 +3,8 @@ package graphTNotes;
  * ADT for weighting specific taste notes with special weights.
  * 
  * @author David Carrie
+ * 
+ * @version Last modified 09/04/2019.
  *
  */
 public class SetWeight {
@@ -12,7 +14,7 @@ public class SetWeight {
 	/**
 	 * Construct a new weight for a specific note
 	 * @param s taste note
-	 * @param weight of note
+	 * @param weight weight of note
 	 */
 	public SetWeight(String s, double weight) {
 		note = s;

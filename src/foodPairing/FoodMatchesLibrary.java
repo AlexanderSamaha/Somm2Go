@@ -1,6 +1,7 @@
 package foodPairing;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import searchsort.Filtering;
 import searchsort.Searching;
@@ -11,7 +12,7 @@ import wineADT.Wine;
 /**
  * Class for pairing food and wines
  * @author Mengxi Lei and Alexander Samaha
- * @version Created 2019/03/16, Last modified 2019/03/29
+ * @version Created 2019/03/16, Last modified 2019/04/14
  */
 public class FoodMatchesLibrary {
 	
@@ -75,10 +76,11 @@ public class FoodMatchesLibrary {
 		Wine[] wines = null;
 		Wine[] temp;
 		ArrayList<Wine> tempWine = new ArrayList<Wine>();
-		double[] price;
 		for (int i = 0; i < foods.length; i++) {
-			if (food.equals(foods[i]))
+			if (food.equals(foods[i])) {
 				index = i;
+				break;
+			}
 		}
 		if (index == -1) {
 			wines = new Wine[0];
@@ -86,9 +88,9 @@ public class FoodMatchesLibrary {
 		}
 		for (int i = 0; i < pairings[index].length; i++) {
 			temp = Searching.linear_search(Read.wines, pairings[index][i], "variety");
-			for (int j = 0; j < temp.length; j++)
-				tempWine.add(temp[j]);
+			tempWine.addAll(Arrays.asList(temp));
 		}
+		wines = new Wine[tempWine.size()];
 		wines = tempWine.toArray(wines);
 		wines = Filtering.linear_filtering(wines, "price", Double.toString(ProfileManager.getProfile().getPriceRange()[0]),
 										   Double.toString(ProfileManager.getProfile().getPriceRange()[1]));
@@ -110,15 +112,20 @@ public class FoodMatchesLibrary {
 					tempFood.add(foods[i]);
 					break;
 				}
-				
-				
-			
 			}
 		}
 		//food = tempFood.toArray(food);
 		food = new String[tempFood.size()];
 		food = tempFood.toArray(food);
 		return food;
+	}
+	
+	/**
+	 * Accessor for foods list
+	 * @return foods list
+	 */
+	public static String[] getFoods() {
+		return foods;
 	}
 	
 }

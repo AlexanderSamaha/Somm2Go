@@ -1,13 +1,7 @@
-package testing;
+package unitTesting;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
-
-import searchsort.Searching;
-import searchsort.Sorting;
-import wineADT.Read;
-import wineADT.Wine;
 
 public class SortingTest {
 

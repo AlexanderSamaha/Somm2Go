@@ -11,13 +11,21 @@ import java.util.Scanner;
  * 
  * @author Alexander Samaha
  * 
- * @version Last modified 12/03/2019.
+ * @version Last modified 14/04/2019.
  *
  */
 public class Read {
+	public static Wine[] wines;
+	public static Wine[] idSorted;
 	
-	public static Wine[] wines = read();
-	
+	/**
+	 * Initializer function that set up the two static variables of the class
+	 */
+	public static void init() {
+		wines = read();
+		read_tasteNotes(wines);
+		idSorted = duplicate(wines);
+	}
 	
 	/**
 	 * Reads files from dataset and creates a wine ADT object for the wine bottle.
@@ -131,7 +139,8 @@ public class Read {
 					}
 					// use this instead of StringTokenizer because it won't skip empty fields.
 					String[] st = scanned.split(",");
-					
+					//System.out.println(arr_list.size());
+					id_count = arr_list.size();
 					/* was put here to make sure all fields show up.
 					String toString = "";
 					for (int i = 0; i < st.length; i++) {
@@ -211,6 +220,10 @@ public class Read {
 	
 	}
 	
+	/**
+	 * Inserts the taste note (from pattern in TasteNoteLibrary) for the wines
+	 * @param array_wines Wines which the taste note is being inserted
+	 */
 	public static void read_tasteNotes(Wine[] array_wines) {
 		for (int i = 0; i < array_wines.length; i++) {
 			array_wines[i].insert_taste_notes();
@@ -219,5 +232,27 @@ public class Read {
 		return;
 	}
 	
-
+	//Duplicate an array of wines
+	private static Wine[] duplicate(Wine[] wine) {
+		Wine[] temp = new Wine[wine.length];
+		for (int i = 0; i < wine.length; i++)
+			temp[i] = wine[i];
+		return temp;
+	}
+	
+	/*
+	public static void main(String[] args) {
+		Wine[] array = Read.wines;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i].get_uniqueID() != i) {
+				System.out.println(i);
+				break;
+				//System.out.println("does not work");
+			}
+		}
+		//System.out.println("works");
+	}
+	*/
+	
+	
 }

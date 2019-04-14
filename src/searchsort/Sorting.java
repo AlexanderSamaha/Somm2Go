@@ -16,7 +16,7 @@ public class Sorting {
 	private static ArrayList<Wine> list;
 	
 	/**
-	 * Sorts array of wines based on given catagory.
+	 * Sorts array of wines based on given category.
 	 * 
 	 * @param array Wines to be sorted
 	 * @param cat category on which to sort by
@@ -29,7 +29,7 @@ public class Sorting {
 	
 	
 	
-	//Function to send the array to be sorted based on catagory
+	//Function to send the array to be sorted based on category
 	private static void sort2 (Wine [] array, String cat) {
 		switch (cat) {
 		case "country":WineSort.sort(array, 0);

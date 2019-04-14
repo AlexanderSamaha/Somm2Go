@@ -12,9 +12,7 @@ import java.util.NoSuchElementException;
  *  the items in FIFO order.
  *  <p>
  *  This implementation uses a singly linked list with a static nested class for
- *  linked-list nodes. See {@link LinkedQueue} for the version from the
- *  textbook that uses a non-static nested class.
- *  See {@link ResizingArrayQueue} for a version that uses a resizing array.
+ *  linked-list nodes.
  *  The <em>enqueue</em>, <em>dequeue</em>, <em>peek</em>, <em>size</em>, and <em>is-empty</em>
  *  operations all take constant time in the worst case.
  *  <p>
@@ -25,6 +23,8 @@ import java.util.NoSuchElementException;
  *  @author Kevin Wayne
  *
  *  @param <Item> the generic type of an item in this queue
+ *  
+ *  @version Version-added 09/04/2019(Not official).
  */
 public class Queue<Item> implements Iterable<Item> {
     private Node<Item> first;    // beginning of queue

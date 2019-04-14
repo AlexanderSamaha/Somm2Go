@@ -7,10 +7,14 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import javax.swing.JOptionPane;
+
+import wineADT.Wine;
+
 /**
  * Class for managing the profiles
  * @author Mengxi Lei
- * @version Created 2019/03/07, Last Modified 2019/03/29
+ * @version Created 2019/03/07, Last Modified 2019/04/08
  */
 public class ProfileManager {
 	
@@ -29,24 +33,23 @@ public class ProfileManager {
 		//Declare variables
 		int userInput;
 		boolean doubleBreak;
-		Scanner input = new Scanner(System.in);
+		String temp;
 		read();
 		while (true) {
 			//Create a new profile if no profile available
 			if (size == 0) {
-				System.out.println("There are no existing profile, please create a profile to preceed");
+				JOptionPane.showMessageDialog(null, "There are no existing profile, please create a profile to preceed");
 				newProfile();
 				break;
 			}
 			//Choose between load a profile or delete a profile (if cannot create more profiles)
-			else if (size < MAX_SIZE) {
+			else if (size == MAX_SIZE) {
 				doubleBreak = false;
 				while(true) {
-					System.out.println("Enter the number corresponding to the option you want to choose:");
-					System.out.println("    0: Delete a profile");
+					temp = "Enter the number corresponding to the option you want to choose:\n" + "    0: Delete a profile\n";
 					for (int i = 0; i < size; i++)
-						System.out.println("    " + (i+1) + ": Load profile \"" + names[i] + "\"");
-					userInput = input.nextInt();
+						temp = temp + "    " + (i+1) + ": Load profile \"" + names[i] + "\"" + "\n";
+					userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 					if (userInput == 0) {
 						deleteProfile();
 						break;
@@ -57,7 +60,7 @@ public class ProfileManager {
 						break;
 					}
 					else
-						System.out.println("Invalid input, please enter a valid choice.");
+						JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 				}
 				if (doubleBreak)
 					break;
@@ -66,12 +69,11 @@ public class ProfileManager {
 			else {
 				doubleBreak = false;
 				while(true) {
-					System.out.println("Enter the number corresponding to the option you want to choose:");
-					System.out.println("    0: Delete a profile");
+					temp = "Enter the number corresponding to the option you want to choose:\n" + "    0: Delete a profile\n";
 					for (int i = 0; i < size; i++)
-						System.out.println("    " + (i+1) + ": Load profile \"" + names[i] + "\"");
-					System.out.println("    " + (size+1) + ": Create a profile");
-					userInput = input.nextInt();
+						temp = temp + "    " + (i+1) + ": Load profile \"" + names[i] + "\"" + "\n";
+					temp = temp + "    " + (size+1) + ": Create a profile";
+					userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 					if (userInput == 0) {
 						deleteProfile();
 						break;
@@ -87,13 +89,12 @@ public class ProfileManager {
 						break;
 					}
 					else
-						System.out.println("Invalid input, please enter a valid choice.");
+						JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 				}
 				if (doubleBreak)
 					break;
 			}
 		}
-		input.close();
 	}
 	
 	/**
@@ -122,7 +123,7 @@ public class ProfileManager {
 		try {
 			input = new Scanner(file);
 		} catch (FileNotFoundException exception) {
-			System.out.println("Cannot find profile.bin");
+			JOptionPane.showMessageDialog(null, "Cannot find profile.bin");
 			System.exit(0);
 		}
 		size = Integer.parseInt(input.nextLine());
@@ -143,26 +144,31 @@ public class ProfileManager {
 	private static void read(String name) {
 		File file = new File("profile/" + name + ".bin");
 		Scanner input = null;
-		StringTokenizer[] inputArray = new StringTokenizer[3];
+		StringTokenizer inputString;
 		int length;
 		double[] price = new double[2];
 		try {
 			input = new Scanner(file);
 		} catch (FileNotFoundException exception) {
-			System.out.println("Cannot find " + name + ".bin");
+			JOptionPane.showMessageDialog(null, "Cannot find " + name + ".bin");
 			System.exit(0);
 		}
 		profile = new Profile(name);
-		for (int i = 0; i < inputArray.length; i++)
-			inputArray[i] = new StringTokenizer(input.nextLine(), ",");
-		length = inputArray[0].countTokens();
-		for (int i = 0; i < length; i++)
-			profile.addTaste(inputArray[0].nextToken());
-		length = inputArray[1].countTokens();
-		for (int i = 0; i < length; i++)
-			profile.addWine(Integer.parseInt(inputArray[1].nextToken()));
-		price[0] = Double.parseDouble(inputArray[2].nextToken());
-		price[1] = Double.parseDouble(inputArray[2].nextToken());
+		if (input.nextLine().equals("Exist")) {
+			inputString = new StringTokenizer(input.nextLine(), ",");
+			length = inputString.countTokens();
+			for (int i = 0; i < length; i++)
+				profile.addTaste(inputString.nextToken());
+		}
+		if (input.nextLine().equals("Exist")) {
+			inputString = new StringTokenizer(input.nextLine(), ",");
+			length = inputString.countTokens();
+			for (int i = 0; i < length; i++)
+				profile.addWine(Integer.parseInt(inputString.nextToken()));
+		}
+		inputString = new StringTokenizer(input.nextLine(), ",");
+		price[0] = Double.parseDouble(inputString.nextToken());
+		price[1] = Double.parseDouble(inputString.nextToken());
 		profile.setPriceRange(price);
 		input.close();
 	}
@@ -186,19 +192,29 @@ public class ProfileManager {
 	 */
 	private static void writeProfile() {
 		String[] taste;
-		Integer[] wine;
+		Wine[] wine;
 		double[] range;
 		File file = new File ("profile/" + profile.getProfile() + ".bin");
 		try {
 			FileWriter output = new FileWriter(file);
 			taste = profile.getTaste();
-			for (int i = 0; i < taste.length-1; i++)
-				output.write(taste[i] + ",");
-			output.write(taste[taste.length-1] + "\r\n");
+			if (taste.length == 0)
+				output.write("None\r\n");
+			else {
+				output.write("Exist\r\n");
+				for (int i = 0; i < taste.length-1; i++)
+					output.write(taste[i] + ",");
+				output.write(taste[taste.length-1] + "\r\n");
+			}
 			wine = profile.getWines();
-			for (int i = 0; i < wine.length-1; i++)
-				output.write(wine[i] + ",");
-			output.write(wine[wine.length-1] + "\r\n");
+			if (wine.length == 0)
+				output.write("None\r\n");
+			else {
+				output.write("Exist\r\n");
+				for (int i = 0; i < wine.length-1; i++)
+					output.write(wine[i].get_uniqueID() + ",");
+				output.write(wine[wine.length-1].get_uniqueID() + "\r\n");
+			}
 			range = profile.getPriceRange();
 			output.write(range[0] + "," + range[1]);
 			output.close();
@@ -209,28 +225,25 @@ public class ProfileManager {
 	 * Create a new profile and set it as the current profile
 	 */
 	private static void newProfile() {
-		Scanner input = new Scanner(System.in);
 		boolean duplicate;
 		String name;
 		do {
 			duplicate = false;
-			System.out.println("Please enter profile name");
-			name = input.nextLine();
+			name = JOptionPane.showInputDialog(null, "Please enter profile name");
 			for (int i = 0; i < size; i++) {
 				if (name.equalsIgnoreCase(names[i])) {
 					duplicate = true;
 				}
 			}
 			if (duplicate)
-				System.out.println("Name of profile already exit, you cannot use this name");
+				JOptionPane.showMessageDialog(null, "Name of profile already exit, you cannot use this name");
 		} while (duplicate);
 		names[size] = name;
 		profile = new Profile(name);
 		size++;
 		profile.setModified(true);
 		write();
-		System.out.println("New profile created, the profile name is " + name + ".");
-		input.close();
+		JOptionPane.showMessageDialog(null, "New profile created, the profile name is " + name + ".");
 	}
 	
 	/**
@@ -239,12 +252,12 @@ public class ProfileManager {
 	private static void deleteProfile() {
 		int userInput;
 		File file;
-		Scanner input = new Scanner(System.in);
+		String temp;
 		while (true) {
-			System.out.println("Enter the number corresponding to the profile you want to delete:");
+			temp = "Enter the number corresponding to the profile you want to delete:\n";
 			for (int i = 0; i < size; i++)
-				System.out.println("    " + i + ": \"" + names[i] + "\"");
-			userInput = input.nextInt();
+				temp = temp + "    " + i + ": \"" + names[i] + "\"" + "\n";
+			userInput = Integer.parseInt(JOptionPane.showInputDialog(null, temp));
 			if (userInput >= 0 && userInput < size) {
 				file = new File("profile/" + names[userInput] + ".bin");
 				file.delete();
@@ -253,11 +266,10 @@ public class ProfileManager {
 				names[size-1] = null;
 				size--;
 				write();
-				input.close();
 				return;
 			}
 			else
-				System.out.println("Invalid input, please enter a valid choice.");
+				JOptionPane.showMessageDialog(null, "Invalid input, please enter a valid choice.");
 		}
 	}
 	

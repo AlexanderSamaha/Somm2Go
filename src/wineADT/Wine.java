@@ -11,7 +11,7 @@ import foodPairing.FoodMatchesLibrary;
  * 
  * @author Alexander Samaha
  * 
- * @version Last modified 11/03/2019.
+ * @version Last modified 14/04/2019.
  *
  */
 public class Wine {
@@ -42,6 +42,7 @@ public class Wine {
 	 * @param rating Contains the rating of a wine bottle.
 	 * @param id Unique ID of a wine bottle.
 	 * @param price Price of the wine bottle.
+	 * @param reviewer Reviewer of the wine bottle.
 	 */
 	public Wine(String[] items, String[] taste, String[] region, Integer rating, Integer id, Double price, String[] reviewer) {
 		country = items[0];
@@ -59,6 +60,9 @@ public class Wine {
 		this.twitter = reviewer[1];
 	}
 	
+	/**
+	 * Set the foods that go with this wine
+	 */
 	public void set_food_matches() {
 		this.food_matches = FoodMatchesLibrary.foodRecommend(this);
 	}
@@ -262,28 +266,20 @@ public class Wine {
 		return combined_name;
 	}
 	
-	public static void main(String[] args) {
-		Wine[] new_arr = Read.wines;
-		Read.read_tasteNotes(new_arr);
-		int count = 0;
-		int taste1 = 0;
-		int taste2 = 0;
-		int taste3 = 0;
-		int taste = 0;
-		for (int i = 0; i < new_arr.length; i++) {
-			new_arr[i].set_food_matches();
-			if (new_arr[i].get_food_matches().length > 0) {
-				count++;
-			}
-			if (new_arr[i].get_taste_noteslist().length == 1) taste1++;
-			if (new_arr[i].get_taste_noteslist().length == 2) taste2++;
-			if (new_arr[i].get_taste_noteslist().length == 3) taste3++;
-			if (new_arr[i].get_taste_noteslist().length > 0) {
-				taste++;
-			}
-			//System.out.println(new_arr[i].get_variety() + ", " + new_arr[i].toString_food_matches());
-		}
-		System.out.println(count + ", 1 taste: " + taste1 + ", 2 taste: " + taste2 + ", 3 taste: " + taste3 + ", " + taste + ", " + new_arr.length);
+	/**
+	 * Return the string representation of the wine
+	 * @return the string representation of the wine
+	 */
+	public String toString() {
+		String temp = unique_id + ": " + designation 
+					  + ", Taste Note - [" + get_taste_notes() 
+					  + "], " + variety 
+					  + ", $" + price 
+					  + ", Rating - " + rating + ", "
+					  + description + ", "
+					  + winery + ", "
+				      + "Location - [" + get_geo() + "]";
+		return temp;
 	}
 	
 }

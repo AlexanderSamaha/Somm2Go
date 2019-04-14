@@ -1,11 +1,10 @@
-package Recommendations;
-
-import static org.junit.Assert.*;
+package unitTesting;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Recommendations.Recommendations;
 import searchsort.Searching;
 import wineADT.Read;
 import wineADT.Wine;

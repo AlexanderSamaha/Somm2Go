@@ -9,6 +9,8 @@ import wineADT.*;
  * Class to calculate edges and weights.
  * 
  * @author David Carrie
+ * 
+ * @version Last modified 14/04/2019.
  *
  */
 public class CalcEW {
@@ -24,15 +26,15 @@ public class CalcEW {
 	/**
 	 * Calculate the edges between wines
 	 * 
-	 * @param array
-	 * @return
+	 * @param array wines which the edges are calculated and built
+	 * @return the array of edges between the wines
 	 */
 	public static Edge[] compute(Wine[] array) {
 		return build(array);
 	}
 
 	/**
-	 * Set the list of of special weighted tasteNotes.
+	 * Set the list of special weighted taste notes.
 	 * 
 	 * @param sw array of specially weighted taste notes.
 	 */

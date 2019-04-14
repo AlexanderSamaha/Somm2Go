@@ -5,6 +5,8 @@ package graphTNotes;
  * p.611. Robert Sedgewick and Kevin Wayne.
  * 
  * @author David Carrie
+ * 
+ * @version Last modified 09/04/2019.
  *
  */
 public class EWGraph {
@@ -54,7 +56,7 @@ public class EWGraph {
 	}
 
 	/**
-	 * Returns and iterable of all adjacent edges from a given vertex.
+	 * Returns an Iterable of all adjacent edges from a given vertex.
 	 * 
 	 * @param v vertex index.
 	 * @return all adjacent edges.
@@ -64,9 +66,9 @@ public class EWGraph {
 	}
 
 	/**
-	 * Returns an iterable of all the graph's edges (ignoring self loops)
+	 * Returns an Iterable of all the graph's edges (ignoring self loops)
 	 * 
-	 * @return iterable of edges.
+	 * @return Iterable of edges.
 	 */
 	public Iterable<Edge> edges() {
 		Bag<Edge> bag = new Bag<Edge>();

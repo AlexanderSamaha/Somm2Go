@@ -6,6 +6,8 @@ package graphTNotes;
  *
  * 
  * @author David Carrie
+ * 
+ * @version Last modified 09/04/2019.
  *
  */
 public class Edge implements Comparable<Edge> {
@@ -61,6 +63,12 @@ public class Edge implements Comparable<Edge> {
 			throw new IllegalArgumentException();
 	}
 
+	/**
+	 * Compare this edge's weight to another.
+	 * 
+	 * @param other edge to compare this edge with
+	 * @return returns -1 or 0 based on comparison
+	 */
 	public int compareTo(Edge other) {
 		if (this.weight() < other.weight())
 			return -1;
@@ -69,7 +77,11 @@ public class Edge implements Comparable<Edge> {
 		else
 			return 0;
 	}
-
+	
+	/**
+	 * Customized toString method for Edge
+	 * @return returns a string representing Edge
+	 */
 	public String toString() {
 		return String.format("%d-%d %.2f", v, w, weight);
 	}

@@ -1,8 +1,12 @@
-package wineADT;
+package unitTesting;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import wineADT.Read;
+import wineADT.TasteNoteLibrary;
+import wineADT.Wine;
 
 public class TestWineADT {
 	
@@ -60,7 +64,7 @@ public class TestWineADT {
 					}
 				}
 			}
-			//System.out.println(new_test[0].get_taste_noteslist().length + ", " + count);
+			System.out.println(new_test[0].get_taste_noteslist().length + ", " + count);
 			//assert(count == new_test[0].get_taste_noteslist().length);
 		}
 	}

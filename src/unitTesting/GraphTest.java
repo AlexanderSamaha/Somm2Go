@@ -1,11 +1,12 @@
-package graphTNotes;
-
-import static org.junit.Assert.*;
+package unitTesting;
 
 import java.util.Arrays;
 
 import org.junit.Test;
 
+import graphTNotes.EWGraph;
+import graphTNotes.GraphTNotes;
+import graphTNotes.SetWeight;
 import wineADT.Read;
 import wineADT.Wine;
 
